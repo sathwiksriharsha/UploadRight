@@ -1,40 +1,105 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import ExamToolWorkspace from '../components/ExamToolWorkspace.astro';
-import presets from '../data/presets.json';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ExamToolWorkspace from "../components/ExamToolWorkspace.astro";
+import presets from "../data/presets.json";
+
+// Relevant judicial exam presets
+const judiciaryPresets = [
+  presets.find(p => p.slug === 'upsc'),
+  presets.find(p => p.slug === 'bpsc'),
+  presets.find(p => p.slug === 'delhi-police')
+].filter(Boolean) as typeof presets;
 
 const title = "Judiciary Exam Photo & Signature Resizers — High Court & Civil Judge | UploadRight";
-const description = "Resize and format photos, signatures, and document uploads for Delhi Judicial Service (DJS), Patna HC, Bombay HC, MP Judiciary, and State High Courts.";
+const description = "Format candidate photos, signatures, and document uploads for Delhi Judicial Service (DJS), High Court Clerks, Bihar Judicial Services, and State Judicial exams. 100% private in browser.";
 ---
 
 <BaseLayout title={title} description={description} canonicalSlug="judiciary">
   <Header slot="header" />
 
   <div class="relative bg-white py-10 sm:py-16">
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4">
-      <nav class="flex items-center gap-2 text-xs text-neutral-500 font-mono uppercase" aria-label="Breadcrumb">
+    <!-- Hero Header -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4">
+      <nav class="flex items-center gap-2 text-xs text-neutral-500 font-mono" aria-label="Breadcrumb">
         <a href="/" class="hover:text-black transition-colors">Home</a>
         <span>/</span>
         <span class="text-black font-semibold" aria-current="page">Judiciary Exams</span>
       </nav>
 
       <div class="space-y-3">
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#c5b0f4] text-black">
-          HIGH COURT &amp; JUDICIAL SERVICES
-        </span>
-        <h1 class="text-3xl sm:text-5xl font-black text-black tracking-tight leading-tight">
-          Judiciary Exam Photo &amp; Signature Resizer
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#dceeb1] text-black border border-black/10 font-mono text-xs font-bold shadow-xs">
+          <span class="w-2 h-2 rounded-full bg-[#1ea64a]"></span>
+          <span>High Court &amp; Judicial Services Standards</span>
+        </div>
+        <h1 class="text-3xl sm:text-6xl font-black text-black tracking-tight leading-tight">
+          Judiciary Exam <span class="underline decoration-4 decoration-black">Image Resizers</span>
         </h1>
-        <p class="text-base text-neutral-600 max-w-2xl leading-relaxed">
-          Official dimensions and strict KB thresholds for Delhi Judicial Services (DJS), High Court Clerks, Stenographers, and State Judicial exams.
+        <p class="text-base sm:text-lg text-neutral-600 max-w-2xl leading-relaxed">
+          Official specifications and strict KB thresholds for Delhi Judicial Services (DJS), High Court Clerks, and State Judicial examinations.
         </p>
       </div>
     </section>
 
+    <!-- Figma Color-Block Supported Exams Section (Exact Match to User Screenshot) -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-16">
+      <div class="bg-[#dceeb1] rounded-3xl p-8 sm:p-12 border-2 border-black space-y-8">
+        <div class="space-y-2 max-w-xl">
+          <span class="text-xs font-mono uppercase font-bold tracking-wider text-black block">// 2026 JUDICIAL RECRUITMENT KITS</span>
+          <h2 class="text-2xl sm:text-4xl font-black text-black tracking-tight">
+            Supported Judicial Portals
+          </h2>
+          <p class="text-sm text-neutral-800 leading-relaxed">
+            Pick your target judicial exam to launch its dedicated workspace with verified dimensions and biometric specifications.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {judiciaryPresets.map((p, idx) => (
+            <a
+              href={`/${p.slug}`}
+              class="bg-white p-6 rounded-2xl border-2 border-black space-y-4 hover:-translate-y-1 hover:shadow-md transition-all flex flex-col justify-between group cursor-pointer"
+            >
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="w-8 h-8 rounded-full bg-black text-white font-mono text-sm flex items-center justify-center font-bold">
+                    {idx + 1}
+                  </span>
+                  <span class="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full bg-[#f7f7f5] text-black border border-[#e6e6e6]">
+                    {p.slots.length}-in-1 Kit
+                  </span>
+                </div>
+
+                <div>
+                  <h3 class="text-base font-bold text-black group-hover:underline">
+                    {p.shortTitle || p.exam}
+                  </h3>
+                  <p class="text-xs text-neutral-600 leading-relaxed line-clamp-2 mt-1">
+                    {p.description}
+                  </p>
+                </div>
+              </div>
+
+              <div class="pt-3 border-t border-[#f1f1f1] flex items-center justify-between text-xs font-bold text-black font-mono">
+                <span class="text-neutral-500 font-normal">{p.slots[0].dpi}&nbsp;DPI</span>
+                <span class="group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                  Open Studio →
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Studio Workspace -->
     <section id="studio" class="mb-16">
-      <ExamToolWorkspace activePresetSlug="upsc" />
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 mb-6">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-neutral-500 block">// INSTANT WORKSPACE</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-black tracking-tight">Judiciary Exam Studio</h2>
+      </div>
+      <ExamToolWorkspace initialMode="preset" activePresetSlug="upsc" />
     </section>
   </div>
 

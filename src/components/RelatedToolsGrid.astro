@@ -1,6 +1,5 @@
 ---
-// RelatedToolsGrid.astro — Matches ExamMint Image 5 & All Supported Exams Grid
-// Provides rich internal linking, category tabs, real-time search, and instant exam switches
+// RelatedToolsGrid.astro — Matches Figma Color-Block & White Cards Design
 import presets from '../data/presets.json';
 
 interface Props {
@@ -13,11 +12,11 @@ const { currentCategory = 'central', currentSlug = '', showAll = false } = Astro
 
 // Filter related presets by category, excluding current slug
 let related = presets.filter(p => p.category === currentCategory && p.slug !== currentSlug);
-if (related.length < 8) {
+if (related.length < 6) {
   const others = presets.filter(p => p.slug !== currentSlug && !related.some(r => r.slug === p.slug));
-  related = [...related, ...others].slice(0, 8);
+  related = [...related, ...others].slice(0, 6);
 } else {
-  related = related.slice(0, 8);
+  related = related.slice(0, 6);
 }
 
 const displayedPresets = showAll ? presets : related;
@@ -32,133 +31,129 @@ const categoryNames: Record<string, string> = {
 };
 
 const categoryLabel = categoryNames[currentCategory] || 'Government';
-
-function getInitials(title: string): string {
-  if (title.includes('4-in-1')) return 'I4';
-  const clean = title.replace(/Photo|Signature|Resizer|Kit|Exam|OTR|Examination/gi, '').trim();
-  const words = clean.split(/[\s/&-]+/).filter(Boolean);
-  if (words.length >= 2) {
-    return (words[0][0] + words[1][0]).toUpperCase();
-  }
-  if (words.length === 1 && words[0].length >= 2) {
-    return words[0].slice(0, 2).toUpperCase();
-  }
-  return title.slice(0, 2).toUpperCase();
-}
 ---
 
-<section id="all-exams-grid-section" class="max-w-6xl mx-auto px-4 sm:px-6 my-16 space-y-8">
-  <div class="text-center space-y-3 max-w-3xl mx-auto">
-    <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#f0f0ee] border border-[#e6e6e6] text-xs font-mono font-bold text-neutral-800 shadow-xs">
-      <span>✨</span>
-      <span>{showAll ? 'ALL SUPPORTED EXAMS' : 'RELATED TOOLS'}</span>
-    </div>
-    <h2 class="text-2xl sm:text-4xl font-extrabold text-black tracking-tight">
-      {showAll ? (
-        <>Supported Exam <span class="text-[#0062FF]">Photo &amp; Signature Portals</span></>
-      ) : (
-        <>Also resize for <span class="text-[#0062FF]">{categoryLabel} Exams</span></>
+<section id="all-exams-grid-section" class="max-w-6xl mx-auto px-4 sm:px-6 my-12 sm:my-16">
+  <!-- Figma Color-Block Container (Exact Match to User Reference) -->
+  <div class="bg-[#dceeb1] rounded-3xl p-8 sm:p-12 border-2 border-black space-y-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b-2 border-black/10 pb-6">
+      <div class="space-y-2 max-w-2xl">
+        <span class="text-xs font-mono uppercase font-bold tracking-wider text-black block">
+          {showAll ? '// 2026 OFFICIAL RECRUITMENT DIRECTORY' : `// RELATED ${categoryLabel.toUpperCase()} WORKSPACES`}
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-black text-black tracking-tight">
+          {showAll ? 'Supported Exam Portals' : `Also Resize for ${categoryLabel} Exams`}
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-800 leading-relaxed font-sans">
+          {showAll
+            ? 'Engineered to remove all guesswork from government portal photo uploads. Pick any exam to launch its official specification kit.'
+            : `Preparing for multiple recruitment exams? Launch any official ${categoryLabel.toLowerCase()} workspace with verified requirements.`}
+        </p>
+      </div>
+
+      {showAll && (
+        <div class="text-xs font-mono font-bold text-black shrink-0 px-3.5 py-1.5 rounded-full bg-white border-2 border-black shadow-xs">
+          {presets.length} Official Portals
+        </div>
       )}
-    </h2>
-    <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed font-mono">
-      {showAll
-        ? 'Browse all supported competitive examinations. Each box launches an official multi-slot requirement bundle with verified pixel dimensions, byte safety limits, and 200/300/600 DPI headers.'
-        : `Preparing for multiple exams? Resize your photo and signature for other ${categoryLabel.toLowerCase()} exams instantly.`}
-    </p>
-  </div>
-
-  {showAll && (
-    <div class="space-y-4 max-w-4xl mx-auto">
-      <!-- Category Filter Chips -->
-      <div class="flex items-center justify-center gap-2 flex-wrap text-xs font-mono">
-        <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-black text-white font-bold border-2 border-black transition cursor-pointer" data-cat="all">
-          All Exams ({presets.length})
-        </button>
-        <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border-2 border-[#e6e6e6] text-black font-medium transition cursor-pointer" data-cat="central">
-          Central Govt
-        </button>
-        <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border-2 border-[#e6e6e6] text-black font-medium transition cursor-pointer" data-cat="banking">
-          Banking &amp; Financial
-        </button>
-        <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border-2 border-[#e6e6e6] text-black font-medium transition cursor-pointer" data-cat="police">
-          Police &amp; Defense
-        </button>
-        <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border-2 border-[#e6e6e6] text-black font-medium transition cursor-pointer" data-cat="state">
-          State PSCs
-        </button>
-        <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border-2 border-[#e6e6e6] text-black font-medium transition cursor-pointer" data-cat="others">
-          Entrance &amp; PAN
-        </button>
-      </div>
-
-      <!-- Instant Live Search Bar -->
-      <div class="relative max-w-md mx-auto">
-        <span class="absolute left-3.5 top-2.5 text-neutral-400 text-xs">🔍</span>
-        <input
-          type="text"
-          id="exam-grid-search-input"
-          placeholder="Search exams (e.g. IBPS, SSC, UPSC, Railway, Police, NEET)..."
-          class="w-full pl-9 pr-4 py-2.5 bg-white border-2 border-[#e6e6e6] focus:border-black rounded-2xl text-xs font-mono placeholder:text-neutral-400 focus:outline-none transition shadow-xs"
-        />
-      </div>
     </div>
-  )}
 
-  <div id="exam-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-    {displayedPresets.map((p) => {
-      const primarySlot = p.slots[0];
-      const initials = getInitials(p.shortTitle || p.exam);
-      const slotCount = p.slots.length;
-      return (
+    {showAll && (
+      <div class="space-y-4">
+        <!-- Category Filter Chips -->
+        <div class="flex items-center gap-2 flex-wrap text-xs font-mono">
+          <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-black text-white font-bold border-2 border-black transition cursor-pointer" data-cat="all">
+            All ({presets.length})
+          </button>
+          <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-white hover:bg-black hover:text-white border-2 border-black text-black font-semibold transition cursor-pointer" data-cat="central">
+            Central Govt
+          </button>
+          <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-white hover:bg-black hover:text-white border-2 border-black text-black font-semibold transition cursor-pointer" data-cat="banking">
+            Banking
+          </button>
+          <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-white hover:bg-black hover:text-white border-2 border-black text-black font-semibold transition cursor-pointer" data-cat="police">
+            Police &amp; Defense
+          </button>
+          <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-white hover:bg-black hover:text-white border-2 border-black text-black font-semibold transition cursor-pointer" data-cat="state">
+            State PSC
+          </button>
+          <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-white hover:bg-black hover:text-white border-2 border-black text-black font-semibold transition cursor-pointer" data-cat="others">
+            Entrance &amp; PAN
+          </button>
+        </div>
+
+        <!-- Live Search Bar -->
+        <div class="relative max-w-md">
+          <span class="absolute left-3.5 top-3 text-neutral-500 text-xs">🔍</span>
+          <input
+            type="text"
+            id="exam-grid-search-input"
+            placeholder="Search exams (e.g. IBPS, SSC, UPSC, Railway, Police)..."
+            class="w-full pl-9 pr-4 py-2.5 bg-white border-2 border-black rounded-2xl text-xs font-mono placeholder:text-neutral-500 focus:outline-none transition shadow-xs"
+          />
+        </div>
+      </div>
+    )}
+
+    <!-- Cards Grid (3 Columns, clean white cards matching user's Figma reference) -->
+    <div id="exam-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {displayedPresets.map((p, idx) => (
         <a
           href={`/${p.slug}`}
-          class="exam-box-card p-4 rounded-2xl border-2 border-[#e6e6e6] hover:border-black bg-white hover:bg-[#fafafa] transition-all shadow-xs group flex items-start gap-3.5 cursor-pointer"
+          class="exam-box-card bg-white p-6 sm:p-7 rounded-2xl border-2 border-black space-y-4 hover:-translate-y-1 hover:shadow-md transition-all flex flex-col justify-between group cursor-pointer"
           data-category={p.category}
           data-title={(p.shortTitle || p.exam).toLowerCase()}
           data-search={`${p.shortTitle || ''} ${p.exam} ${p.category} ${p.categoryLabel} ${p.slug}`.toLowerCase()}
         >
-          <div class="w-10 h-10 rounded-xl bg-[#0062FF]/10 text-[#0062FF] font-black text-xs flex items-center justify-center shrink-0 border border-[#0062FF]/20 group-hover:bg-black group-hover:text-white group-hover:border-black transition-colors font-mono">
-            {initials}
-          </div>
-          <div class="space-y-1 min-w-0 flex-1">
-            <div class="flex items-center justify-between gap-1">
-              <h3 class="text-xs sm:text-sm font-bold text-black truncate group-hover:text-[#0062FF] transition-colors">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="w-8 h-8 rounded-full bg-black text-white font-mono text-sm flex items-center justify-center font-bold">
+                {idx + 1}
+              </span>
+              <span class="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full bg-[#f7f7f5] text-black border border-black/15">
+                {p.slots.length}-in-1 Kit
+              </span>
+            </div>
+
+            <div>
+              <h3 class="text-base sm:text-lg font-bold text-black group-hover:underline leading-snug">
                 {p.shortTitle || p.exam}
               </h3>
-              {slotCount > 2 && (
-                <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200 text-[9px] font-mono shrink-0 font-bold">
-                  {slotCount} Docs
-                </span>
-              )}
-            </div>
-            <p class="text-[11px] font-mono text-neutral-500">
-              {primarySlot.widthPx}×{primarySlot.heightPx}px
-            </p>
-            <div class="flex items-center gap-1.5 pt-1 text-[10px] font-mono">
-              <span class="px-2 py-0.5 rounded-md bg-[#f7f7f5] border border-[#e6e6e6] text-neutral-600">
-                {primarySlot.minKB}–{primarySlot.maxKB}KB
-              </span>
-              <span class="px-2 py-0.5 rounded-md bg-[#dceeb1] border border-black/10 text-black font-semibold">
-                JPG
-              </span>
+              <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-2 mt-1.5">
+                {p.description}
+              </p>
             </div>
           </div>
-        </a>
-      );
-    })}
-  </div>
 
-  {!showAll && (
-    <div class="text-center pt-2">
-      <a
-        href="/#all-exams-grid-section"
-        class="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-neutral-700 hover:text-black hover:underline"
-      >
-        <span>View all {presets.length} official exam bundles</span>
-        <span>→</span>
-      </a>
+          <div class="pt-3 border-t border-[#f1f1f1] flex items-center justify-between text-xs font-bold text-black font-mono">
+            <span class="text-neutral-500 font-normal">{p.slots[0].dpi}&nbsp;DPI · {(p.slots[0].format || 'JPG').toUpperCase()}</span>
+            <span class="group-hover:translate-x-1 transition-transform flex items-center gap-1">
+              Open Studio →
+            </span>
+          </div>
+        </a>
+      ))}
     </div>
-  )}
+
+    <!-- Empty Search State -->
+    <div id="exam-grid-empty" class="hidden text-center py-12 bg-white rounded-2xl border-2 border-black p-8 space-y-2">
+      <span class="text-2xl block">🔍</span>
+      <h3 class="text-base font-bold text-black">No matching exams found</h3>
+      <p class="text-xs font-mono text-neutral-600">Try searching for IBPS, SSC, UPSC, Railway, Police, or NEET</p>
+    </div>
+
+    {!showAll && (
+      <div class="text-center pt-2">
+        <a
+          href="/supported"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border-2 border-black text-xs font-mono font-bold text-black hover:bg-black hover:text-white transition shadow-xs"
+        >
+          <span>View all {presets.length} official exam bundles</span>
+          <span>→</span>
+        </a>
+      </div>
+    )}
+  </div>
 </section>
 
 {showAll && (
@@ -166,19 +161,44 @@ function getInitials(title: string): string {
     const searchInput = document.getElementById('exam-grid-search-input') as HTMLInputElement | null;
     const catBtns = document.querySelectorAll('.exam-grid-cat-btn');
     const cards = document.querySelectorAll('.exam-box-card');
+    const emptyState = document.getElementById('exam-grid-empty');
 
     let currentCat = 'all';
     let searchQuery = '';
 
     function filterGrid() {
+      let visibleCount = 0;
       cards.forEach(card => {
         const c = card as HTMLElement;
         const cat = c.dataset.category || '';
         const search = c.dataset.search || '';
-        const catMatch = currentCat === 'all' || cat === currentCat;
+        
+        let catMatch = currentCat === 'all';
+        if (!catMatch) {
+          if (currentCat === 'central') {
+            catMatch = cat === 'central' || cat === 'ssc' || cat === 'upsc';
+          } else if (currentCat === 'banking') {
+            catMatch = cat === 'banking';
+          } else if (currentCat === 'police') {
+            catMatch = cat === 'police';
+          } else if (currentCat === 'state') {
+            catMatch = cat === 'state';
+          } else if (currentCat === 'others') {
+            catMatch = cat === 'nta' || cat === 'govtid';
+          } else {
+            catMatch = cat === currentCat;
+          }
+        }
+
         const searchMatch = !searchQuery || search.includes(searchQuery);
-        c.classList.toggle('hidden', !(catMatch && searchMatch));
+        const isVisible = catMatch && searchMatch;
+        c.classList.toggle('hidden', !isVisible);
+        if (isVisible) visibleCount++;
       });
+
+      if (emptyState) {
+        emptyState.classList.toggle('hidden', visibleCount > 0);
+      }
     }
 
     if (searchInput) {
@@ -191,7 +211,7 @@ function getInitials(title: string): string {
     catBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         catBtns.forEach(b => {
-          b.className = 'exam-grid-cat-btn px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border-2 border-[#e6e6e6] text-black font-medium transition cursor-pointer';
+          b.className = 'exam-grid-cat-btn px-4 py-1.5 rounded-full bg-white hover:bg-black hover:text-white border-2 border-black text-black font-semibold transition cursor-pointer';
         });
         btn.className = 'exam-grid-cat-btn px-4 py-1.5 rounded-full bg-black text-white font-bold border-2 border-black transition cursor-pointer';
         currentCat = (btn as HTMLElement).dataset.cat || 'all';
