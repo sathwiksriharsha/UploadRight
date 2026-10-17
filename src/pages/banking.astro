@@ -5,10 +5,14 @@ import Footer from '../components/Footer.astro';
 import ExamToolWorkspace from '../components/ExamToolWorkspace.astro';
 import presets from '../data/presets.json';
 
-const bankingPresets = presets.filter(p => p.category === 'banking' || p.slug.includes('ibps') || p.slug.includes('sbi') || p.slug.includes('rbi'));
+// Curated banking recruitment exams (deduplicated primary routes)
+const bankingSlugs = ['ibps-po', 'ibps-clerk', 'sbi-po', 'sbi-clerk', 'rbi-grade-b', 'ibps'];
+const bankingPresets = bankingSlugs
+  .map(slug => presets.find(p => p.slug === slug))
+  .filter(Boolean) as typeof presets;
 
-const title = "Banking Exam Photo, Signature & Thumb Resizers — IBPS, SBI, RBI | UploadRight";
-const description = "Complete 4-in-1 image resizer kits for Indian Banking Exams. Photo 200×230 px (20–50 KB), Signature 140×60 px (10–20 KB), Left Thumb 240×240 px, and Handwritten Declaration.";
+const title = "Banking Exam Photo, Signature, Thumb & Declaration Resizers — IBPS, SBI, RBI | UploadRight";
+const description = "Choose your specific banking exam: IBPS PO, IBPS Clerk, SBI PO, SBI Clerk, RBI Grade B. Complete 4-in-1 kits for candidate photo, black-ink signature, left thumb, and handwritten declaration.";
 ---
 
 <BaseLayout title={title} description={description} canonicalSlug="banking">
@@ -16,7 +20,7 @@ const description = "Complete 4-in-1 image resizer kits for Indian Banking Exams
 
   <div class="relative bg-white py-10 sm:py-16">
     <!-- Hero Header -->
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4">
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4">
       <nav class="flex items-center gap-2 text-xs text-[#86868B]" aria-label="Breadcrumb">
         <a href="/" class="hover:text-[#1D1D1F] transition-colors">Home</a>
         <span>/</span>
@@ -26,43 +30,79 @@ const description = "Complete 4-in-1 image resizer kits for Indian Banking Exams
       <div class="space-y-3">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5F5F7] border border-[#E5E5EA] text-xs font-semibold text-[#1D1D1F]">
           <span class="w-1.5 h-1.5 rounded-full bg-[#0062FF]"></span>
-          <span>IBPS &amp; SBI 4-in-1 Kit Hub</span>
+          <span>Official 2026 IBPS, SBI &amp; RBI Compliance Hub</span>
         </div>
         <h1 class="text-3xl sm:text-5xl font-extrabold text-[#1D1D1F] tracking-tight leading-tight">
           Banking Exam <span class="text-[#0062FF]">Image Resizers</span>
         </h1>
         <p class="text-sm sm:text-base text-[#86868B] max-w-2xl leading-relaxed">
-          Full compliance with IBPS and SBI CRP guidelines: candidate photograph, black-ink signature, left thumb impression, and official handwritten declaration in a single session.
+          Select your specific recruitment exam below. Each exam opens a tailored <strong>4-in-1 workspace</strong> configured with official pixel dimensions, KB constraints, paper whitener, and declaration text generator.
         </p>
       </div>
     </section>
 
-    <!-- Studio Workspace -->
-    <section id="studio" class="mb-16">
-      <ExamToolWorkspace initialMode="preset" activePresetSlug="ibps-photo-signature-resizer" />
-    </section>
-
-    <!-- Banking Exams Grid -->
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
-      <div class="space-y-1">
-        <h2 class="text-xl sm:text-2xl font-bold text-[#1D1D1F]">Supported Banking &amp; Insurance Exams</h2>
+    <!-- STEP 1: PROMINENT BANKING EXAMS GRID (Option A) -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-16 space-y-6">
+      <div class="flex items-center justify-between border-b border-[#E5E5EA] pb-3">
+        <div>
+          <span class="text-xs font-mono font-bold uppercase tracking-wider text-[#0062FF] block">// STEP 1: CHOOSE YOUR BANK EXAM</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-[#1D1D1F]">Active Banking Recruitment Portals</h2>
+        </div>
+        <span class="text-xs font-mono text-[#86868B]">{bankingPresets.length} 4-in-1 Kits</span>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {bankingPresets.map(p => (
           <a
             href={`/${p.slug}`}
-            class="p-5 rounded-2xl border border-[#E5E5EA] bg-[#F5F5F7] hover:bg-[#EBF2FF] hover:border-[#0062FF]/40 transition-all group space-y-2"
+            class="p-5 rounded-2xl border-2 border-[#E5E5EA] bg-white hover:border-[#0062FF] hover:shadow-lg transition-all group flex flex-col justify-between space-y-4"
           >
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold text-[#0062FF]">{p.exam}</span>
-              <span class="text-[#86868B] group-hover:text-[#0062FF] transition-colors">→</span>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-bold bg-[#EBF2FF] text-[#0062FF] border border-[#0062FF]/20 group-hover:bg-[#0062FF] group-hover:text-white transition-colors">
+                  {p.slots.length}-in-1 Requirement Kit
+                </span>
+                <span class="text-xs font-mono font-bold text-[#86868B]">
+                  {p.slots[0].dpi}&nbsp;DPI
+                </span>
+              </div>
+
+              <div>
+                <h3 class="text-base font-bold text-[#1D1D1F] group-hover:text-[#0062FF] transition-colors">
+                  {p.title}
+                </h3>
+                <p class="text-xs text-[#86868B] mt-1 line-clamp-2 leading-relaxed">
+                  {p.description}
+                </p>
+              </div>
+
+              <!-- 4 Slots Spec Breakdown -->
+              <div class="space-y-1.5 pt-3 border-t border-[#F5F5F7]">
+                {p.slots.map(s => (
+                  <div class="flex items-center justify-between text-[11px] font-mono">
+                    <span class="text-[#626274] truncate">{s.label}</span>
+                    <span class="font-bold text-[#1D1D1F] whitespace-nowrap">{s.widthPx}×{s.heightPx}&nbsp;px · {s.minKB}–{s.maxKB}&nbsp;KB</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <h3 class="text-sm font-bold text-[#1D1D1F] group-hover:text-[#0062FF] transition-colors">{p.title}</h3>
-            <p class="text-xs text-[#86868B] line-clamp-2">{p.description}</p>
+
+            <div class="pt-3 border-t border-[#E5E5EA] flex items-center justify-between text-xs font-bold text-[#0062FF]">
+              <span>Open {p.shortTitle || p.exam} Studio</span>
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </div>
           </a>
         ))}
       </div>
+    </section>
+
+    <!-- STEP 2: STUDIO WORKSPACE (Pre-loaded with IBPS PO 4-in-1 Kit) -->
+    <section id="studio" class="mb-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 mb-4">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-[#86868B] block">// OR RESIZE DIRECTLY HERE</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#1D1D1F]">Quick Banking 4-in-1 Studio</h2>
+      </div>
+      <ExamToolWorkspace initialMode="preset" activePresetSlug="ibps-po" />
     </section>
   </div>
 

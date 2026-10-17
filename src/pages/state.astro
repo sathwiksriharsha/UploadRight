@@ -5,10 +5,21 @@ import Footer from '../components/Footer.astro';
 import ExamToolWorkspace from '../components/ExamToolWorkspace.astro';
 import presets from '../data/presets.json';
 
-const statePresets = presets.filter(p => p.category === 'state' || p.slug.includes('uppsc') || p.slug.includes('bpsc') || p.slug.includes('police'));
+// Curated State PSC recruitment exams
+const stateSlugs = [
+  'uppsc',
+  'bpsc',
+  'tnpsc',
+  'mpsc',
+  'tspsc',
+  'wbcs'
+];
+const statePresets = stateSlugs
+  .map(slug => presets.find(p => p.slug === slug))
+  .filter(Boolean) as typeof presets;
 
-const title = "State Government & PSC Exam Photo Resizers — UPPSC, BPSC, Police | UploadRight";
-const description = "Resize photos and signatures for State Public Service Commissions (UPPSC OTR, BPSC TRE/CCE, WBPSC, MPSC, TNPSC) and State Police recruitment portals. 100% private.";
+const title = "State PSC Exam Photo & Signature Resizers — UPPSC, BPSC, TNPSC, MPSC | UploadRight";
+const description = "Choose your State Public Service Commission exam: UPPSC OTR, Bihar BPSC, TNPSC Tamil Nadu, MPSC Maharashtra, TSPSC Telangana, and WBCS. Exact pixel dimensions, KB constraints, and 200 DPI headers.";
 ---
 
 <BaseLayout title={title} description={description} canonicalSlug="state">
@@ -16,53 +27,89 @@ const description = "Resize photos and signatures for State Public Service Commi
 
   <div class="relative bg-white py-10 sm:py-16">
     <!-- Hero Header -->
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4">
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4">
       <nav class="flex items-center gap-2 text-xs text-[#86868B]" aria-label="Breadcrumb">
         <a href="/" class="hover:text-[#1D1D1F] transition-colors">Home</a>
         <span>/</span>
-        <span class="text-[#1D1D1F] font-medium" aria-current="page">State Govt Exams</span>
+        <span class="text-[#1D1D1F] font-medium" aria-current="page">State PSC Exams</span>
       </nav>
 
       <div class="space-y-3">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5F5F7] border border-[#E5E5EA] text-xs font-semibold text-[#1D1D1F]">
           <span class="w-1.5 h-1.5 rounded-full bg-[#0062FF]"></span>
-          <span>State PSC &amp; Recruitment Hub</span>
+          <span>Official 2026 State Public Service Commission Hub</span>
         </div>
         <h1 class="text-3xl sm:text-5xl font-extrabold text-[#1D1D1F] tracking-tight leading-tight">
-          State Government <span class="text-[#0062FF]">Exam Resizers</span>
+          State PSC <span class="text-[#0062FF]">Exam Resizers</span>
         </h1>
         <p class="text-sm sm:text-base text-[#86868B] max-w-2xl leading-relaxed">
-          Accurate image specifications for UPPSC One Time Registration (OTR), Bihar BPSC teacher and civil services, UP Police, and state recruitment boards across India.
+          Select your state recruitment board below. Each portal features exact compliance with regional requirements, including bi-script Hindi/English signatures for BPSC and name/date placards for UPPSC and TNPSC.
         </p>
       </div>
     </section>
 
-    <!-- Studio Workspace -->
-    <section id="studio" class="mb-16">
-      <ExamToolWorkspace initialMode="preset" activePresetSlug="uppsc-otr-resizer" />
-    </section>
-
-    <!-- State Exams Grid -->
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
-      <div class="space-y-1">
-        <h2 class="text-xl sm:text-2xl font-bold text-[#1D1D1F]">Supported State PSC &amp; Recruitment Exams</h2>
+    <!-- STEP 1: PROMINENT STATE EXAMS GRID (Option A) -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-16 space-y-6">
+      <div class="flex items-center justify-between border-b border-[#E5E5EA] pb-3">
+        <div>
+          <span class="text-xs font-mono font-bold uppercase tracking-wider text-[#0062FF] block">// STEP 1: CHOOSE YOUR STATE PSC</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-[#1D1D1F]">State Public Service Commissions</h2>
+        </div>
+        <span class="text-xs font-mono text-[#86868B]">{statePresets.length} State PSCs</span>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {statePresets.map(p => (
           <a
             href={`/${p.slug}`}
-            class="p-5 rounded-2xl border border-[#E5E5EA] bg-[#F5F5F7] hover:bg-[#EBF2FF] hover:border-[#0062FF]/40 transition-all group space-y-2"
+            class="p-5 rounded-2xl border-2 border-[#E5E5EA] bg-white hover:border-[#0062FF] hover:shadow-lg transition-all group flex flex-col justify-between space-y-4"
           >
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold text-[#0062FF]">{p.exam}</span>
-              <span class="text-[#86868B] group-hover:text-[#0062FF] transition-colors">→</span>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-bold bg-[#EBF2FF] text-[#0062FF] border border-[#0062FF]/20 group-hover:bg-[#0062FF] group-hover:text-white transition-colors">
+                  {p.slots.length}-in-1 Requirement Kit
+                </span>
+                <span class="text-xs font-mono font-bold text-[#86868B]">
+                  {p.slots[0].dpi}&nbsp;DPI
+                </span>
+              </div>
+
+              <div>
+                <h3 class="text-base font-bold text-[#1D1D1F] group-hover:text-[#0062FF] transition-colors">
+                  {p.title}
+                </h3>
+                <p class="text-xs text-[#86868B] mt-1 line-clamp-2 leading-relaxed">
+                  {p.description}
+                </p>
+              </div>
+
+              <!-- Slots Spec Breakdown -->
+              <div class="space-y-1.5 pt-3 border-t border-[#F5F5F7]">
+                {p.slots.map(s => (
+                  <div class="flex items-center justify-between text-[11px] font-mono">
+                    <span class="text-[#626274] truncate">{s.label}</span>
+                    <span class="font-bold text-[#1D1D1F] whitespace-nowrap">{s.widthPx}×{s.heightPx}&nbsp;px · {s.minKB}–{s.maxKB}&nbsp;KB</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <h3 class="text-sm font-bold text-[#1D1D1F] group-hover:text-[#0062FF] transition-colors">{p.title}</h3>
-            <p class="text-xs text-[#86868B] line-clamp-2">{p.description}</p>
+
+            <div class="pt-3 border-t border-[#E5E5EA] flex items-center justify-between text-xs font-bold text-[#0062FF]">
+              <span>Open {p.shortTitle || p.exam} Studio</span>
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </div>
           </a>
         ))}
       </div>
+    </section>
+
+    <!-- STEP 2: STUDIO WORKSPACE (Pre-loaded with UPPSC OTR) -->
+    <section id="studio" class="mb-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 mb-4">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-[#86868B] block">// OR RESIZE DIRECTLY HERE</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#1D1D1F]">State PSC Studio</h2>
+      </div>
+      <ExamToolWorkspace initialMode="preset" activePresetSlug="uppsc" />
     </section>
   </div>
 

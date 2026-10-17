@@ -67,6 +67,32 @@ const jsonLd = [
       </p>
     </section>
 
+    <!-- Quick Category Switcher Hub Bar -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-8">
+      <div class="bg-[#F7F7F8] p-3 sm:p-4 rounded-2xl border-2 border-[#E5E5EA] flex items-center justify-between gap-3 flex-wrap shadow-xs">
+        <span class="text-xs font-mono font-bold text-[#1D1D1F] uppercase px-1 flex items-center gap-1.5">
+          <span>🎯</span> Explore by Category:
+        </span>
+        <div class="flex items-center gap-2 flex-wrap">
+          <a href="/central" class="px-3.5 py-1.5 rounded-xl bg-white hover:bg-black hover:text-white text-xs font-bold text-[#1D1D1F] border border-[#E5E5EA] transition-all shadow-xs flex items-center gap-1.5">
+            <span>🏛️</span> Central (SSC / UPSC)
+          </a>
+          <a href="/banking" class="px-3.5 py-1.5 rounded-xl bg-white hover:bg-black hover:text-white text-xs font-bold text-[#1D1D1F] border border-[#E5E5EA] transition-all shadow-xs flex items-center gap-1.5">
+            <span>🏦</span> Banking (IBPS / SBI)
+          </a>
+          <a href="/police" class="px-3.5 py-1.5 rounded-xl bg-white hover:bg-black hover:text-white text-xs font-bold text-[#1D1D1F] border border-[#E5E5EA] transition-all shadow-xs flex items-center gap-1.5">
+            <span>👮</span> Police &amp; Defence
+          </a>
+          <a href="/state" class="px-3.5 py-1.5 rounded-xl bg-white hover:bg-black hover:text-white text-xs font-bold text-[#1D1D1F] border border-[#E5E5EA] transition-all shadow-xs flex items-center gap-1.5">
+            <span>📜</span> State PSC
+          </a>
+          <a href="/custom" class="px-3.5 py-1.5 rounded-xl bg-white hover:bg-black hover:text-white text-xs font-bold text-[#1D1D1F] border border-[#E5E5EA] transition-all shadow-xs flex items-center gap-1.5">
+            <span>⚙️</span> Custom KB
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- The Split Studio Workspace (ExamMint replicated with Figma Design System) -->
     <section id="studio" class="mb-16 sm:mb-24">
       <ExamToolWorkspace activePresetSlug={defaultPreset.slug} initialSlotIndex={0} />
