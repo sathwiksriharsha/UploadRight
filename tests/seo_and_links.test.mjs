@@ -20,6 +20,8 @@ function getAllHtmlFiles(dir) {
   return results;
 }
 
+const expectedOrigin = (process.env.PUBLIC_SITE_URL || process.env.CF_PAGES_URL || 'https://uploadright.pages.dev').replace(/\/$/, '');
+
 test('SEO Audit: All static pages have title, meta description, canonical, h1 and valid JSON-LD', () => {
   const htmlFiles = getAllHtmlFiles(distDir);
   assert.ok(htmlFiles.length >= 35, `Expected at least 35 HTML pages, found ${htmlFiles.length}`);
@@ -40,10 +42,13 @@ test('SEO Audit: All static pages have title, meta description, canonical, h1 an
     const desc = descMatch[1].trim();
     assert.ok(desc.length >= 40, `Meta description too short in ${relativePath}: "${desc}"`);
 
-    // Canonical Tag Check
+    // Canonical Tag Check (Must match dynamic site URL)
     const canonicalMatch = content.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i);
     assert.ok(canonicalMatch, `Missing canonical link in ${relativePath}`);
-    assert.ok(canonicalMatch[1].startsWith('https://uploadright.in'), `Canonical URL must start with https://uploadright.in in ${relativePath}`);
+    assert.ok(
+      canonicalMatch[1].startsWith(expectedOrigin),
+      `Canonical URL must start with ${expectedOrigin} in ${relativePath}, got: ${canonicalMatch[1]}`
+    );
 
     // H1 Heading Check
     const h1Match = content.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
@@ -57,6 +62,34 @@ test('SEO Audit: All static pages have title, meta description, canonical, h1 an
       }, `Invalid JSON-LD schema in ${relativePath}`);
     }
   }
+});
+
+test('Competitor & Traffic Hubs: /image-resizer and /signature-compressor are full static routes', () => {
+  // /image-resizer (Competitor's 46% traffic driver)
+  const imageResizerPath = path.join(distDir, 'image-resizer', 'index.html');
+  assert.ok(fs.existsSync(imageResizerPath), '/image-resizer must exist as a pre-rendered static route');
+  const imageResizerHtml = fs.readFileSync(imageResizerPath, 'utf-8');
+  assert.ok(imageResizerHtml.includes('Online Image Resizer'), '/image-resizer must include target H1 keyword "Online Image Resizer"');
+  assert.ok(imageResizerHtml.includes('Photo Resize in KB') || imageResizerHtml.includes('photo resize in kb'), '/image-resizer must include target phrase "Photo Resize in KB"');
+
+  // /signature-compressor
+  const sigCompressorPath = path.join(distDir, 'signature-compressor', 'index.html');
+  assert.ok(fs.existsSync(sigCompressorPath), '/signature-compressor must exist as a pre-rendered static route');
+  const sigCompressorHtml = fs.readFileSync(sigCompressorPath, 'utf-8');
+  assert.ok(sigCompressorHtml.includes('Signature Compressor'), '/signature-compressor must include target keyword "Signature Compressor"');
+});
+
+test('Legal Pages Deduplication: /terms is canonical and /terms-of-service redirects', () => {
+  const termsPath = path.join(distDir, 'terms', 'index.html');
+  assert.ok(fs.existsSync(termsPath), '/terms must exist as canonical Terms page');
+
+  const termsOfServicePath = path.join(distDir, 'terms-of-service', 'index.html');
+  assert.ok(!fs.existsSync(termsOfServicePath), '/terms-of-service must NOT exist as duplicate static page');
+
+  const redirectsPath = path.join(distDir, '_redirects');
+  assert.ok(fs.existsSync(redirectsPath), '_redirects must exist');
+  const redirectsContent = fs.readFileSync(redirectsPath, 'utf-8');
+  assert.ok(redirectsContent.includes('/terms-of-service /terms 301'), '_redirects must 301 redirect /terms-of-service to /terms');
 });
 
 test('Broken Link Audit: All internal links across all pages resolve to valid routes', () => {
@@ -102,4 +135,9 @@ test('Cloudflare Deployment Artifacts: Robots, sitemap, headers, redirects exist
   assert.ok(fs.existsSync(path.join(distDir, '_headers')), '_headers must exist in dist');
   assert.ok(fs.existsSync(path.join(distDir, '_redirects')), '_redirects must exist in dist');
   assert.ok(fs.existsSync(path.join(distDir, 'favicon.svg')), 'favicon.svg must exist in dist');
+
+  // Verify robots.txt contains sitemap URL
+  const robotsContent = fs.readFileSync(path.join(distDir, 'robots.txt'), 'utf-8');
+  assert.ok(robotsContent.includes('Sitemap:'), 'robots.txt must declare Sitemap:');
+  assert.ok(robotsContent.includes(expectedOrigin), `robots.txt must reference ${expectedOrigin}`);
 });

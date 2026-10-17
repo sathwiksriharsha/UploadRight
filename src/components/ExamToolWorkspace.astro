@@ -17,12 +17,14 @@ interface Props {
     | 'photo-resizer'
     | 'image-resizer'
     | 'signature-resizer';
+  showFaceGuide?: boolean;
 }
 
 const {
   activePresetSlug = 'ssc-photo-resizer',
   initialSlotIndex = 0,
   initialMode = 'preset',
+  showFaceGuide = false,
 } = Astro.props;
 
 const isGeneric = [
@@ -47,6 +49,7 @@ const allPresetsJson = JSON.stringify(presets);
   data-active-slug={activePresetSlug}
   data-initial-slot-index={initialSlotIndex}
   data-initial-mode={initialMode}
+  data-show-face-guide={showFaceGuide ? 'true' : 'false'}
 >
   <!-- Top Center Mode Selector (Only on homepage or exam presets / placard) -->
   {!isGeneric && (
@@ -712,9 +715,27 @@ const allPresetsJson = JSON.stringify(presets);
           <button id="cropper-file-close-btn" type="button" class="text-neutral-400 hover:text-black font-bold text-sm cursor-pointer ml-2 p-1" title="Close Image">✕</button>
         </div>
 
-        <div class="flex items-center justify-between text-xs">
+        <div class="flex items-center justify-between text-xs flex-wrap gap-2">
           <span class="font-bold text-black uppercase font-mono tracking-wider">Crop &amp; Adjust</span>
           <div class="flex items-center gap-2">
+            <!-- 75% Biometric Face Coverage Toggle Button -->
+            <button
+              id="btn-toggle-face-guide"
+              type="button"
+              class={`px-3 py-1.5 rounded-full border text-xs font-semibold font-mono transition-colors flex items-center gap-1.5 cursor-pointer ${
+                showFaceGuide
+                  ? 'bg-black text-white border-black'
+                  : 'bg-white hover:bg-black hover:text-white border-[#e6e6e6] text-black'
+              }`}
+              title="Toggle 75% Biometric Face Coverage Guide (UPSC / SSC / NTA Standard)"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="5" />
+                <path d="M20 21a8 8 0 0 0-16 0" />
+              </svg>
+              <span id="face-guide-toggle-text">{showFaceGuide ? 'Face Guide: ON' : '75% Face Guide'}</span>
+            </button>
+
             <button id="btn-rotate-left" type="button" class="w-8 h-8 rounded-full bg-white hover:bg-black hover:text-white border border-[#e6e6e6] text-black transition-colors flex items-center justify-center cursor-pointer" title="Rotate Counter-Clockwise (-90°)">
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 .57-8.38"/></svg>
             </button>
@@ -727,9 +748,42 @@ const allPresetsJson = JSON.stringify(presets);
           </div>
         </div>
 
-        <!-- Cropper Viewport (Clean Framing — No Oval Overlay) -->
+        <!-- Cropper Viewport -->
         <div class="relative bg-black rounded-2xl overflow-hidden min-h-[300px] sm:min-h-[360px] max-h-[460px] w-full flex items-center justify-center border-2 border-black">
           <img id="cropper-image" alt="Source Document" class="max-w-full block max-h-full" />
+
+          <!-- Subtle Non-Intrusive 75%–80% Face Coverage Guide Overlay -->
+          <div
+            id="face-guide-overlay"
+            class={`absolute inset-0 pointer-events-none flex flex-col items-center justify-center z-20 transition-opacity select-none ${
+              showFaceGuide ? '' : 'hidden'
+            }`}
+          >
+            <div class="relative w-48 sm:w-56 h-64 sm:h-72 flex flex-col items-center justify-center">
+              <svg class="w-full h-full text-white drop-shadow-md" viewBox="0 0 200 260" fill="none">
+                <!-- Top Crown Boundary -->
+                <line x1="55" y1="26" x2="145" y2="26" stroke="#ffffff" stroke-width="1.8" stroke-dasharray="3 3" opacity="0.9"/>
+                <text x="100" y="20" font-size="8" fill="#ffffff" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="0.5">TOP OF HEAD (CROWN)</text>
+
+                <!-- Biometric Head Oval (75-80% height) -->
+                <ellipse cx="100" cy="98" rx="52" ry="72" stroke="#ffffff" stroke-width="2" stroke-dasharray="6 4" opacity="0.85" />
+                
+                <!-- Eye Level Line -->
+                <line x1="45" y1="90" x2="155" y2="90" stroke="#ffffff" stroke-width="1.2" stroke-dasharray="2 3" opacity="0.75"/>
+                <text x="158" y="93" font-size="7" fill="#ffffff" opacity="0.9" font-family="monospace">EYE LEVEL</text>
+
+                <!-- Bottom Chin Boundary -->
+                <line x1="65" y1="170" x2="135" y2="170" stroke="#ffffff" stroke-width="1.8" stroke-dasharray="3 3" opacity="0.9"/>
+                <text x="100" y="182" font-size="8" fill="#ffffff" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="0.5">CHIN LINE (75%-80%)</text>
+
+                <!-- Shoulder Arcs -->
+                <path d="M 20 250 C 45 205 68 194 88 188 C 100 188 100 188 112 188 C 132 194 155 205 180 250" stroke="#ffffff" stroke-width="1.8" stroke-dasharray="4 4" opacity="0.75" />
+              </svg>
+              <div class="absolute bottom-2 px-3 py-1 rounded-full bg-black/80 backdrop-blur-sm border border-white/20 text-[10px] font-mono text-white text-center shadow-lg">
+                Official 75%–80% Face Area Guide
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Action Buttons (Cancel + Apply & Optimize) -->
@@ -1431,6 +1485,27 @@ const allPresetsJson = JSON.stringify(presets);
     cancelOpeningImage.addEventListener('click', resetUploader);
     cropperFileCloseBtn.addEventListener('click', resetUploader);
     processAnotherBtn.addEventListener('click', resetUploader);
+
+    // 75% Biometric Face Guide Toggle
+    const btnToggleFaceGuide = document.getElementById('btn-toggle-face-guide');
+    const faceGuideOverlay = document.getElementById('face-guide-overlay');
+    const faceGuideToggleText = document.getElementById('face-guide-toggle-text');
+    let isFaceGuideActive = root.dataset.showFaceGuide === 'true';
+
+    if (btnToggleFaceGuide && faceGuideOverlay) {
+      btnToggleFaceGuide.addEventListener('click', () => {
+        isFaceGuideActive = !isFaceGuideActive;
+        if (isFaceGuideActive) {
+          faceGuideOverlay.classList.remove('hidden');
+          btnToggleFaceGuide.className = 'px-3 py-1.5 rounded-full border text-xs font-semibold font-mono transition-colors flex items-center gap-1.5 cursor-pointer bg-black text-white border-black';
+          if (faceGuideToggleText) faceGuideToggleText.textContent = 'Face Guide: ON';
+        } else {
+          faceGuideOverlay.classList.add('hidden');
+          btnToggleFaceGuide.className = 'px-3 py-1.5 rounded-full border text-xs font-semibold font-mono transition-colors flex items-center gap-1.5 cursor-pointer bg-white hover:bg-black hover:text-white border-[#e6e6e6] text-black';
+          if (faceGuideToggleText) faceGuideToggleText.textContent = '75% Face Guide';
+        }
+      });
+    }
 
     // Rotation & Reset
     btnRotateLeft.addEventListener('click', () => {

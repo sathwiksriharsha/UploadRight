@@ -1,5 +1,5 @@
 # Cloudflare Pages 301 Redirects
-/terms /terms-of-service 301
+/terms-of-service /terms 301
 /privacy /privacy-policy 301
 /name-date /add-name-date 301
 /slate /add-name-date 301

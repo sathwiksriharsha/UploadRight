@@ -21,14 +21,16 @@
   - **State Police & PSCs**: UP Police, Delhi Police, UPPSC, BPSC, MPPSC, MPSC, TNPSC, WBPSC, KPSC.
   - **National Entrance Exams**: NEET UG, JEE Main, GATE, CUET.
   - **Identity Portals**: NSDL PAN, UTIITSL PAN, Passport Seva.
-- 🧰 **Dedicated Generic Tools**:
+- 🧰 **Dedicated Generic Tools & High-Traffic Hubs**:
+  - `Online Image Resizer` (`/image-resizer`): Universal exact pixel and KB resizing (20 KB, 50 KB, 100 KB).
+  - `Signature Compressor` (`/signature-compressor`): Strict 10–20 KB threshold + paper whitening.
   - `Image Compressor` (`/image-compressor`): Target exact KB limits (20KB, 50KB, 100KB, 200KB).
-  - `Signature Compressor` (`/signature-compressor`): Auto-whitening + 10–20 KB compression.
-  - `Photo Resizer` (`/photo-resizer`): Universal 350×450 px / 200 DPI passport tool.
+  - `Passport Photo Resizer` (`/photo-resizer`): Universal 3.5×4.5 cm / 200 DPI passport tool.
+  - `75% Face Coverage` (`/75-face-coverage`): Biometric crown-to-chin visual alignment guide overlay.
   - `Signature Resizer` (`/signature-resizer`): 140×60 px official ratio tool.
   - `Add Name & Date` (`/add-name-date`): UPSC / Govt placard slate generator.
   - `Custom Resizer` (`/custom`): Freeform px, cm, mm, inch target dimensions.
-- ⚡ **Optimized for Cloudflare Pages**: Fast static build with 57 pre-rendered routes, instant TTFB, and zero cold starts.
+- ⚡ **Optimized for Cloudflare Pages**: Fast static build with 57 pre-rendered routes, instant TTFB, dynamic canonicals, and zero cold starts.
 
 ---
 
@@ -100,10 +102,12 @@ UploadRight is designed for zero-configuration deployment on Cloudflare Pages:
    - **Framework preset**: `Astro`
    - **Build command**: `npm run build`
    - **Build output directory**: `dist`
-   - **Environment variables**: `NODE_VERSION = 20` (or `22`)
+   - **Environment variables**:
+     - `NODE_VERSION` = `22` *(Cloudflare Pages V2 image native cached LTS)*
+     - `PUBLIC_SITE_URL` = *(Optional: Defaults to `https://uploadright.pages.dev` for ₹0 startup; set to `https://uploadright.in` when you attach a custom domain so canonical tags and sitemaps match automatically)*
 5. Click **Save and Deploy**.
 
-The included `public/_headers` and `public/_redirects` files will automatically configure caching headers and security policies.
+The included `public/_headers` and `public/_redirects` files will automatically configure caching headers, clean 301 redirects, and security policies.
 
 ---
 

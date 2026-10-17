@@ -5,8 +5,8 @@ import Footer from '../components/Footer.astro';
 import ExamToolWorkspace from '../components/ExamToolWorkspace.astro';
 import RelatedToolsGrid from '../components/RelatedToolsGrid.astro';
 
-const title = "Online Photo & Image Resizer — Dimensions (px/cm) & KB Limits | UploadRight";
-const description = "Resize photos to exact dimensions in pixels (px) or centimeters (cm) with target KB limits for official government application forms. 100% private in-browser.";
+const title = "Online Image Resizer — Resize Photo in KB & Exact Pixels Free | UploadRight";
+const description = "Free online image resizer to resize photo in KB (20 KB, 50 KB, 100 KB) and exact pixel dimensions (px, cm) for government exam forms. 100% private in-browser.";
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -14,10 +14,18 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How do I resize an image to exact dimensions in pixels or centimeters?",
+      "name": "How do I resize an image or photo to a specific KB size (e.g. 20 KB or 50 KB)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "UploadRight allows you to enter target width and height in pixels (px), centimeters (cm), millimeters (mm), or inches, while automatically maintaining the exact aspect ratio."
+        "text": "Upload your photo to UploadRight, set your target Min and Max KB (for example, 20 KB to 50 KB), and our client-side binary search quantization engine compresses the image to that exact file size without quality loss."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I resize photo dimensions in pixels (px) or centimeters (cm)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UploadRight allows you to enter target width and height in pixels (px), centimeters (cm), millimeters (mm), or inches, while automatically maintaining or locking the exact aspect ratio."
       }
     },
     {
@@ -25,7 +33,7 @@ const faqSchema = {
       "name": "Can I resize an image to both dimensions and KB size at the same time?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes! UploadRight simultaneously resizes your image to exact pixel dimensions and applies iterative binary-search JPEG quantization to hit your specified min-KB and max-KB limits."
+        "text": "Yes! UploadRight simultaneously resizes your image to exact pixel dimensions and applies iterative binary-search JPEG quantization to hit your specified min-KB and max-KB limits with 200 DPI headers."
       }
     },
     {
@@ -49,19 +57,19 @@ const faqSchema = {
       <nav class="flex items-center justify-center gap-2 text-xs text-neutral-500 font-mono uppercase" aria-label="Breadcrumb">
         <a href="/" class="hover:text-black transition-colors">Home</a>
         <span>/</span>
-        <span class="text-black font-semibold" aria-current="page">Photo &amp; Image Resizer</span>
+        <span class="text-black font-semibold" aria-current="page">Online Image Resizer</span>
       </nav>
 
       <div class="space-y-3">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#dceeb1] border border-black/10 text-xs font-mono font-bold text-black shadow-xs">
           <span class="w-2 h-2 rounded-full bg-[#1ea64a]"></span>
-          <span>Exact Dimensions &amp; KB Compression</span>
+          <span>Exact Dimensions &amp; Photo Resize in KB</span>
         </div>
         <h1 class="text-3xl sm:text-5xl font-black text-black tracking-tight leading-tight">
-          Online Photo &amp; Image Resizer
+          Online Image Resizer &amp; Photo Resize in KB
         </h1>
         <p class="text-sm sm:text-base text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-          Resize photos to exact dimensions in pixels (px) or centimeters (cm) with target KB limits for official application forms.
+          Resize photos to exact dimensions in pixels (px) or centimeters (cm) with target KB limits (20 KB, 50 KB, 100 KB) for official recruitment and exam application forms.
         </p>
       </div>
     </section>
