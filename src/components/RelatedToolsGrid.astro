@@ -1,0 +1,89 @@
+---
+// RelatedToolsGrid.astro — Matches ExamMint Image 5 exactly
+// Provides rich internal linking and instant exam switches for maximum organic SEO ranking
+import presets from '../data/presets.json';
+
+interface Props {
+  currentCategory?: string;
+  currentSlug?: string;
+}
+
+const { currentCategory = 'central', currentSlug = '' } = Astro.props;
+
+// Filter related presets by category, excluding current slug
+let related = presets.filter(p => p.category === currentCategory && p.slug !== currentSlug);
+if (related.length < 8) {
+  // supplement with top featured presets
+  const others = presets.filter(p => p.slug !== currentSlug && !related.some(r => r.slug === p.slug));
+  related = [...related, ...others].slice(0, 8);
+} else {
+  related = related.slice(0, 8);
+}
+
+const categoryNames: Record<string, string> = {
+  central: 'Central Government',
+  banking: 'Banking & Financial',
+  police: 'Police & Defense',
+  state: 'State PSC',
+  judiciary: 'Judiciary & High Court',
+  others: 'National Entrance'
+};
+
+const categoryLabel = categoryNames[currentCategory] || 'Government';
+
+function getInitials(title: string): string {
+  const parts = title.replace(/Photo|Signature|Resizer|Kit|Exam/gi, '').trim().split(/\s+/);
+  if (parts.length >= 2) {
+    return (parts[0][0] + parts[1][0]).toUpperCase();
+  }
+  return title.slice(0, 2).toUpperCase();
+}
+---
+
+<section class="max-w-6xl mx-auto px-4 sm:px-6 my-16 space-y-8">
+  <div class="text-center space-y-3 max-w-2xl mx-auto">
+    <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#f0f0ee] border border-[#e6e6e6] text-xs font-mono font-bold text-neutral-800 shadow-xs">
+      <span>✨</span>
+      <span>RELATED TOOLS</span>
+    </div>
+    <h2 class="text-2xl sm:text-3xl font-extrabold text-black tracking-tight">
+      Also resize for <span class="text-[#0062FF]">{categoryLabel} Exams</span>
+    </h2>
+    <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed font-mono">
+      Preparing for multiple exams? Resize your photo and signature for other {categoryLabel.toLowerCase()} exams instantly.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    {related.map((p) => {
+      const primarySlot = p.slots[0];
+      const initials = getInitials(p.shortTitle || p.exam);
+      return (
+        <a
+          href={`/${p.slug}`}
+          class="p-4 rounded-2xl border-2 border-[#e6e6e6] hover:border-black bg-white hover:bg-[#fafafa] transition-all shadow-xs group flex items-start gap-3.5 cursor-pointer"
+        >
+          <div class="w-10 h-10 rounded-xl bg-[#0062FF]/10 text-[#0062FF] font-black text-xs flex items-center justify-center shrink-0 border border-[#0062FF]/20 group-hover:bg-black group-hover:text-white group-hover:border-black transition-colors font-mono">
+            {initials}
+          </div>
+          <div class="space-y-1 min-w-0 flex-1">
+            <h3 class="text-xs sm:text-sm font-bold text-black truncate group-hover:text-[#0062FF] transition-colors">
+              {p.shortTitle || p.exam}
+            </h3>
+            <p class="text-[11px] font-mono text-neutral-500">
+              {primarySlot.widthPx}×{primarySlot.heightPx}px
+            </p>
+            <div class="flex items-center gap-1.5 pt-1 text-[10px] font-mono">
+              <span class="px-2 py-0.5 rounded-md bg-[#f7f7f5] border border-[#e6e6e6] text-neutral-600">
+                {primarySlot.minKB}–{primarySlot.maxKB}KB
+              </span>
+              <span class="px-2 py-0.5 rounded-md bg-[#dceeb1] border border-black/10 text-black font-semibold">
+                JPG
+              </span>
+            </div>
+          </div>
+        </a>
+      );
+    })}
+  </div>
+</section>

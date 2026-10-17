@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ExamToolWorkspace from '../components/ExamToolWorkspace.astro';
+import RelatedToolsGrid from '../components/RelatedToolsGrid.astro';
+
+const title = "Add Name and Date on Photo for UPSC & Govt Exams — UploadRight";
+const description = "Add candidate name and date of photo placard overlay to passport size photos for UPSC, NEET, and government exam applications. 100% private in-browser.";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "UploadRight Name and Date on Photo",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+    "description": "Online tool to add candidate full name and date of photograph (DOP) slate bar to passport size photos for UPSC CSE, CDS, NDA, and NEET."
+  }
+];
+---
+
+<BaseLayout title={title} description={description} canonicalSlug="add-name-date" jsonLd={jsonLd}>
+  <Header slot="header" />
+
+  <div class="relative bg-white py-10 sm:py-16">
+    <!-- Hero Header -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4">
+      <nav class="flex items-center gap-2 text-xs font-mono text-neutral-500" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-black transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-black font-semibold" aria-current="page">Add Name &amp; Date</span>
+      </nav>
+
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#dceeb1] border border-black/10 text-xs font-mono font-bold text-black shadow-xs">
+          <span class="w-2 h-2 rounded-full bg-[#1ea64a]"></span>
+          <span>Official UPSC, CDS &amp; NEET Slate Generator</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black text-black tracking-tight leading-tight">
+          Add Name &amp; Date <span class="text-[#0062FF]">on Photo</span>
+        </h1>
+        <p class="text-sm sm:text-base text-neutral-600 max-w-xl leading-relaxed font-mono">
+          Generate an official white placard bar with candidate name and date of photograph (DOP) at the bottom of your passport photo, meeting exact UPSC CSE, CDS, NDA, and NEET portal requirements.
+        </p>
+      </div>
+    </section>
+
+    <!-- Studio Workspace -->
+    <section id="studio" class="mb-16">
+      <ExamToolWorkspace initialMode="placard" />
+    </section>
+
+    <!-- Explainer Cards -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-8 mb-16">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="p-5 rounded-2xl bg-[#f7f7f5] border-2 border-[#e6e6e6] space-y-2">
+          <span class="text-xs font-mono font-bold text-[#0062FF] uppercase tracking-wider block">Requirement</span>
+          <h3 class="text-sm font-bold text-black">UPSC Notice Compliance</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            UPSC guidelines require candidate's name and the date on which photograph was taken to be clearly printed on the bottom section of the photograph.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#f7f7f5] border-2 border-[#e6e6e6] space-y-2">
+          <span class="text-xs font-mono font-bold text-[#0062FF] uppercase tracking-wider block">Automatic Font</span>
+          <h3 class="text-sm font-bold text-black">High Contrast Slate</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Renders a pure white rectangular bar with crisp, legible sans-serif black text that stays readable after compression to 20–50 KB.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#f7f7f5] border-2 border-[#e6e6e6] space-y-2">
+          <span class="text-xs font-mono font-bold text-[#0062FF] uppercase tracking-wider block">Zero Uploads</span>
+          <h3 class="text-sm font-bold text-black">100% In-Browser Privacy</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            No server processing. Your photo and candidate identity stay safely in your browser storage.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Tools Grid (ExamMint Image 5 Exact Replication) -->
+    <RelatedToolsGrid currentCategory="central" />
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

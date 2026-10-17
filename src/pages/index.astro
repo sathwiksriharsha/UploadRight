@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ExamToolWorkspace from '../components/ExamToolWorkspace.astro';
+import RequirementsMatrix from '../components/RequirementsMatrix.astro';
+import RelatedToolsGrid from '../components/RelatedToolsGrid.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import presets from '../data/presets.json';
+
+const defaultPreset = presets[0]; // SSC Photo Resizer
+
+const title = "UploadRight — Free Indian Government Exam Photo & Signature Resizer";
+const description = "Clone-free official image resizer for UPSC, SSC, IBPS, NEET, JEE, Railway & State Police exams. Exact dimensions, KB thresholds, DPI headers & white background in browser RAM.";
+
+const faqList = [
+  {
+    question: "Why do government exam portals reject uploaded photos and signatures?",
+    answer: "Portals reject documents for three main technical reasons: 1) File size is outside the strictly enforced byte range (e.g., 20 KB to 50 KB); 2) Pixel dimensions do not match the expected aspect ratio; 3) The JPEG header lacks valid JFIF APP0 DPI markers (e.g., 200 DPI), or the signature background has grey shadows instead of pure white."
+  },
+  {
+    question: "How does UploadRight hit the exact KB range without quality degradation?",
+    answer: "We use a bounded binary-search compression engine. It begins at 0.92 quality and tests candidates with full JFIF metadata. If a candidate is too large, it binary-searches downward within [0.05, 0.92] to find the maximum possible quality that stays safely within portal byte thresholds."
+  },
+  {
+    question: "How does the Paper Background Whitener clean up signatures?",
+    answer: "When applicants photograph a handwritten signature on paper using a mobile phone, poor indoor lighting often creates grey or yellow shadows. Our canvas filter analyzes luminosity and snaps paper shadows to pure white (#FFFFFF) while preserving fine ink strokes."
+  },
+  {
+    question: "Are my photos or documents uploaded to any server or cloud database?",
+    answer: "No. UploadRight operates 100% locally in your browser memory via HTML5 Canvas and binary typed arrays. No files, metadata, or candidate details are ever transmitted over the network."
+  }
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqList.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  }
+];
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+  <Header slot="header" />
+
+  <div class="relative bg-white py-10 sm:py-16">
+    <!-- Hero Header: Figma editorial typography -->
+    <section class="text-center px-4 max-w-4xl mx-auto space-y-4 mb-8 sm:mb-12">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#dceeb1] text-black border border-black/10 font-mono text-xs font-bold shadow-xs">
+        <span class="w-2 h-2 rounded-full bg-[#1ea64a]"></span>
+        <span>100% Client-Side RAM · Zero Cloud Storage</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-6xl font-black text-black tracking-tight leading-tight">
+        Resize Exam Photo &amp; Signature <span class="underline decoration-4 decoration-black">in Seconds</span>
+      </h1>
+      <p class="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+        Exact dimensions, strict KB constraints, and 200 DPI headers for SSC, UPSC, Banking, Railway, and State Police recruitment portals.
+      </p>
+    </section>
+
+    <!-- The Split Studio Workspace (ExamMint replicated with Figma Design System) -->
+    <section id="studio" class="mb-16 sm:mb-24">
+      <ExamToolWorkspace activePresetSlug={defaultPreset.slug} initialSlotIndex={0} />
+    </section>
+
+    <!-- Figma Color-Block Storytelling Section: Lime sticky note block -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-16">
+      <div class="bg-[#dceeb1] rounded-3xl p-8 sm:p-12 border-2 border-black space-y-8">
+        <div class="space-y-2 max-w-xl">
+          <span class="text-xs font-mono uppercase font-bold tracking-wider text-black block">// SIMPLE 3-STEP FLOW</span>
+          <h2 class="text-2xl sm:text-4xl font-black text-black tracking-tight">How UploadRight Works</h2>
+          <p class="text-sm text-neutral-800 leading-relaxed">
+            Engineered to remove all guesswork from government portal photo uploads.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-2xl border-2 border-black space-y-3">
+            <span class="w-8 h-8 rounded-full bg-black text-white font-mono text-sm flex items-center justify-center font-bold">1</span>
+            <h3 class="text-base font-bold text-black">Select Your Exam &amp; Doc</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed">
+              Pick your target exam (UPSC, SSC CGL, IBPS, Post Office GDS) or enter custom dimensions. Dimensions, KB windows, and DPI headers are loaded automatically.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border-2 border-black space-y-3">
+            <span class="w-8 h-8 rounded-full bg-black text-white font-mono text-sm flex items-center justify-center font-bold">2</span>
+            <h3 class="text-base font-bold text-black">Crop &amp; Frame Document</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed">
+              Drop your photo or signature. Our precision cropper locks the exact aspect ratio with biometric face guides and instant paper background whitening.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border-2 border-black space-y-3">
+            <span class="w-8 h-8 rounded-full bg-black text-white font-mono text-sm flex items-center justify-center font-bold">3</span>
+            <h3 class="text-base font-bold text-black">Audit &amp; Download JPG</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed">
+              Our binary-search engine evaluates file candidates in client RAM. Download an audited, portal-ready baseline JPEG with embedded DPI markers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category Hubs Navigation Grid -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-16 space-y-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-black tracking-tight">Browse by Category</h2>
+          <p class="text-xs text-neutral-500 font-mono">Dedicated portals with official guidelines</p>
+        </div>
+        <a href="/supported" class="text-xs font-bold text-black hover:underline font-mono">View All 50+ Exams →</a>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <a href="/central" class="p-4 rounded-2xl border-2 border-[#e6e6e6] hover:border-black bg-[#f7f7f5] hover:bg-white transition text-center space-y-1 block">
+          <span class="text-xl block">🏛️</span>
+          <span class="text-xs font-bold text-black block">Central Govt</span>
+          <span class="text-[10px] text-neutral-500 font-mono block">SSC, UPSC, RRB</span>
+        </a>
+        <a href="/banking" class="p-4 rounded-2xl border-2 border-[#e6e6e6] hover:border-black bg-[#f7f7f5] hover:bg-white transition text-center space-y-1 block">
+          <span class="text-xl block">🏦</span>
+          <span class="text-xs font-bold text-black block">Banking</span>
+          <span class="text-[10px] text-neutral-500 font-mono block">IBPS, SBI PO</span>
+        </a>
+        <a href="/police" class="p-4 rounded-2xl border-2 border-[#e6e6e6] hover:border-black bg-[#f7f7f5] hover:bg-white transition text-center space-y-1 block">
+          <span class="text-xl block">👮</span>
+          <span class="text-xs font-bold text-black block">Police &amp; SI</span>
+          <span class="text-[10px] text-neutral-500 font-mono block">State &amp; Central</span>
+        </a>
+        <a href="/state" class="p-4 rounded-2xl border-2 border-[#e6e6e6] hover:border-black bg-[#f7f7f5] hover:bg-white transition text-center space-y-1 block">
+          <span class="text-xl block">🗺️</span>
+          <span class="text-xs font-bold text-black block">State PSCs</span>
+          <span class="text-[10px] text-neutral-500 font-mono block">UPPSC, BPSC, MPSC</span>
+        </a>
+        <a href="/judiciary" class="p-4 rounded-2xl border-2 border-[#e6e6e6] hover:border-black bg-[#f7f7f5] hover:bg-white transition text-center space-y-1 block">
+          <span class="text-xl block">⚖️</span>
+          <span class="text-xs font-bold text-black block">Judiciary</span>
+          <span class="text-[10px] text-neutral-500 font-mono block">High Courts &amp; DJS</span>
+        </a>
+        <a href="/custom" class="p-4 rounded-2xl border-2 border-[#e6e6e6] hover:border-black bg-[#f7f7f5] hover:bg-white transition text-center space-y-1 block">
+          <span class="text-xl block">⚙️</span>
+          <span class="text-xs font-bold text-black block">Custom Size</span>
+          <span class="text-[10px] text-neutral-500 font-mono block">Any px or KB</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Related Tools Grid (ExamMint Image 5 Replication) -->
+    <RelatedToolsGrid currentCategory="central" />
+
+    <!-- Specifications Table -->
+    <RequirementsMatrix />
+
+    <!-- FAQ Section -->
+    <FaqAccordion faqs={faqList} />
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

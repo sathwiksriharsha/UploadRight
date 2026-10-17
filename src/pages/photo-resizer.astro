@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ExamToolWorkspace from '../components/ExamToolWorkspace.astro';
+import presets from '../data/presets.json';
+
+const title = "Free Online Passport Photo Resizer for All Govt Exams (20–50 KB, 200 DPI) | UploadRight";
+const description = "Resize passport size photos for SSC, UPSC, IBPS, NEET, CTET, and Police exams to exact 3.5×4.5 cm (276×354 px or 200×230 px) and 20–50 KB with 200 DPI. 100% private.";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the standard passport photo size for Indian government exams?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The standard passport photo size across Indian recruitment portals (SSC, UPSC, Banking, NTA) is 3.5 × 4.5 cm (approximately 276 × 354 pixels or 350 × 450 pixels at 200 DPI) with a file size strictly between 20 KB and 50 KB."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I compress my passport photo under 50 KB without losing clarity?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UploadRight uses binary-search iterative JPEG quantization. It systematically evaluates compression levels in your browser's RAM to find the highest possible visual clarity that stays strictly under 50 KB."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my photo uploaded to any server or cloud?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. UploadRight processes 100% of your images client-side inside your web browser. Your photo never travels over the network, ensuring zero risk of data leaks."
+      }
+    }
+  ]
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Resize Passport Photo for Government Exams",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Select Exam or Custom Size",
+      "text": "Choose your examination from the quick selector or set custom dimensions (e.g. 3.5×4.5 cm or 20–50 KB)."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Upload and Crop Photo",
+      "text": "Upload your photo from your phone or PC, rotate if needed, and align your face inside the 75% biometric coverage guide."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Download Verified JPG",
+      "text": "Click Format & Optimize. Review the 4-point official audit receipt and download your exam-ready JPG."
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description} canonicalSlug="photo-resizer" jsonLd={[faqSchema, howToSchema]}>
+  <Header slot="header" />
+
+  <div class="relative bg-white py-10 sm:py-16">
+    <!-- Hero Header -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4">
+      <nav class="flex items-center gap-2 text-xs text-[#86868B]" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#1D1D1F] transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-[#1D1D1F] font-medium" aria-current="page">Passport Photo Resizer</span>
+      </nav>
+
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5F5F7] border border-[#E5E5EA] text-xs font-semibold text-[#1D1D1F]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#0062FF]"></span>
+          <span>100% Portal Compliant · Zero Cloud Uploads</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-[#1D1D1F] tracking-tight leading-tight">
+          Government Exam <span class="text-[#0062FF]">Photo Resizer</span>
+        </h1>
+        <p class="text-sm sm:text-base text-[#86868B] max-w-2xl leading-relaxed">
+          Quickly resize and compress passport-size photographs for SSC, UPSC, Banking, NEET, JEE, Railway, and State PSC application portals. Guaranteed accepted on official registration portals.
+        </p>
+      </div>
+    </section>
+
+    <!-- Studio Workspace -->
+    <section id="studio" class="mb-16">
+      <ExamToolWorkspace initialMode="photo-resizer" />
+    </section>
+
+    <!-- Quick Exam Links -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-16 space-y-4">
+      <h2 class="text-lg font-bold text-[#1D1D1F]">Dedicated Photo Resizers by Exam</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {presets.slice(0, 8).map(p => (
+          <a
+            href={`/${p.slug}`}
+            class="p-3 rounded-xl border border-[#E5E5EA] bg-[#F5F5F7] hover:bg-[#EBF2FF] hover:border-[#0062FF]/40 text-xs font-medium text-[#1D1D1F] hover:text-[#0062FF] transition-all flex items-center justify-between group"
+          >
+            <span>{p.shortTitle || p.exam}</span>
+            <span class="text-[#86868B] group-hover:text-[#0062FF] transition-colors">→</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- 3-Step Guide -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-16 space-y-6">
+      <div class="space-y-1">
+        <h2 class="text-xl sm:text-2xl font-bold text-[#1D1D1F]">How to Resize Photo for Indian Govt Exams</h2>
+        <p class="text-xs sm:text-sm text-[#86868B]">Follow these 3 easy steps to make any photo 100% compliant with government portals.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-3">
+          <div class="w-8 h-8 rounded-full bg-[#0062FF] text-white flex items-center justify-center font-bold text-xs">1</div>
+          <h3 class="text-sm font-bold text-[#1D1D1F]">Pick Your Exam</h3>
+          <p class="text-xs text-[#86868B] leading-relaxed">
+            Select your target exam (SSC, UPSC, IBPS, Post Office GDS) or enter custom dimensions like 3.5×4.5 cm.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-3">
+          <div class="w-8 h-8 rounded-full bg-[#0062FF] text-white flex items-center justify-center font-bold text-xs">2</div>
+          <h3 class="text-sm font-bold text-[#1D1D1F]">Crop &amp; Frame Photo</h3>
+          <p class="text-xs text-[#86868B] leading-relaxed">
+            Upload your picture from gallery or take a live camera selfie. Use the aspect-locked cropper to frame your face and passport composition.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-3">
+          <div class="w-8 h-8 rounded-full bg-[#0062FF] text-white flex items-center justify-center font-bold text-xs">3</div>
+          <h3 class="text-sm font-bold text-[#1D1D1F]">Download Portal Ready JPG</h3>
+          <p class="text-xs text-[#86868B] leading-relaxed">
+            Our binary engine compresses strictly inside the 20–50 KB range, injects 200 DPI headers, and verifies every byte.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
+      <div class="space-y-1">
+        <h2 class="text-xl sm:text-2xl font-bold text-[#1D1D1F]">Frequently Asked Questions</h2>
+        <p class="text-xs sm:text-sm text-[#86868B]">Everything candidates need to know about exam photo requirements.</p>
+      </div>
+
+      <div class="divide-y divide-[#E5E5EA] border-y border-[#E5E5EA]">
+        {faqSchema.mainEntity.map(faq => (
+          <details class="py-4 group cursor-pointer">
+            <summary class="flex items-center justify-between text-sm font-bold text-[#1D1D1F] list-none">
+              <span>{faq.name}</span>
+              <span class="text-[#86868B] group-open:rotate-180 transition-transform">▾</span>
+            </summary>
+            <p class="pt-2 text-xs text-[#86868B] leading-relaxed">
+              {faq.acceptedAnswer.text}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

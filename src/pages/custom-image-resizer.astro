@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ExamToolWorkspace from '../components/ExamToolWorkspace.astro';
+
+const title = "Custom Image Resizer & KB Compressor — UploadRight";
+const description = "Resize any image to exact width and height pixels, compress to target KB range, and embed DPI. 100% private in-browser processing.";
+---
+
+<BaseLayout title={title} description={description} canonicalSlug="custom-image-resizer">
+  <Header slot="header" />
+
+  <div class="relative bg-white py-10 sm:py-16">
+    <!-- Hero Header -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4">
+      <nav class="flex items-center gap-2 text-xs text-[#86868B]" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#1D1D1F] transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-[#1D1D1F] font-medium" aria-current="page">Custom Resizer</span>
+      </nav>
+
+      <div class="space-y-3">
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-[#1D1D1F] tracking-tight leading-tight">
+          Custom Dimensions &amp; <span class="text-[#0062FF]">KB Resizer</span>
+        </h1>
+        <p class="text-sm sm:text-base text-[#86868B] max-w-xl leading-relaxed">
+          Specify exact pixel width and height, minimum and maximum file size thresholds, and target DPI.
+        </p>
+      </div>
+    </section>
+
+    <!-- Studio Workspace -->
+    <section id="studio" class="mb-16">
+      <ExamToolWorkspace initialMode="custom" />
+    </section>
+
+    <!-- Guide / Feature Pillars -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-8">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="p-5 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-2">
+          <span class="text-xs font-semibold text-[#0062FF] uppercase tracking-wider block">Target Size</span>
+          <h3 class="text-sm font-bold text-[#1D1D1F]">Binary Search Precision</h3>
+          <p class="text-xs text-[#86868B] leading-relaxed">
+            Hit narrow file size constraints (such as 20–50 KB or under 100 KB) without random guessing or image blur.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-2">
+          <span class="text-xs font-semibold text-[#0062FF] uppercase tracking-wider block">Resolution</span>
+          <h3 class="text-sm font-bold text-[#1D1D1F]">DPI Header Injection</h3>
+          <p class="text-xs text-[#86868B] leading-relaxed">
+            Write valid 200, 300, or 600 DPI density markers directly into binary JPEG APP0 headers for strict scanning scripts.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-2">
+          <span class="text-xs font-semibold text-[#0062FF] uppercase tracking-wider block">Confidentiality</span>
+          <h3 class="text-sm font-bold text-[#1D1D1F]">100% In-Browser Privacy</h3>
+          <p class="text-xs text-[#86868B] leading-relaxed">
+            Your images are processed purely inside your local browser memory. Zero files are uploaded to any server.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

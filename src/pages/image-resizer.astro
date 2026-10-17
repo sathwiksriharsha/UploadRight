@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ExamToolWorkspace from '../components/ExamToolWorkspace.astro';
+import RelatedToolsGrid from '../components/RelatedToolsGrid.astro';
+
+const title = "Online Photo & Image Resizer — Dimensions (px/cm) & KB Limits | UploadRight";
+const description = "Resize photos to exact dimensions in pixels (px) or centimeters (cm) with target KB limits for official government application forms. 100% private in-browser.";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I resize an image to exact dimensions in pixels or centimeters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UploadRight allows you to enter target width and height in pixels (px), centimeters (cm), millimeters (mm), or inches, while automatically maintaining the exact aspect ratio."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I resize an image to both dimensions and KB size at the same time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! UploadRight simultaneously resizes your image to exact pixel dimensions and applies iterative binary-search JPEG quantization to hit your specified min-KB and max-KB limits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my images uploaded to the internet or any cloud server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. UploadRight operates 100% client-side in your web browser memory. Your images never leave your computer or smartphone."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description} canonicalSlug="image-resizer" jsonLd={[faqSchema]}>
+  <Header slot="header" />
+
+  <div class="relative bg-white py-10 sm:py-16">
+    <!-- Hero Header matching user reference screenshot -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4 text-center">
+      <nav class="flex items-center justify-center gap-2 text-xs text-neutral-500 font-mono uppercase" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-black transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-black font-semibold" aria-current="page">Photo &amp; Image Resizer</span>
+      </nav>
+
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#dceeb1] border border-black/10 text-xs font-mono font-bold text-black shadow-xs">
+          <span class="w-2 h-2 rounded-full bg-[#1ea64a]"></span>
+          <span>Exact Dimensions &amp; KB Compression</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black text-black tracking-tight leading-tight">
+          Online Photo &amp; Image Resizer
+        </h1>
+        <p class="text-sm sm:text-base text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+          Resize photos to exact dimensions in pixels (px) or centimeters (cm) with target KB limits for official application forms.
+        </p>
+      </div>
+    </section>
+
+    <!-- Studio Workspace with Custom Dimensions & KB preloaded -->
+    <section id="studio" class="mb-16">
+      <ExamToolWorkspace initialMode="image-resizer" />
+    </section>
+
+    <!-- Explainer Cards -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-8 mb-16">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="p-5 rounded-2xl bg-[#f7f7f5] border-2 border-[#e6e6e6] space-y-2">
+          <span class="text-xs font-mono font-bold text-[#0062FF] uppercase tracking-wider block">Dimensions</span>
+          <h3 class="text-sm font-bold text-black">Any Unit (px, cm, mm, in)</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Specify width and height in pixels or real-world metric units. The built-in DPI converter handles physical conversions instantly.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#f7f7f5] border-2 border-[#e6e6e6] space-y-2">
+          <span class="text-xs font-mono font-bold text-[#0062FF] uppercase tracking-wider block">KB Target</span>
+          <h3 class="text-sm font-bold text-black">Dual-Bound File Size</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Set strict minimum and maximum KB thresholds. Our engine guarantees files stay inside the valid window.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#f7f7f5] border-2 border-[#e6e6e6] space-y-2">
+          <span class="text-xs font-mono font-bold text-[#0062FF] uppercase tracking-wider block">Privacy</span>
+          <h3 class="text-sm font-bold text-black">100% Client-Side Engine</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Zero cloud processing. Your sensitive documents, photos, and signatures stay safely inside your personal device.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Tools Grid -->
+    <RelatedToolsGrid currentCategory="central" />
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "About UploadRight — India's Client-Side Document Preparation Platform";
+const description = "Learn how UploadRight provides free, 100% private image resizing and formatting for Indian competitive examinations and public recruitment portals.";
+---
+
+<BaseLayout title={title} description={description} canonicalSlug="about">
+  <Header slot="header" />
+
+  <div class="relative bg-white py-12 sm:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 space-y-12">
+      
+      <!-- Page Header -->
+      <header class="space-y-4">
+        <nav class="flex items-center gap-2 text-xs text-[#86868B]" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-[#1D1D1F] transition-colors">Home</a>
+          <span>/</span>
+          <span class="text-[#1D1D1F] font-medium" aria-current="page">About</span>
+        </nav>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-[#1D1D1F] tracking-tight leading-tight">
+          Document preparation, <br />
+          <span class="text-[#0062FF]">reimagined for privacy.</span>
+        </h1>
+        <p class="text-base text-[#86868B] leading-relaxed">
+          Solving the frustration of government portal document rejections through in-browser engineering precision.
+        </p>
+      </header>
+
+      <!-- Content Narrative -->
+      <article class="space-y-10 text-sm sm:text-base text-[#1D1D1F] leading-relaxed">
+        
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#1D1D1F] tracking-tight">Our Purpose</h2>
+          <p class="text-[#86868B] leading-relaxed">
+            Every year, tens of millions of Indian applicants register for competitive examinations including SSC, IBPS, UPSC, NEET, JEE, Railway Recruitment Boards, and State Public Service Commissions. Up to 35% of candidates face severe delays or rejected applications due to razor-thin document upload criteria: narrow file size windows (such as 20 KB to 50 KB), exact pixel ratios, and mandatory DPI resolution tags.
+          </p>
+          <p class="text-[#86868B] leading-relaxed">
+            UploadRight was created to eliminate this obstacle entirely: free of charge, with no software downloads, and without requiring applicants to upload sensitive personal photographs or identity documents to external servers.
+          </p>
+        </section>
+
+        <section class="p-6 sm:p-8 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-4">
+          <h2 class="text-lg font-bold text-[#1D1D1F] tracking-tight">Zero-Server Privacy Guarantee</h2>
+          <p class="text-sm text-[#86868B] leading-relaxed">
+            Unlike conventional image websites that transfer your photos to remote cloud servers, <strong class="text-[#1D1D1F]">UploadRight runs 100% inside your device's web browser</strong>:
+          </p>
+          <ul class="space-y-2 text-sm text-[#86868B]">
+            <li class="flex items-start gap-2">
+              <span class="text-[#0062FF] font-bold">✓</span>
+              <span><strong>Client-Side Processing:</strong> Images are drawn directly to an in-memory HTML5 Canvas and manipulated using typed binary ArrayBuffers.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#0062FF] font-bold">✓</span>
+              <span><strong>No Cloud Storage:</strong> We do not operate an image processing server, image database, or logging backend. Your photos never leave your device.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#0062FF] font-bold">✓</span>
+              <span><strong>Offline Capable:</strong> Once the page is loaded, you can disconnect your internet and process documents completely offline.</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-[#1D1D1F] tracking-tight">Engineering Standards</h2>
+          <p class="text-[#86868B] leading-relaxed">
+            Our image engine is built directly against official recruitment notifications. When you format a document:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-xl border border-[#E5E5EA] bg-white space-y-1.5">
+              <h3 class="text-sm font-semibold text-[#1D1D1F]">Binary-Search Compression</h3>
+              <p class="text-xs text-[#86868B] leading-relaxed">
+                Iteratively hones in on the target byte range without arbitrary visual degradation.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl border border-[#E5E5EA] bg-white space-y-1.5">
+              <h3 class="text-sm font-semibold text-[#1D1D1F]">JFIF APP0 Injection</h3>
+              <p class="text-xs text-[#86868B] leading-relaxed">
+                Injects genuine big-endian 200/300 DPI density markers directly into JPEG headers.
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </article>
+
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

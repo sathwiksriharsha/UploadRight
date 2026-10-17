@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ExamToolWorkspace from '../components/ExamToolWorkspace.astro';
+import RelatedToolsGrid from '../components/RelatedToolsGrid.astro';
+
+const title = "75% - 80% Face Coverage Photo Resizer for Exams — UploadRight";
+const description = "Ensure 75% to 80% biometric face coverage for UPSC, SSC, NTA NEET, and IBPS passport photos. Visual framing guide and instant verification.";
+---
+
+<BaseLayout title={title} description={description} canonicalSlug="75-face-coverage">
+  <Header slot="header" />
+
+  <div class="relative bg-white py-10 sm:py-16">
+    <!-- Hero Header -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4">
+      <nav class="flex items-center gap-2 text-xs text-[#86868B]" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#1D1D1F] transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-[#1D1D1F] font-medium" aria-current="page">75% Face Coverage</span>
+      </nav>
+
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5F5F7] border border-[#E5E5EA] text-xs font-semibold text-[#1D1D1F]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#0062FF]"></span>
+          <span>Biometric Standards Compliance</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-[#1D1D1F] tracking-tight leading-tight">
+          75% – 80% Face Coverage <span class="text-[#0062FF]">Photo Guide</span>
+        </h1>
+        <p class="text-sm sm:text-base text-[#86868B] max-w-xl leading-relaxed">
+          Align your face perfectly within official biometric guidelines. Over 40% of exam application rejections are caused by small or off-center faces in candidate photos.
+        </p>
+      </div>
+    </section>
+
+    <!-- Studio Workspace -->
+    <section id="studio" class="mb-16">
+      <ExamToolWorkspace initialMode="preset" />
+    </section>
+
+    <!-- Explainer Cards -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-8">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="p-5 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-2">
+          <span class="text-xs font-semibold text-[#0062FF] uppercase tracking-wider block">Rule</span>
+          <h3 class="text-sm font-bold text-[#1D1D1F]">Why 75–80% Matters</h3>
+          <p class="text-xs text-[#86868B] leading-relaxed">
+            Government examination AI scanners reject photos where the face is zoomed out, occupies less than 75% of the frame, or where shoulders take up the majority of the area.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-2">
+          <span class="text-xs font-semibold text-[#0062FF] uppercase tracking-wider block">Visual Guide</span>
+          <h3 class="text-sm font-bold text-[#1D1D1F]">Precision Aspect Framing</h3>
+          <p class="text-xs text-[#86868B] leading-relaxed">
+            Use the built-in precision cropping frame in the UploadRight editor to position chin and crown to achieve the exact official head coverage before exporting.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-2">
+          <span class="text-xs font-semibold text-[#0062FF] uppercase tracking-wider block">Privacy</span>
+          <h3 class="text-sm font-bold text-[#1D1D1F]">100% On-Device</h3>
+          <p class="text-xs text-[#86868B] leading-relaxed">
+            Your biometric photos never leave your device. All alignment, framing, and compression happens inside your browser.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Tools Grid -->
+    <RelatedToolsGrid currentCategory="central" />
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

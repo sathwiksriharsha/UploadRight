@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Privacy Policy — UploadRight";
+const description = "UploadRight Privacy Policy. Explaining our zero-server, 100% client-side architecture and data privacy protections.";
+---
+
+<BaseLayout title={title} description={description} canonicalSlug="privacy-policy">
+  <Header slot="header" />
+
+  <div class="relative bg-white py-12 sm:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 space-y-12">
+      
+      <!-- Page Header -->
+      <header class="space-y-4">
+        <nav class="flex items-center gap-2 text-xs text-[#86868B]" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-[#1D1D1F] transition-colors">Home</a>
+          <span>/</span>
+          <span class="text-[#1D1D1F] font-medium" aria-current="page">Privacy Policy</span>
+        </nav>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-[#1D1D1F] tracking-tight leading-tight">
+          Privacy Policy. <br />
+          <span class="text-[#0062FF]">Zero server image storage.</span>
+        </h1>
+        <p class="text-sm text-[#86868B]">
+          Last updated: March 2026 · Effective immediately for all visitors
+        </p>
+      </header>
+
+      <!-- Key Guarantee Pill Box -->
+      <div class="p-6 sm:p-8 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-3">
+        <div class="flex items-center gap-2 text-xs font-semibold text-[#0062FF] uppercase tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-[#0062FF]"></span>
+          Core Architectural Principle
+        </div>
+        <p class="text-sm sm:text-base font-medium text-[#1D1D1F] leading-relaxed">
+          At UploadRight, applicant privacy is built into our code at the hardware level: <strong>we do not collect, store, transmit, log, or inspect any photo, signature, thumb impression, or certificate that you format.</strong> All computations take place inside your device's web browser RAM.
+        </p>
+      </div>
+
+      <!-- Policy Sections -->
+      <article class="space-y-10 text-sm sm:text-base text-[#1D1D1F] leading-relaxed">
+        
+        <section class="space-y-3">
+          <h2 class="text-lg sm:text-xl font-bold text-[#1D1D1F] tracking-tight">1. In-Browser Client-Side Processing</h2>
+          <p class="text-[#86868B] leading-relaxed">
+            Conventional document tools upload candidate files to cloud compute servers. This creates severe security and data privacy risks with government identity photographs and signatures.
+          </p>
+          <p class="text-[#86868B] leading-relaxed">
+            UploadRight operates entirely within your local browser runtime via HTML5 Canvas, typed binary ArrayBuffers, and client-side JavaScript. When you drag and drop an image, its bytes remain inside your browser's private memory heap. Once you close the tab, the image bytes are immediately freed by your browser's garbage collector.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg sm:text-xl font-bold text-[#1D1D1F] tracking-tight">2. Information We Do Not Collect</h2>
+          <p class="text-[#86868B] leading-relaxed">
+            To provide complete transparency:
+          </p>
+          <ul class="space-y-2 text-sm text-[#86868B]">
+            <li class="flex items-start gap-2">
+              <span class="text-[#0062FF] font-bold">✓</span>
+              <span>We do not store your uploaded or cropped photographs.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#0062FF] font-bold">✓</span>
+              <span>We do not collect names, dates of birth, roll numbers, or identity placard text.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#0062FF] font-bold">✓</span>
+              <span>We do not transmit facial biometrics or signature vectors to any third-party API.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#0062FF] font-bold">✓</span>
+              <span>We do not require user account registration, phone numbers, or email signups.</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg sm:text-xl font-bold text-[#1D1D1F] tracking-tight">3. Advertising and Cookies</h2>
+          <p class="text-[#86868B] leading-relaxed">
+            To keep UploadRight 100% free for students across India without subscriptions or paywalls, we display standard contextual advertisements served by third-party advertising networks, such as Google AdSense.
+          </p>
+          <p class="text-[#86868B] leading-relaxed">
+            Third-party ad vendors, including Google, use cookies to serve ads based on prior visits to our site or other websites. Google's use of advertising cookies enables it and its partners to display ads based on visits to UploadRight and other internet destinations.
+          </p>
+          <p class="text-[#86868B] leading-relaxed">
+            You can opt out of personalized advertising at any time by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-[#0062FF] hover:underline font-medium">Google Ad Settings</a> or using browser privacy controls.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg sm:text-xl font-bold text-[#1D1D1F] tracking-tight">4. Local Storage and Session State</h2>
+          <p class="text-[#86868B] leading-relaxed">
+            UploadRight does not use persistent tracking cookies or store document metadata in localStorage. Session preferences (such as selected exam tab) are stored purely in transient memory for the duration of your tab visit and discarded immediately upon closing.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg sm:text-xl font-bold text-[#1D1D1F] tracking-tight">5. Contact and Inquiries</h2>
+          <p class="text-[#86868B] leading-relaxed">
+            For questions or verification regarding our privacy protections or client-side architecture, contact our team directly at <a href="mailto:privacy@uploadright.in" class="text-[#0062FF] hover:underline font-medium">privacy@uploadright.in</a> or through our <a href="/contact" class="text-[#0062FF] hover:underline font-medium">Contact page</a>.
+          </p>
+        </section>
+
+      </article>
+
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

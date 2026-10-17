@@ -1,0 +1,265 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ExamToolWorkspace from '../components/ExamToolWorkspace.astro';
+import RelatedToolsGrid from '../components/RelatedToolsGrid.astro';
+import presets from '../data/presets.json';
+import declarations from '../data/declarations.json';
+
+export function getStaticPaths() {
+  return presets.map((preset) => ({
+    params: { slug: preset.slug },
+    props: { preset },
+  }));
+}
+
+interface Props {
+  preset: typeof presets[0];
+}
+
+const { preset } = Astro.props;
+
+// Determine declaration text if applicable
+let declarationData: { title: string; text: string; instructions: string[] } | null = null;
+if (preset.hasDeclaration) {
+  if (preset.slug.includes('ibps')) {
+    declarationData = declarations.ibps;
+  } else if (preset.slug.includes('sbi')) {
+    declarationData = declarations.sbi;
+  }
+}
+
+// Related presets (exclude current)
+const relatedPresets = presets.filter((p) => p.slug !== preset.slug).slice(0, 3);
+
+// JSON-LD Schemas
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": preset.faqs.map((f) => ({
+    "@type": "Question",
+    "name": f.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title={preset.metaTitle}
+  description={preset.metaDescription}
+  canonicalSlug={preset.slug}
+  examName={preset.shortTitle}
+  category={preset.categoryLabel}
+  jsonLd={[faqSchema]}
+>
+  <Header slot="header" />
+
+  <div class="relative bg-white py-10 sm:py-16">
+    <!-- Hero Header: Figma editorial typography -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs font-mono uppercase text-neutral-500" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-black transition-colors">Home</a>
+        <span>/</span>
+        <span>{preset.categoryLabel}</span>
+        <span>/</span>
+        <span class="text-black font-bold" aria-current="page">{preset.shortTitle}</span>
+      </nav>
+
+      <div class="space-y-3">
+        <h1 class="text-3xl sm:text-5xl font-black text-black tracking-tight leading-tight">
+          {preset.title}
+        </h1>
+        <p class="text-base text-neutral-600 max-w-2xl leading-relaxed">
+          {preset.description}
+        </p>
+
+        <!-- Verification Pill -->
+        <div class="pt-1 flex items-center gap-3 flex-wrap">
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#dceeb1] border border-black/10 text-xs font-mono font-bold text-black shadow-xs">
+            <span class="w-2 h-2 rounded-full bg-[#1ea64a]"></span>
+            <span>Verified: {preset.authority}</span>
+          </span>
+          <a
+            href={preset.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs font-mono font-bold text-black hover:underline flex items-center gap-1"
+          >
+            <span>Official Portal Notice</span>
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Studio Workspace -->
+    <section id="studio" class="mb-16 sm:mb-20">
+      <ExamToolWorkspace
+        activePresetSlug={preset.slug}
+        initialSlotIndex={0}
+      />
+    </section>
+
+    <!-- Official Declaration Box (for Banking exams) -->
+    {declarationData && (
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-16">
+        <div class="rounded-3xl border-2 border-black bg-[#f7f7f5] p-6 sm:p-8 space-y-4 shadow-sm">
+          <div class="flex items-center justify-between gap-4 flex-wrap">
+            <div>
+              <span class="text-xs font-mono uppercase font-bold text-neutral-600 block">// MANDATORY BANKING CLAUSE</span>
+              <h2 class="text-xl font-black text-black">{declarationData.title}</h2>
+            </div>
+            <button
+              id="btn-copy-declaration"
+              type="button"
+              class="px-5 py-2 rounded-full bg-black text-white hover:bg-neutral-800 text-xs font-bold shadow-xs transition-all cursor-pointer flex items-center gap-1.5 active:scale-95"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span id="copy-btn-text">Copy Text</span>
+            </button>
+          </div>
+
+          <div id="declaration-content" class="p-5 rounded-2xl bg-white border-2 border-[#e6e6e6] text-sm text-black italic leading-relaxed font-serif">
+            "{declarationData.text}"
+          </div>
+
+          <div class="space-y-1.5 text-xs text-neutral-600 font-mono">
+            <span class="font-bold text-black block">Handwriting Rules:</span>
+            <ul class="list-disc pl-5 space-y-1">
+              {declarationData.instructions.map((inst) => (
+                <li>{inst}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Official Specification Matrix Table -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-16 space-y-6">
+      <div class="space-y-1">
+        <h2 class="text-xl sm:text-2xl font-black text-black tracking-tight">
+          {preset.exam} Official Document Requirements
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-600 font-mono">
+          Strict pixel dimensions, file size constraints, and DPI headers verified from active recruitment cycles.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border-2 border-[#e6e6e6] bg-white overflow-hidden shadow-xs">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-[#f7f7f5] border-b-2 border-[#e6e6e6] text-black font-mono uppercase text-[11px]">
+                <th class="py-3.5 px-4 sm:px-6">Document Slot</th>
+                <th class="py-3.5 px-4 font-mono">Pixel Dimensions</th>
+                <th class="py-3.5 px-4">Physical Size</th>
+                <th class="py-3.5 px-4 font-mono">File Size (KB)</th>
+                <th class="py-3.5 px-4 font-mono whitespace-nowrap">DPI Header</th>
+                <th class="py-3.5 px-4 sm:px-6">Rules &amp; Background</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#e6e6e6] text-black font-mono">
+              {preset.slots.map((slot) => (
+                <tr class="hover:bg-[#f7f7f5] transition-colors">
+                  <td class="py-4 px-4 sm:px-6 font-bold text-xs text-black whitespace-nowrap">
+                    {slot.label}
+                  </td>
+                  <td class="py-4 px-4 font-bold text-black whitespace-nowrap">
+                    {slot.widthPx} × {slot.heightPx} px
+                  </td>
+                  <td class="py-4 px-4 text-neutral-600 whitespace-nowrap">
+                    {slot.physicalSize || 'Standard'}
+                  </td>
+                  <td class="py-4 px-4 font-bold text-black whitespace-nowrap">
+                    <span class="px-2.5 py-1 rounded-full bg-[#f7f7f5] border border-[#e6e6e6] inline-block whitespace-nowrap">
+                      {slot.minKB}–{slot.maxKB} KB
+                    </span>
+                  </td>
+                  <td class="py-4 px-4 font-bold text-black whitespace-nowrap">
+                    <span class="px-2.5 py-1 rounded-full bg-[#dceeb1] border border-black/10 inline-flex items-center justify-center whitespace-nowrap">
+                      {slot.dpi}&nbsp;DPI
+                    </span>
+                  </td>
+                  <td class="py-4 px-4 sm:px-6 text-neutral-600 text-[11px] font-sans">
+                    {slot.notes || slot.background}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Common Rejection Reasons -->
+    {preset.rejectionReasons && preset.rejectionReasons.length > 0 && (
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-16 space-y-4">
+        <h2 class="text-xl sm:text-2xl font-black text-black tracking-tight">
+          Common Rejection Reasons for {preset.exam}
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {preset.rejectionReasons.map((reason, idx) => (
+            <div class="p-4 rounded-2xl border-2 border-[#e6e6e6] bg-[#f7f7f5] flex items-start gap-3">
+              <span class="w-6 h-6 rounded-full bg-red-100 text-red-600 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">✕</span>
+              <p class="text-xs sm:text-sm text-neutral-700 leading-relaxed">{reason}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Frequently Asked Questions -->
+    {preset.faqs && preset.faqs.length > 0 && (
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-16 space-y-6">
+        <h2 class="text-xl sm:text-2xl font-black text-black tracking-tight">
+          Frequently Asked Questions
+        </h2>
+        <div class="space-y-3">
+          {preset.faqs.map((faq, idx) => (
+            <details class="group p-5 rounded-2xl border-2 border-[#e6e6e6] bg-white transition-colors cursor-pointer">
+              <summary class="flex items-center justify-between font-bold text-sm sm:text-base text-black list-none select-none">
+                <span>{faq.question}</span>
+                <span class="text-neutral-400 group-open:rotate-180 transition-transform">↓</span>
+              </summary>
+              <div class="mt-3 text-xs sm:text-sm text-neutral-600 leading-relaxed border-t border-[#e6e6e6] pt-3">
+                {faq.answer}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Related Tools Grid (ExamMint Image 5 Exact Replication) -->
+    <RelatedToolsGrid currentCategory={preset.category} currentSlug={preset.slug} />
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<script>
+  const copyBtn = document.getElementById('btn-copy-declaration');
+  const declarationContent = document.getElementById('declaration-content');
+  const copyBtnText = document.getElementById('copy-btn-text');
+
+  if (copyBtn && declarationContent && copyBtnText) {
+    copyBtn.addEventListener('click', async () => {
+      try {
+        const text = declarationContent.innerText.replace(/^"|"$/g, '').trim();
+        await navigator.clipboard.writeText(text);
+        copyBtnText.textContent = 'Copied to Clipboard!';
+        setTimeout(() => {
+          copyBtnText.textContent = 'Copy Text';
+        }, 2500);
+      } catch (err) {
+        console.error('Copy failed', err);
+      }
+    });
+  }
+</script>

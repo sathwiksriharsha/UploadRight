@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ExamToolWorkspace from '../components/ExamToolWorkspace.astro';
+import presets from '../data/presets.json';
+
+const title = "Free Online Signature Resizer for Govt Exams (140×60 px, 10–20 KB) | UploadRight";
+const description = "Resize your signature for SSC, UPSC, IBPS, SBI, CTET, and Railway exams. Exact 140×60 px (4×2 cm) or 250×150 px dimensions, 10–20 KB size, and paper whitener. 100% private.";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the standard signature size for SSC and Banking exams?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For SSC and Banking exams (IBPS, SBI), signature dimensions must be 140 × 60 pixels (4.0 × 2.0 cm) at 200 DPI, with file size strictly between 10 KB and 20 KB in JPEG format."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I sign in capital letters for government exams?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All major exam boards (SSC, IBPS, UPSC) explicitly state that signatures in capital/block letters will be summarily rejected. Use normal running handwriting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I turn greyish paper white in my signature photo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UploadRight includes an automatic Paper Whitener filter. It isolates the signature ink strokes and turns the background paper into pure 100% white (#FFFFFF), eliminating shadows."
+      }
+    }
+  ]
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Resize Signature for Government Exams",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Sign on White Paper",
+      "text": "Sign on clean unruled white paper with black ballpoint or gel pen."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Upload and Enhance",
+      "text": "Take a photo or upload scan. Use the built-in Paper Whitener to remove grey shadows."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Download 10–20 KB JPG",
+      "text": "Click Format. Download your signature formatted to exact 140×60 px and 10–20 KB with 200 DPI."
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description} canonicalSlug="signature-resizer" jsonLd={[faqSchema, howToSchema]}>
+  <Header slot="header" />
+
+  <div class="relative bg-white py-10 sm:py-16">
+    <!-- Hero Header -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4">
+      <nav class="flex items-center gap-2 text-xs text-[#86868B]" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#1D1D1F] transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-[#1D1D1F] font-medium" aria-current="page">Signature Resizer</span>
+      </nav>
+
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5F5F7] border border-[#E5E5EA] text-xs font-semibold text-[#1D1D1F]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#0062FF]"></span>
+          <span>140×60 px · 10–20 KB · Automatic Paper Whitener</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-[#1D1D1F] tracking-tight leading-tight">
+          Government Exam <span class="text-[#0062FF]">Signature Resizer</span>
+        </h1>
+        <p class="text-sm sm:text-base text-[#86868B] max-w-2xl leading-relaxed">
+          Resize candidate signature images to exact dimensions (140×60 px, 200×100 px, 250×150 px) and compress between 10 KB and 20 KB. Includes built-in paper whitening to eliminate shadows.
+        </p>
+      </div>
+    </section>
+
+    <!-- Studio Workspace (Universal Signature Resizer) -->
+    <section id="studio" class="mb-16">
+      <ExamToolWorkspace initialMode="signature-resizer" />
+    </section>
+
+    <!-- Popular Signature Specs -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-16 space-y-4">
+      <h2 class="text-lg font-bold text-[#1D1D1F]">Official Signature Criteria by Exam Body</h2>
+      <div class="rounded-2xl border border-[#E5E5EA] bg-white overflow-hidden shadow-xs">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="bg-[#F5F5F7] border-b border-[#E5E5EA] text-[#86868B] font-semibold">
+              <th class="py-3 px-4">Exam Portal</th>
+              <th class="py-3 px-4 font-mono">Dimensions</th>
+              <th class="py-3 px-4 font-mono">Size Range</th>
+              <th class="py-3 px-4">Ink / Paper</th>
+              <th class="py-3 px-4 font-mono whitespace-nowrap">DPI</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#E5E5EA] text-[#1D1D1F]">
+            <tr class="hover:bg-[#F0F6FE]/30 transition-colors">
+              <td class="py-3 px-4 font-semibold">SSC (CGL, CHSL, MTS, GD)</td>
+              <td class="py-3 px-4 font-mono">140 × 60 px (4×2 cm)</td>
+              <td class="py-3 px-4 font-mono">10 – 20 KB</td>
+              <td class="py-3 px-4">Black ink, unruled paper</td>
+              <td class="py-3 px-4 font-mono whitespace-nowrap">200&nbsp;DPI</td>
+            </tr>
+            <tr class="hover:bg-[#F0F6FE]/30 transition-colors">
+              <td class="py-3 px-4 font-semibold">IBPS &amp; SBI (PO, Clerk)</td>
+              <td class="py-3 px-4 font-mono">140 × 60 px</td>
+              <td class="py-3 px-4 font-mono">10 – 20 KB</td>
+              <td class="py-3 px-4">Black ink mandatory</td>
+              <td class="py-3 px-4 font-mono whitespace-nowrap">200&nbsp;DPI</td>
+            </tr>
+            <tr class="hover:bg-[#F0F6FE]/30 transition-colors">
+              <td class="py-3 px-4 font-semibold">UPSC (CSE, CDS, NDA)</td>
+              <td class="py-3 px-4 font-mono">350 × 350 to 1000 px</td>
+              <td class="py-3 px-4 font-mono">20 – 300 KB</td>
+              <td class="py-3 px-4">Black ink preferred</td>
+              <td class="py-3 px-4 font-mono whitespace-nowrap">200&nbsp;DPI</td>
+            </tr>
+            <tr class="hover:bg-[#F0F6FE]/30 transition-colors">
+              <td class="py-3 px-4 font-semibold">CTET / CBSE</td>
+              <td class="py-3 px-4 font-mono">276 × 118 px (3.5×1.5 cm)</td>
+              <td class="py-3 px-4 font-mono">3 – 30 KB</td>
+              <td class="py-3 px-4">Black or blue pen</td>
+              <td class="py-3 px-4 font-mono whitespace-nowrap">200&nbsp;DPI</td>
+            </tr>
+            <tr class="hover:bg-[#F0F6FE]/30 transition-colors">
+              <td class="py-3 px-4 font-semibold">BPSC</td>
+              <td class="py-3 px-4 font-mono">250 × 150 px</td>
+              <td class="py-3 px-4 font-mono">5 – 15 KB</td>
+              <td class="py-3 px-4">English &amp; Hindi signs</td>
+              <td class="py-3 px-4 font-mono whitespace-nowrap">200&nbsp;DPI</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
+      <div class="space-y-1">
+        <h2 class="text-xl sm:text-2xl font-bold text-[#1D1D1F]">Signature Resizer FAQs</h2>
+        <p class="text-xs sm:text-sm text-[#86868B]">Official guidelines for error-free signature upload.</p>
+      </div>
+
+      <div class="divide-y divide-[#E5E5EA] border-y border-[#E5E5EA]">
+        {faqSchema.mainEntity.map(faq => (
+          <details class="py-4 group cursor-pointer">
+            <summary class="flex items-center justify-between text-sm font-bold text-[#1D1D1F] list-none">
+              <span>{faq.name}</span>
+              <span class="text-[#86868B] group-open:rotate-180 transition-transform">▾</span>
+            </summary>
+            <p class="pt-2 text-xs text-[#86868B] leading-relaxed">
+              {faq.acceptedAnswer.text}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ExamToolWorkspace from '../components/ExamToolWorkspace.astro';
+import RelatedToolsGrid from '../components/RelatedToolsGrid.astro';
+
+const title = "Online Signature Compressor to 10–20 KB — Govt Exam Standard | UploadRight";
+const description = "Compress signature photos strictly between 10 KB and 20 KB with crisp white background and dark ink for SSC, UPSC, and Banking exams. 100% private in-browser.";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why do exam portals require signatures strictly between 10 KB and 20 KB?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Recruitment servers for SSC, IBPS, and UPSC enforce strict server-side file validators. Signatures over 20 KB are blocked for bandwidth efficiency, while files under 10 KB are rejected to ensure biometric handwriting strokes remain identifiable on admit cards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does UploadRight compress my signature without making it blurry?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UploadRight combines binary-search iterative JPEG quantization with automated paper whitening. It isolates the high-contrast pen strokes while compressing the background to pure flat white (#FFFFFF), drastically reducing file size without losing stroke sharpness."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my legal signatures stored or transmitted to any servers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Never. All compression and thresholding algorithms run 100% locally in your web browser memory via HTML5 Canvas and typed ArrayBuffers. Zero bytes leave your device."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description} canonicalSlug="signature-compressor" jsonLd={[faqSchema]}>
+  <Header slot="header" />
+
+  <div class="relative bg-white py-10 sm:py-16">
+    <!-- Hero Header -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4">
+      <nav class="flex items-center gap-2 text-xs text-neutral-500 font-mono uppercase" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-black transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-black font-semibold" aria-current="page">Signature Compressor</span>
+      </nav>
+
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#dceeb1] border border-black/10 text-xs font-mono font-bold text-black shadow-xs">
+          <span class="w-2 h-2 rounded-full bg-[#1ea64a]"></span>
+          <span>Strict 10–20 KB Compliance · 200 DPI Header</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black text-black tracking-tight leading-tight">
+          Signature Compressor <span class="text-[#0062FF]">(10–20 KB)</span>
+        </h1>
+        <p class="text-sm sm:text-base text-neutral-600 max-w-xl leading-relaxed font-mono">
+          Compress and whiten signatures to exact 140×60 px, strict 10–20 KB, and 200 DPI for SSC CGL, CHSL, GD, UPSC OTR, IBPS, and SBI registration portals.
+        </p>
+      </div>
+    </section>
+
+    <!-- Studio Workspace (Universal Generic Signature Compressor) -->
+    <section id="studio" class="mb-16">
+      <ExamToolWorkspace initialMode="signature-compressor" />
+    </section>
+
+    <!-- Explainer Cards -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-8 mb-16">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="p-5 rounded-2xl bg-[#f7f7f5] border-2 border-[#e6e6e6] space-y-2">
+          <span class="text-xs font-mono font-bold text-[#0062FF] uppercase tracking-wider block">Rule</span>
+          <h3 class="text-sm font-bold text-black">Strict 10–20 KB Window</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Portal uploaders automatically reject signatures over 20 KB or under 10 KB. Our binary search engine guarantees exact adherence.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#f7f7f5] border-2 border-[#e6e6e6] space-y-2">
+          <span class="text-xs font-mono font-bold text-[#0062FF] uppercase tracking-wider block">Paper Whitener</span>
+          <h3 class="text-sm font-bold text-black">Pure #FFFFFF Background</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Built-in paper whitening eliminates smartphone shadow gradients, keeping black and blue pen ink crisp and legible.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#f7f7f5] border-2 border-[#e6e6e6] space-y-2">
+          <span class="text-xs font-mono font-bold text-[#0062FF] uppercase tracking-wider block">Legal Safety</span>
+          <h3 class="text-sm font-bold text-black">100% In-Browser RAM</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Never upload your legal signature to untrusted remote servers. UploadRight processes every byte strictly on your device.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Tools Grid -->
+    <RelatedToolsGrid currentCategory="central" />
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

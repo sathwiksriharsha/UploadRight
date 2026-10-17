@@ -1,0 +1,231 @@
+---
+// UploadRight Footer — Figma Design System Footer
+// Design System: Monochrome editorial core, hairline border (#e6e6e6), pill tags, comprehensive directory
+import presets from "../data/presets.json";
+---
+
+<footer class="relative bg-white border-t-2 border-[#e6e6e6] overflow-hidden">
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-12">
+    <!-- Top Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+      <!-- Col 1: Brand & Philosophy -->
+      <div class="md:col-span-4 space-y-4">
+        <div class="flex items-center gap-2.5">
+          <div
+            class="w-8 h-8 rounded-full bg-black flex items-center justify-center text-white shadow-xs"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+          </div>
+          <span class="font-black text-xl text-black tracking-tight"
+            >UploadRight</span
+          >
+        </div>
+        <p class="text-sm text-neutral-600 leading-relaxed">
+          High-precision, in-browser image engine for Indian competitive exams.
+          Every pixel crop, binary-search compression pass, and DPI injection
+          occurs 100% inside your device memory.
+        </p>
+        <div class="flex items-center gap-2 pt-2 flex-wrap font-mono text-xs">
+          <span
+            class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#dceeb1] rounded-full font-bold text-black border border-black/10"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-black"></span>
+            100% Client-Side RAM
+          </span>
+          <span
+            class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#f7f7f5] border border-[#e6e6e6] rounded-full text-neutral-600"
+          >
+            Zero File Storage
+          </span>
+        </div>
+      </div>
+
+      <!-- Col 2: Exam Directories -->
+      <div class="md:col-span-3 space-y-3">
+        <h3
+          class="text-xs font-bold text-black uppercase tracking-wider font-mono"
+        >
+          Exam Categories
+        </h3>
+        <ul class="space-y-2 text-xs font-mono text-neutral-600">
+          <li>
+            <a
+              href="/central"
+              class="hover:text-black transition-colors font-bold text-black"
+              >Central Govt (SSC, UPSC, RRB)</a>
+          </li>
+          <li>
+            <a
+              href="/banking"
+              class="hover:text-black transition-colors font-bold text-black"
+              >Banking (IBPS, SBI PO &amp; Clerk)</a>
+          </li>
+          <li>
+            <a
+              href="/police"
+              class="hover:text-black transition-colors font-bold text-black"
+              >Police Constable &amp; SI Exams</a>
+          </li>
+          <li>
+            <a
+              href="/state"
+              class="hover:text-black transition-colors font-bold text-black"
+              >State PSC Exams (UPPSC, BPSC)</a>
+          </li>
+          <li>
+            <a
+              href="/judiciary"
+              class="hover:text-black transition-colors font-bold text-black"
+              >Judiciary &amp; High Court Tests</a>
+          </li>
+          <li>
+            <a href="/others" class="hover:text-black transition-colors"
+              >Other Entrance Tests (NPTEL, AAI)</a>
+          </li>
+          <li>
+            <a
+              href="/supported"
+              class="hover:text-black transition-colors font-semibold text-black"
+              >All 50+ Supported Exams →</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Popular Exams -->
+      <div class="md:col-span-3 space-y-3">
+        <h3
+          class="text-xs font-bold text-black uppercase tracking-wider font-mono"
+        >
+          Popular Exam Resizers
+        </h3>
+        <ul class="space-y-2 text-xs font-mono text-neutral-600">
+          <li>
+            <a href="/ssc-cgl" class="hover:text-black transition-colors"
+              >SSC CGL Photo &amp; Signature</a>
+          </li>
+          <li>
+            <a href="/upsc" class="hover:text-black transition-colors"
+              >UPSC Civil Services &amp; OTR</a>
+          </li>
+          <li>
+            <a href="/india-post-gds" class="hover:text-black transition-colors"
+              >India Post GDS Resizer</a>
+          </li>
+          <li>
+            <a href="/ibps" class="hover:text-black transition-colors"
+              >IBPS PO, Clerk &amp; RRB Kit</a>
+          </li>
+          <li>
+            <a href="/sbi-po" class="hover:text-black transition-colors"
+              >SBI PO &amp; Clerk Resizer</a>
+          </li>
+          <li>
+            <a href="/neet" class="hover:text-black transition-colors"
+              >NEET UG Passport Photo</a>
+          </li>
+          <li>
+            <a href="/jee" class="hover:text-black transition-colors"
+              >JEE Main Photo Resizer</a>
+          </li>
+          <li>
+            <a href="/rrb-ntpc" class="hover:text-black transition-colors"
+              >Railway RRB NTPC / ALP</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Tools & Utilities -->
+      <div class="md:col-span-2 space-y-3">
+        <h3
+          class="text-xs font-bold text-black uppercase tracking-wider font-mono"
+        >
+          Dedicated Tools
+        </h3>
+        <ul class="space-y-2 text-xs font-mono text-neutral-600">
+          <li>
+            <a href="/photo-resizer" class="hover:text-black transition-colors"
+              >Photo Resizer</a>
+          </li>
+          <li>
+            <a
+              href="/signature-resizer"
+              class="hover:text-black transition-colors">Signature Resizer</a>
+          </li>
+          <li>
+            <a
+              href="/signature-whitener"
+              class="hover:text-black transition-colors">Signature Whitener</a>
+          </li>
+          <li>
+            <a href="/add-name-date" class="hover:text-black transition-colors"
+              >Add Name &amp; Date</a>
+          </li>
+          <li>
+            <a
+              href="/image-compressor"
+              class="hover:text-black transition-colors">20–50 KB Compressor</a>
+          </li>
+          <li>
+            <a href="/custom" class="hover:text-black transition-colors"
+              >Custom Dimensions</a>
+          </li>
+          <li>
+            <a
+              href="/75-face-coverage"
+              class="hover:text-black transition-colors">75% Face Guide</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Oversized Figma Watermark Strip -->
+    <div
+      class="pt-6 pb-2 text-center select-none overflow-hidden"
+      aria-hidden="true"
+    >
+      <div
+        class="text-[clamp(2.5rem,12vw,10rem)] font-black tracking-tighter text-black/[0.04] leading-none uppercase font-mono"
+      >
+        UploadRight
+      </div>
+    </div>
+
+    <!-- Bottom Metadata Bar -->
+    <div
+      class="pt-6 border-t-2 border-[#e6e6e6] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500"
+    >
+      <p>
+        &copy; {new Date().getFullYear()} UploadRight. The zero-latency client-side
+        exam image standard.
+      </p>
+      <div class="flex items-center gap-6">
+        <a href="/about" class="hover:text-black transition-colors">About</a>
+        <a href="/privacy-policy" class="hover:text-black transition-colors"
+          >Privacy</a
+        >
+        <a href="/terms-of-service" class="hover:text-black transition-colors"
+          >Terms</a
+        >
+        <a href="/contact" class="hover:text-black transition-colors">Contact</a
+        >
+        <a href="/sitemap-index.xml" class="hover:text-black transition-colors"
+          >Sitemap</a
+        >
+      </div>
+    </div>
+  </div>
+</footer>

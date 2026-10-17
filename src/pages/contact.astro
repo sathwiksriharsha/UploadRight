@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Contact Us — UploadRight";
+const description = "Contact the UploadRight team for support, feature suggestions, or reporting updated exam criteria.";
+---
+
+<BaseLayout title={title} description={description} canonicalSlug="contact">
+  <Header slot="header" />
+
+  <div class="relative bg-white py-12 sm:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 space-y-12">
+      
+      <!-- Header -->
+      <header class="space-y-4">
+        <nav class="flex items-center gap-2 text-xs text-[#86868B]" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-[#1D1D1F] transition-colors">Home</a>
+          <span>/</span>
+          <span class="text-[#1D1D1F] font-medium" aria-current="page">Contact</span>
+        </nav>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-[#1D1D1F] tracking-tight leading-tight">
+          Get in touch.
+        </h1>
+        <p class="text-base text-[#86868B] leading-relaxed">
+          Questions, suggestions, or spotted a change in an official exam specification? We'd love to hear from you.
+        </p>
+      </header>
+
+      <!-- Contact Options Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-6 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-2">
+          <h3 class="text-sm font-bold text-[#1D1D1F]">Support &amp; Feedback</h3>
+          <p class="text-xs text-[#86868B] leading-relaxed">
+            For general inquiries, feature requests, or troubleshooting assistance:
+          </p>
+          <a href="mailto:support@uploadright.in" class="text-xs font-semibold text-[#0062FF] hover:underline block pt-1">
+            support@uploadright.in
+          </a>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-2">
+          <h3 class="text-sm font-bold text-[#1D1D1F]">Report Exam Criteria Changes</h3>
+          <p class="text-xs text-[#86868B] leading-relaxed">
+            Has an exam authority updated their photo dimensions or KB range? Notify our verification desk:
+          </p>
+          <a href="mailto:updates@uploadright.in" class="text-xs font-semibold text-[#0062FF] hover:underline block pt-1">
+            updates@uploadright.in
+          </a>
+        </div>
+      </div>
+
+      <!-- Message Form -->
+      <div class="p-6 sm:p-8 rounded-2xl border border-[#E5E5EA] bg-white space-y-6 shadow-xs">
+        <div class="space-y-1">
+          <h2 class="text-lg font-bold text-[#1D1D1F]">Send a Direct Message</h2>
+          <p class="text-xs text-[#86868B]">We respond to all candidate inquiries within 24 hours.</p>
+        </div>
+
+        <form id="contact-form" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="contact-name" class="block text-xs font-semibold text-[#1D1D1F]">Your Name</label>
+              <input type="text" id="contact-name" required placeholder="Full Name" class="w-full px-3 py-2 text-xs bg-[#F5F5F7] border border-[#E5E5EA] rounded-xl text-[#1D1D1F] focus:outline-none focus:ring-2 focus:ring-[#0062FF]" />
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="contact-email" class="block text-xs font-semibold text-[#1D1D1F]">Email Address</label>
+              <input type="email" id="contact-email" required placeholder="you@example.com" class="w-full px-3 py-2 text-xs bg-[#F5F5F7] border border-[#E5E5EA] rounded-xl text-[#1D1D1F] focus:outline-none focus:ring-2 focus:ring-[#0062FF]" />
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            <label for="contact-subject" class="block text-xs font-semibold text-[#1D1D1F]">Topic</label>
+            <select id="contact-subject" class="w-full px-3 py-2 text-xs bg-[#F5F5F7] border border-[#E5E5EA] rounded-xl text-[#1D1D1F] focus:outline-none focus:ring-2 focus:ring-[#0062FF]">
+              <option value="general">General Question</option>
+              <option value="spec-update">Report Exam Criteria Update</option>
+              <option value="technical">Technical Issue</option>
+              <option value="feedback">Product Feedback</option>
+            </select>
+          </div>
+
+          <div class="space-y-1.5">
+            <label for="contact-message" class="block text-xs font-semibold text-[#1D1D1F]">Message</label>
+            <textarea id="contact-message" rows="4" required placeholder="How can we help?" class="w-full px-3 py-2 text-xs bg-[#F5F5F7] border border-[#E5E5EA] rounded-xl text-[#1D1D1F] focus:outline-none focus:ring-2 focus:ring-[#0062FF]"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-3 rounded-full bg-[#0062FF] hover:bg-[#0052D6] text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer">
+            Send Message
+          </button>
+        </form>
+
+        <div id="contact-success" class="hidden p-4 rounded-xl bg-[#F0F6FE] border border-[#0062FF]/20 text-center">
+          <p class="text-xs font-semibold text-[#0062FF]">Thank you! Your message has been received.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successBox = document.getElementById('contact-success');
+
+  if (form && successBox) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      form.classList.add('hidden');
+      successBox.classList.remove('hidden');
+    });
+  }
+</script>

@@ -1,0 +1,18 @@
+# Cloudflare Pages Headers
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(self)
+
+# Immutable Cache for Astro static hashed assets
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Favicon, Logo & Images
+/*.svg
+  Cache-Control: public, max-age=86400
+/*.png
+  Cache-Control: public, max-age=86400
+/*.ico
+  Cache-Control: public, max-age=86400

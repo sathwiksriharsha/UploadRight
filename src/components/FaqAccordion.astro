@@ -1,0 +1,72 @@
+---
+// UploadRight Interactive FAQ Accordion Component
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs?: FaqItem[];
+}
+
+const defaultFaqs: FaqItem[] = [
+  {
+    question: "Why do government exam portals reject uploaded photos and signatures?",
+    answer: "Portals reject documents for three main technical reasons: 1) File size is outside the strictly enforced byte range (e.g., 20 KB to 50 KB); 2) Pixel dimensions do not match the expected aspect ratio; 3) The JPEG header lacks valid JFIF APP0 DPI markers (e.g., 200 DPI), or the signature background has grey shadows instead of pure white."
+  },
+  {
+    question: "How does UploadRight hit the exact KB range without quality degradation?",
+    answer: "We use a bounded binary-search compression engine. It begins at 0.92 quality and tests candidates with full JFIF metadata. If a candidate is too large, it binary-searches downward within [0.05, 0.92] to find the maximum possible quality that stays safely within portal byte thresholds."
+  },
+  {
+    question: "How does the Paper Background Whitener clean up signatures?",
+    answer: "When applicants photograph a handwritten signature on paper using a mobile phone, poor indoor lighting often creates grey or yellow shadows. Our canvas filter analyzes luminosity and snaps paper shadows to pure white (#FFFFFF) while preserving fine ink strokes."
+  },
+  {
+    question: "Are my photos or documents uploaded to any server or cloud database?",
+    answer: "No. UploadRight operates 100% locally in your browser memory via HTML5 Canvas and binary typed arrays. No files, metadata, or candidate details are ever transmitted over the network."
+  },
+  {
+    question: "Can I prepare all documents for an exam in a single session?",
+    answer: "Yes. In our multi-slot kits (such as IBPS 4-in-1 or NEET UG), you can format the Photo, Signature, Thumb Impression, and Declaration sequentially. Each completed file is cached in browser memory, and you can download them individually or as an organized ZIP kit."
+  },
+  {
+    question: "How do I add a Name and Date Placard to my photo?",
+    answer: "For exams that mandate applicant name and date of photo (such as SSC or state PSCs), enable the 'Add Name & Date Placard' toggle. Enter your full name and photo date; the tool renders an official high-contrast placard across the lower portion of the image."
+  }
+];
+
+const { faqs = defaultFaqs } = Astro.props;
+---
+
+<section id="faq" class="py-12 sm:py-16 bg-white border-t border-[#E5E5EA]">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
+    <div class="text-center space-y-2">
+      <h2 class="text-xl sm:text-2xl font-bold text-[#1D1D1F] tracking-tight">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-xs sm:text-sm text-[#86868B]">
+        Clear, practical answers about portal requirements and image formatting.
+      </p>
+    </div>
+
+    <!-- Accordion List -->
+    <div class="divide-y divide-[#E5E5EA] border-y border-[#E5E5EA]">
+      {faqs.map((faq, idx) => (
+        <details class="group py-4 cursor-pointer" open={idx === 0}>
+          <summary class="flex items-center justify-between font-semibold text-sm sm:text-base text-[#1D1D1F] group-hover:text-[#0062FF] transition-colors list-none select-none">
+            <span>{faq.question}</span>
+            <span class="ml-4 shrink-0 transition-transform duration-200 group-open:rotate-180 text-[#626274]">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </span>
+          </summary>
+          <div class="pt-3 text-xs sm:text-sm text-[#626274] leading-relaxed pr-8">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

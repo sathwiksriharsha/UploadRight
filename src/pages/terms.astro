@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Terms of Service — UploadRight";
+const description = "Terms and Conditions of Use for UploadRight image formatting and optimization tools.";
+---
+
+<BaseLayout title={title} description={description} canonicalSlug="terms">
+  <Header slot="header" />
+
+  <div class="relative bg-white py-12 sm:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 space-y-12">
+      
+      <!-- Page Header -->
+      <header class="space-y-4">
+        <nav class="flex items-center gap-2 text-xs text-[#86868B]" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-[#1D1D1F] transition-colors">Home</a>
+          <span>/</span>
+          <span class="text-[#1D1D1F] font-medium" aria-current="page">Terms of Service</span>
+        </nav>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-[#1D1D1F] tracking-tight leading-tight">
+          Terms of Service. <br />
+          <span class="text-[#0062FF]">Clear, transparent guidelines.</span>
+        </h1>
+        <p class="text-sm text-[#86868B]">
+          Last updated: March 2026 · Effective immediately for all visitors
+        </p>
+      </header>
+
+      <!-- Important Notice Box -->
+      <div class="p-6 sm:p-8 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-3">
+        <div class="flex items-center gap-2 text-xs font-semibold text-[#86868B] uppercase tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-[#86868B]"></span>
+          Notice of Non-Affiliation
+        </div>
+        <p class="text-sm font-medium text-[#1D1D1F] leading-relaxed">
+          UploadRight is an independent educational and document preparation utility. <strong>We are NOT affiliated with, authorized by, endorsed by, or in any way officially connected with the Staff Selection Commission (SSC), Union Public Service Commission (UPSC), Institute of Banking Personnel Selection (IBPS), National Testing Agency (NTA), Railway Recruitment Boards (RRB)</strong>, or any central or state government body.
+        </p>
+      </div>
+
+      <!-- Terms Clauses -->
+      <article class="space-y-10 text-sm sm:text-base text-[#1D1D1F] leading-relaxed">
+        
+        <section class="space-y-3">
+          <h2 class="text-lg sm:text-xl font-bold text-[#1D1D1F] tracking-tight">1. Acceptance of Terms</h2>
+          <p class="text-[#86868B] leading-relaxed">
+            By visiting, accessing, or utilizing UploadRight (uploadright.in), you acknowledge that you have read, understood, and agreed to be bound by these Terms of Service. If you do not agree to these terms, please discontinue use of this site immediately.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg sm:text-xl font-bold text-[#1D1D1F] tracking-tight">2. Nature of Service</h2>
+          <p class="text-[#86868B] leading-relaxed">
+            UploadRight provides client-side, browser-native tools to crop, resize, pad, and compress candidate photographs and signatures according to publicly released exam criteria. All operations occur on your personal hardware using client-side Web APIs.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg sm:text-xl font-bold text-[#1D1D1F] tracking-tight">3. Applicant Verification Responsibility</h2>
+          <p class="text-[#86868B] leading-relaxed">
+            While UploadRight makes every reasonable engineering effort to maintain presets that reflect the latest official recruitment notifications, exam authorities occasionally amend requirements without prior notice (e.g., changes to file weight ranges, placard date formats, or DPI requirements).
+          </p>
+          <p class="text-[#86868B] leading-relaxed">
+            <strong>You are solely responsible for cross-checking your output file dimensions, weight, and format against the official brochure for your active recruitment cycle</strong> before submitting your application to any examination portal.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg sm:text-xl font-bold text-[#1D1D1F] tracking-tight">4. Prohibited Uses</h2>
+          <p class="text-[#86868B] leading-relaxed">
+            You agree not to use UploadRight for:
+          </p>
+          <ul class="space-y-2 text-sm text-[#86868B]">
+            <li class="flex items-start gap-2">
+              <span class="text-[#0062FF] font-bold">✓</span>
+              <span>Forging, altering, or falsifying identity records, signatures, or educational credentials.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#0062FF] font-bold">✓</span>
+              <span>Attempting to reverse engineer, scrape, or flood the platform with automated scripts or bot traffic.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#0062FF] font-bold">✓</span>
+              <span>Impersonating other applicants or uploading documents for which you lack legal authorization.</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg sm:text-xl font-bold text-[#1D1D1F] tracking-tight">5. Limitation of Liability</h2>
+          <p class="text-[#86868B] leading-relaxed">
+            Under no circumstances shall UploadRight, its developers, or its contributors be held liable for any direct, indirect, incidental, special, or consequential damages resulting from the use or inability to use this platform. This includes, without limitation, portal upload errors, rejected examination registrations, or missed application deadlines.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-lg sm:text-xl font-bold text-[#1D1D1F] tracking-tight">6. Questions and Support</h2>
+          <p class="text-[#86868B] leading-relaxed">
+            For questions regarding these terms, contact our support team at <a href="mailto:support@uploadright.in" class="text-[#0062FF] hover:underline font-medium">support@uploadright.in</a> or visit our <a href="/contact" class="text-[#0062FF] hover:underline font-medium">Contact page</a>.
+          </p>
+        </section>
+
+      </article>
+
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

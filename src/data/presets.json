@@ -1,0 +1,2314 @@
+[
+  {
+    "slug": "ssc-photo-resizer",
+    "title": "SSC Photo & Signature Resizer",
+    "shortTitle": "SSC Photo Resizer",
+    "exam": "SSC",
+    "category": "ssc",
+    "categoryLabel": "SSC Exams",
+    "description": "Resize your photo and signature for SSC CGL, CHSL, MTS, GD, CPO, and Stenographer exams. Exact pixel dimensions, KB size, and DPI — accepted on ssc.gov.in every time.",
+    "metaTitle": "SSC Photo & Signature Resizer — 3.5×4.5 cm, 20–50 KB, 200 DPI | UploadRight",
+    "metaDescription": "Free online SSC photo resizer. Resize to 276×354 px (3.5×4.5 cm), 20–50 KB, 200 DPI for SSC CGL, CHSL, MTS, GD, CPO. Works on mobile. 100% private.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.78,
+        "background": "White or light-coloured plain background",
+        "notes": "Recent passport-size photograph with clear face visible. No hats, sunglasses, or dark glasses."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "4.0 × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black or dark blue ink",
+        "notes": "Sign on white unruled paper with black ink pen. Do not use capital letters throughout.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo file size exceeds 50 KB or is below 20 KB",
+      "Signature background appears grey or shadowy instead of white",
+      "Image dimensions do not match 276×354 px exactly",
+      "JPEG file is corrupted due to improper byte padding"
+    ],
+    "faqs": [
+      {
+        "question": "What is the exact photo size for SSC exams in 2026?",
+        "answer": "SSC requires a passport-size photo of 3.5 × 4.5 cm, which equals 276 × 354 pixels at 200 DPI. The file size must be strictly between 20 KB and 50 KB in JPEG format."
+      },
+      {
+        "question": "What is the SSC signature size requirement?",
+        "answer": "SSC requires a signature image of 4.0 × 2.0 cm, which equals 140 × 60 pixels at 200 DPI. The file must be between 10 KB and 20 KB in JPEG format, signed in black ink on white paper."
+      },
+      {
+        "question": "My SSC photo keeps getting rejected. What should I do?",
+        "answer": "Common rejection reasons include: wrong pixel dimensions, file size outside the 20–50 KB range, grey background instead of white, or corrupted JPEG. Use UploadRight to resize to exact specifications with proper DPI embedding and valid JPEG compression."
+      },
+      {
+        "question": "Can I use UploadRight on my phone for SSC photo resize?",
+        "answer": "Yes! UploadRight is fully mobile-optimized. You can upload a photo from your gallery, take a new photo with your camera, or even try our sample photo — all processing happens on your device privately."
+      }
+    ],
+    "sourceUrl": "https://ssc.gov.in/api/attachment/uploads/docContent/Notice_CGL_2025_Final.pdf",
+    "verifiedDate": "2026-03-01",
+    "authority": "Staff Selection Commission (SSC) Official Examination Notice & Guidelines"
+  },
+  {
+    "slug": "ibps-photo-signature-resizer",
+    "title": "IBPS Photo, Signature, Thumb & Declaration Resizer",
+    "shortTitle": "IBPS 4-in-1 Kit",
+    "exam": "IBPS",
+    "category": "banking",
+    "categoryLabel": "Banking Exams",
+    "description": "Complete 4-in-1 resizer kit for IBPS PO, Clerk, SO, and RRB exams. Photo, signature, left thumb impression, and handwritten declaration — all in one session.",
+    "metaTitle": "IBPS Photo Signature Thumb Declaration Resizer — 4-in-1 Kit | UploadRight",
+    "metaDescription": "Free IBPS 4-in-1 image resizer. Photo 200×230px 20-50KB, Signature 140×60px 10-20KB, Thumb 240×240px, Declaration 800×400px. Works on mobile.",
+    "hasDeclaration": true,
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 200,
+        "heightPx": 230,
+        "physicalSize": "2.5 × 2.9 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.87,
+        "background": "White or off-white plain background",
+        "notes": "Recent colour passport photograph with visible face and ears."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign on white paper with black ink pen. Do not use all capitals.",
+        "whitenerDefault": true
+      },
+      {
+        "id": "thumb",
+        "label": "Left Thumb",
+        "docType": "thumb",
+        "widthPx": 240,
+        "heightPx": 240,
+        "physicalSize": "3.0 × 3.0 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "White paper with clear thumb impression",
+        "notes": "Left hand thumb impression on white paper. Use blue or black stamp pad ink.",
+        "whitenerDefault": true
+      },
+      {
+        "id": "declaration",
+        "label": "Declaration",
+        "docType": "declaration",
+        "widthPx": 800,
+        "heightPx": 400,
+        "physicalSize": "10.0 × 5.0 cm",
+        "minKB": 50,
+        "maxKB": 100,
+        "dpi": 200,
+        "aspectRatio": 2,
+        "background": "White unruled paper, black ink",
+        "notes": "Handwritten declaration in English. Use black ink on plain white unruled paper.",
+        "whitenerDefault": true,
+        "declarationKey": "ibps"
+      }
+    ],
+    "rejectionReasons": [
+      "Photo dimensions are not exactly 200×230 pixels",
+      "Signature file size below 10 KB (too small after compression)",
+      "Thumb impression background is grey instead of clean white",
+      "Declaration text is illegible or image is too dark"
+    ],
+    "faqs": [
+      {
+        "question": "What are the IBPS photo and signature size requirements for 2026?",
+        "answer": "IBPS requires: Photo — 200×230 px, 20–50 KB; Signature — 140×60 px, 10–20 KB; Left Thumb — 240×240 px, 20–50 KB; Handwritten Declaration — 800×400 px, 50–100 KB. All in JPEG format."
+      },
+      {
+        "question": "What should I write in the IBPS handwritten declaration?",
+        "answer": "The IBPS declaration text reads: 'I, [Your Name], hereby declare that all the particulars furnished by me in the application form are true and correct to the best of my knowledge and belief.' Use UploadRight's 1-click copy feature to get the exact official text."
+      },
+      {
+        "question": "How do I fix a dark signature photo for IBPS?",
+        "answer": "Use UploadRight's 'Whiten Paper & Sharpen Ink' feature. It automatically converts grey paper backgrounds to pure white while enhancing ink contrast, making your signature crystal clear for portal acceptance."
+      }
+    ],
+    "sourceUrl": "https://www.ibps.in/wp-content/uploads/Notification_CRP_PO_MT_XV.pdf",
+    "verifiedDate": "2026-03-01",
+    "authority": "Institute of Banking Personnel Selection (IBPS) Common Recruitment Process Bulletin"
+  },
+  {
+    "slug": "sbi-po-clerk-photo-resizer",
+    "title": "SBI PO & Clerk Photo, Signature, Thumb & Declaration Resizer",
+    "shortTitle": "SBI PO/Clerk Kit",
+    "exam": "SBI PO / Clerk",
+    "category": "banking",
+    "categoryLabel": "Banking Exams",
+    "description": "Complete 4-in-1 document resizer for SBI Probationary Officer and Clerk exams. Resize photo, signature, thumb impression, and handwritten declaration to SBI specifications.",
+    "metaTitle": "SBI PO Clerk Photo Signature Resizer — 4-in-1 Kit | UploadRight",
+    "metaDescription": "Free SBI PO/Clerk 4-in-1 resizer. Photo 200×230px 20-50KB, Signature 140×60px 10-20KB, Thumb 240×240px, Declaration 800×400px. Mobile-friendly.",
+    "hasDeclaration": true,
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 200,
+        "heightPx": 230,
+        "physicalSize": "2.5 × 2.9 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.87,
+        "background": "White background",
+        "notes": "Recent colour passport-size photograph."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign on white paper with black ink pen.",
+        "whitenerDefault": true
+      },
+      {
+        "id": "thumb",
+        "label": "Left Thumb",
+        "docType": "thumb",
+        "widthPx": 240,
+        "heightPx": 240,
+        "physicalSize": "3.0 × 3.0 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "White paper",
+        "notes": "Left hand thumb impression on white paper.",
+        "whitenerDefault": true
+      },
+      {
+        "id": "declaration",
+        "label": "Declaration",
+        "docType": "declaration",
+        "widthPx": 800,
+        "heightPx": 400,
+        "physicalSize": "10.0 × 5.0 cm",
+        "minKB": 50,
+        "maxKB": 100,
+        "dpi": 200,
+        "aspectRatio": 2,
+        "background": "White unruled paper, black ink",
+        "notes": "Handwritten declaration in English on white unruled paper.",
+        "whitenerDefault": true,
+        "declarationKey": "sbi"
+      }
+    ],
+    "rejectionReasons": [
+      "Photo or signature file size outside the allowed KB range",
+      "Thumb impression too faint or background not white",
+      "Declaration text not matching the official SBI format",
+      "Image format is not baseline JPEG"
+    ],
+    "faqs": [
+      {
+        "question": "What is the SBI PO photo size requirement?",
+        "answer": "SBI PO requires a photo of 200×230 pixels, between 20–50 KB in JPEG format. The same specification applies to SBI Clerk, SBI SO, and other SBI recruitment exams."
+      },
+      {
+        "question": "What is the SBI handwritten declaration text?",
+        "answer": "The SBI declaration reads: 'I, [Name], hereby declare that all the particulars and information provided in this application are true, complete, and correct to the best of my knowledge and belief.' UploadRight provides the exact text with a 1-click copy button."
+      }
+    ],
+    "sourceUrl": "https://sbi.co.in/web/careers/current-openings",
+    "verifiedDate": "2026-03-01",
+    "authority": "State Bank of India (SBI) Central Recruitment & Promotion Department Notice"
+  },
+  {
+    "slug": "upsc-photo-resizer",
+    "title": "UPSC Photo & Signature Resizer",
+    "shortTitle": "UPSC Photo Resizer",
+    "exam": "UPSC CSE / OTR",
+    "category": "upsc",
+    "categoryLabel": "UPSC Exams",
+    "description": "Resize your photo and signature for UPSC Civil Services, IAS, IPS, IFS, CAPF, CDS, NDA, and UPSC OTR registration. Supports name & date placard for UPSC CSE.",
+    "metaTitle": "UPSC Photo & Signature Resizer — 550×550 px, Name & Date | UploadRight",
+    "metaDescription": "Free UPSC photo resizer. Resize to 550×550px (350-1000px range), 20-300KB for UPSC CSE, IAS, IPS, OTR. Add name & date placard. Mobile-friendly.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 550,
+        "heightPx": 550,
+        "physicalSize": "5.5 × 5.5 cm",
+        "minKB": 20,
+        "maxKB": 300,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "White or light background",
+        "notes": "Photo with candidate holding a placard showing Name and Date of photo. Dimensions can range from 350×350 to 1000×1000 px.",
+        "placardDefault": true
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 500,
+        "heightPx": 500,
+        "physicalSize": "5.0 × 5.0 cm",
+        "minKB": 20,
+        "maxKB": 300,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "White paper, black ink",
+        "notes": "Signature on white paper. Dimensions can range from 350×350 to 1000×1000 px.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo does not include name and date placard as required",
+      "Image dimensions outside the 350–1000 px range",
+      "File size exceeds 300 KB",
+      "Photo background is not plain white or light-coloured"
+    ],
+    "faqs": [
+      {
+        "question": "What is the UPSC CSE photo size for 2026?",
+        "answer": "UPSC CSE requires a photo of 550×550 pixels (default), with an acceptable range of 350×350 to 1000×1000 px. File size must be between 20 KB and 300 KB in JPEG format. The photo must include a placard showing the candidate's name and date."
+      },
+      {
+        "question": "How do I add name and date to my UPSC photo?",
+        "answer": "UploadRight has a built-in 'Add Name & Date' feature. Simply toggle it on, enter your full name and the date of the photo, and a clean white placard strip will be automatically added to the bottom of your photo in compliant typography."
+      }
+    ],
+    "sourceUrl": "https://upsconline.nic.in/upsc/OTRP/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Union Public Service Commission (UPSC) One Time Registration (OTR) Portal Rules"
+  },
+  {
+    "slug": "neet-photo-signature-resizer",
+    "title": "NEET UG Photo, Signature & Thumb Resizer",
+    "shortTitle": "NEET UG Kit",
+    "exam": "NEET UG",
+    "category": "nta",
+    "categoryLabel": "NTA Exams",
+    "description": "Complete document resizer kit for NEET UG. Passport photo, postcard photo with name & date, signature, and thumb impression — all resized to NTA specifications.",
+    "metaTitle": "NEET UG Photo Signature Resizer — Passport & Postcard, Name & Date | UploadRight",
+    "metaDescription": "Free NEET UG photo resizer. Passport photo 500×700px, Postcard 1200×1800px with name & date, Signature 4-30KB. NTA-compliant. Mobile-friendly.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Passport Photo",
+        "docType": "photo",
+        "widthPx": 500,
+        "heightPx": 700,
+        "physicalSize": "2.5 × 3.5 inch",
+        "minKB": 10,
+        "maxKB": 200,
+        "dpi": 300,
+        "aspectRatio": 0.714,
+        "background": "White background",
+        "notes": "Recent passport-size photograph with name and date written on it.",
+        "placardDefault": true
+      },
+      {
+        "id": "postcard",
+        "label": "Postcard Photo",
+        "docType": "photo",
+        "widthPx": 1200,
+        "heightPx": 1800,
+        "physicalSize": "4 × 6 inch",
+        "minKB": 10,
+        "maxKB": 200,
+        "dpi": 300,
+        "aspectRatio": 0.667,
+        "background": "White background",
+        "notes": "Postcard-size photo (4×6 inches) with candidate's name and date clearly visible.",
+        "placardDefault": true
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 350,
+        "heightPx": 150,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 4,
+        "maxKB": 30,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign on white paper with black ink pen.",
+        "whitenerDefault": true
+      },
+      {
+        "id": "thumb",
+        "label": "Thumb Impression",
+        "docType": "thumb",
+        "widthPx": 350,
+        "heightPx": 350,
+        "physicalSize": "3.5 × 3.5 cm",
+        "minKB": 10,
+        "maxKB": 200,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "White paper",
+        "notes": "Left or right thumb impression on white paper using stamp pad ink.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Passport photo missing candidate name and date",
+      "Postcard photo not matching 4×6 inch dimensions",
+      "Signature file below 4 KB minimum (after compression on white background)",
+      "Thumb impression too faint or background not white"
+    ],
+    "faqs": [
+      {
+        "question": "What are the NEET UG 2026 photo requirements?",
+        "answer": "NEET UG requires: Passport Photo — 500×700 px (2.5×3.5 inch) at 300 DPI, 10–200 KB with name and date; Postcard Photo — 1200×1800 px (4×6 inch), 10–200 KB with name and date; Signature — 350×150 px, 4–30 KB; Thumb Impression — 350×350 px, 10–200 KB."
+      },
+      {
+        "question": "How do I add name and date on NEET photo?",
+        "answer": "Use UploadRight's 'Add Name & Date' toggle. It adds a professional white placard strip at the bottom of your photo with your name and the date of the photograph in bold, compliant typography — exactly as NTA requires."
+      }
+    ],
+    "sourceUrl": "https://exams.nta.ac.in/NEET/images/neet-ug-information-bulletin.pdf",
+    "verifiedDate": "2026-03-01",
+    "authority": "National Testing Agency (NTA) NEET (UG) Information Bulletin Appendix"
+  },
+  {
+    "slug": "jee-main-photo-resizer",
+    "title": "JEE Main Photo & Signature Resizer",
+    "shortTitle": "JEE Main Kit",
+    "exam": "JEE Main",
+    "category": "nta",
+    "categoryLabel": "NTA Exams",
+    "description": "Resize your photo and signature for JEE Main NTA registration. Exact dimensions and KB range for hassle-free JEE Main form submission.",
+    "metaTitle": "JEE Main Photo & Signature Resizer — NTA Compliant | UploadRight",
+    "metaDescription": "Free JEE Main photo resizer. Photo 3.5×4.5cm 10-200KB, Signature 3.5×1.5cm 4-30KB. NTA-compliant JPEG. Works on mobile. 100% private.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 500,
+        "heightPx": 643,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 10,
+        "maxKB": 200,
+        "dpi": 300,
+        "aspectRatio": 0.778,
+        "background": "White background",
+        "notes": "Recent passport-size colour photograph with 80% face coverage."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 350,
+        "heightPx": 150,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 4,
+        "maxKB": 30,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign on white paper with black ink pen. Signature should not be in all capital letters.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo file size exceeds 200 KB",
+      "Signature is below the 4 KB minimum",
+      "Photo does not have white background",
+      "Image is in PNG format instead of JPEG"
+    ],
+    "faqs": [
+      {
+        "question": "What is the JEE Main photo size requirement?",
+        "answer": "JEE Main requires a passport-size photo of 3.5×4.5 cm (approximately 500×643 px at 300 DPI). File size must be between 10 KB and 200 KB in JPEG format with a white background."
+      },
+      {
+        "question": "What is the JEE Main signature size?",
+        "answer": "JEE Main requires a signature of 3.5×1.5 cm (approximately 350×150 px). File size must be between 4 KB and 30 KB in JPEG format. Sign with black ink on white paper."
+      }
+    ],
+    "sourceUrl": "https://jeemain.nta.ac.in/images/jee-main-information-bulletin.pdf",
+    "verifiedDate": "2026-03-01",
+    "authority": "National Testing Agency (NTA) JEE (Main) Information Bulletin Appendix"
+  },
+  {
+    "slug": "nsdl-pan-card-photo-resizer",
+    "title": "NSDL (Protean) PAN Card Photo & Signature Resizer",
+    "shortTitle": "NSDL PAN Card",
+    "exam": "NSDL PAN Card",
+    "category": "govtid",
+    "categoryLabel": "Government ID",
+    "description": "Resize photo and signature for NSDL (Protean) PAN Card application with correct 200 DPI embedding. Passes the portal's binary DPI header check.",
+    "metaTitle": "NSDL PAN Card Photo & Signature Resizer — 200 DPI Embedded | UploadRight",
+    "metaDescription": "Free NSDL PAN Card photo resizer. Photo 276×197px at 200 DPI <50KB, Signature 157×354px at 200 DPI <50KB. DPI embedded in JPEG header. Mobile-friendly.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 197,
+        "physicalSize": "3.5 × 2.5 cm",
+        "minKB": 2,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 1.4,
+        "background": "White or light background",
+        "notes": "Recent colour passport photograph. DPI must be exactly 200 in the JPEG header."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 157,
+        "heightPx": 354,
+        "physicalSize": "2.0 × 4.5 cm",
+        "minKB": 2,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.44,
+        "background": "White paper, black ink",
+        "notes": "Signature on white paper. DPI must be exactly 200 in the JPEG header.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "JPEG header does not contain 200 DPI — standard canvas export writes 96 DPI",
+      "Photo dimensions do not match 276×197 px",
+      "File size exceeds 50 KB",
+      "Image is blurry or face is not clearly visible"
+    ],
+    "faqs": [
+      {
+        "question": "Why does NSDL PAN Card portal reject my photo even though it looks correct?",
+        "answer": "NSDL's portal inspects the binary JFIF header of the JPEG file for exact DPI values. Standard image editors and HTML canvas export at 96 DPI by default. UploadRight injects the exact 200 DPI value into the JPEG binary header, passing the portal's DPI check every time."
+      },
+      {
+        "question": "What is the NSDL PAN Card photo size?",
+        "answer": "NSDL (Protean) PAN Card requires a photo of 3.5×2.5 cm (276×197 px) at 200 DPI, under 50 KB in JPEG format."
+      }
+    ],
+    "sourceUrl": "https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html",
+    "verifiedDate": "2026-03-01",
+    "authority": "Protean eGov Technologies (formerly NSDL) Online PAN Application Portal Guidelines"
+  },
+  {
+    "slug": "uti-pan-card-photo-resizer",
+    "title": "UTIITSL PAN Card Photo & Signature Resizer",
+    "shortTitle": "UTI PAN Card",
+    "exam": "UTI PAN Card",
+    "category": "govtid",
+    "categoryLabel": "Government ID",
+    "description": "Resize photo and signature for UTIITSL PAN Card application. Supports 300 DPI photo and 600 DPI signature header injection that passes UTI's strict binary validation.",
+    "metaTitle": "UTI PAN Card Photo & Signature Resizer — 300 DPI & 600 DPI | UploadRight",
+    "metaDescription": "Free UTI PAN Card photo resizer. Photo 213×213px at 300 DPI <30KB, Signature 400×200px at 600 DPI <60KB. True DPI injection. Mobile-friendly.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 213,
+        "heightPx": 213,
+        "physicalSize": "1.8 × 1.8 cm",
+        "minKB": 2,
+        "maxKB": 30,
+        "dpi": 300,
+        "aspectRatio": 1,
+        "background": "White background",
+        "notes": "Recent colour passport photograph. DPI must be exactly 300 in the JPEG header."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 400,
+        "heightPx": 200,
+        "physicalSize": "1.7 × 0.85 cm",
+        "minKB": 2,
+        "maxKB": 60,
+        "dpi": 600,
+        "aspectRatio": 2,
+        "background": "White paper, black ink",
+        "notes": "Signature on white paper. DPI must be exactly 600 in the JPEG header.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo JPEG header shows 96 DPI instead of required 300 DPI",
+      "Signature JPEG header shows 96 DPI instead of required 600 DPI",
+      "Photo dimensions do not match 213×213 px",
+      "File size exceeds the allowed maximum"
+    ],
+    "faqs": [
+      {
+        "question": "Why does UTI PAN Card portal reject my signature?",
+        "answer": "UTI's portal requires the signature JPEG to have exactly 600 DPI embedded in the JFIF binary header. Standard tools export at 72 or 96 DPI. UploadRight's DPI injector writes the exact 600 DPI value into the JPEG binary, passing UTI's strict validation."
+      },
+      {
+        "question": "What is the UTI PAN Card photo specification?",
+        "answer": "UTIITSL PAN Card requires: Photo — 213×213 px at 300 DPI, under 30 KB; Signature — 400×200 px at 600 DPI, under 60 KB. Both in JPEG format with DPI values embedded in the file header."
+      }
+    ],
+    "sourceUrl": "https://www.utiitsl.com/pan-card/guidelines-for-uploading-photo-and-signature",
+    "verifiedDate": "2026-03-01",
+    "authority": "UTI Infrastructure Technology And Services Limited (UTIITSL) Official PAN Upload Specs"
+  },
+  {
+    "slug": "india-post-gds",
+    "title": "India Post GDS Photo & Signature Resizer",
+    "shortTitle": "Post Office GDS",
+    "exam": "India Post GDS",
+    "category": "central",
+    "categoryLabel": "Central Govt",
+    "description": "Resize candidate photograph and signature for India Post Gramin Dak Sevak (GDS) recruitment to exact 200×230 px and 140×60 px specifications.",
+    "metaTitle": "India Post GDS Photo & Signature Resizer — 20–50 KB, 200 DPI | UploadRight",
+    "metaDescription": "Free online India Post GDS photo and signature resizer. Photo 200×230 px 20-50 KB, Signature 140×60 px 10-20 KB, 200 DPI. 100% private.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 200,
+        "heightPx": 230,
+        "physicalSize": "2.5 × 2.9 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.87,
+        "background": "White plain background",
+        "notes": "Recent passport photo with face clearly visible. 200×230 px, 20–50 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "4.0 × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, dark ink",
+        "notes": "Sign in black ink on white unruled paper. 140×60 px, 10–20 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo exceeds 50 KB or is below 20 KB",
+      "Signature dimensions don't match 140×60 px",
+      "Signature background is dark or shadowy",
+      "File format is not baseline JPEG"
+    ],
+    "faqs": [
+      {
+        "question": "What is the India Post GDS photo size requirement?",
+        "answer": "India Post GDS requires photo dimensions of 200 × 230 pixels, file size between 20 KB and 50 KB, 200 DPI in JPG format."
+      },
+      {
+        "question": "What is the India Post GDS signature size?",
+        "answer": "GDS signature must be 140 × 60 pixels, file size between 10 KB and 20 KB, 200 DPI in JPG format."
+      }
+    ],
+    "sourceUrl": "https://indiapostgdsonline.gov.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Department of Posts, Ministry of Communications, Government of India"
+  },
+  {
+    "slug": "ctet-photo-resizer",
+    "title": "CTET Photo & Signature Resizer",
+    "shortTitle": "CTET Exam",
+    "exam": "CTET",
+    "category": "central",
+    "categoryLabel": "Central Govt",
+    "description": "Resize your photo and signature for Central Teacher Eligibility Test (CTET) conducted by CBSE. Exact dimensions 3.5×4.5 cm and 3.5×1.5 cm with embedded DPI.",
+    "metaTitle": "CTET Photo & Signature Resizer — 10–100 KB, 200 DPI | UploadRight",
+    "metaDescription": "Free online CTET photo & signature resizer. Photo 3.5×4.5 cm (10–100 KB), Signature 3.5×1.5 cm (3–30 KB). 100% private in-browser.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 10,
+        "maxKB": 100,
+        "dpi": 200,
+        "aspectRatio": 0.78,
+        "background": "White or light background",
+        "notes": "Recent passport photograph with 80% face coverage. 10–100 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 276,
+        "heightPx": 118,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 3,
+        "maxKB": 30,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign in black pen on white unruled paper. 3–30 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo file size exceeds 100 KB or is below 10 KB",
+      "Signature file size exceeds 30 KB or is below 3 KB",
+      "Improper aspect ratio causing face distortion"
+    ],
+    "faqs": [
+      {
+        "question": "What is the photo size for CTET 2026?",
+        "answer": "CTET requires a photo of 3.5 × 4.5 cm with file size between 10 KB and 100 KB in JPG format."
+      },
+      {
+        "question": "What is the signature size for CTET?",
+        "answer": "CTET signature must be 3.5 × 1.5 cm with file size between 3 KB and 30 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://ctet.nic.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Central Board of Secondary Education (CBSE) CTET Unit"
+  },
+  {
+    "slug": "railway-rrb-resizer",
+    "title": "Railway RRB Photo & Signature Resizer",
+    "shortTitle": "Railway RRB",
+    "exam": "RRB",
+    "category": "central",
+    "categoryLabel": "Central Govt",
+    "description": "Resize candidate photo and signature for Railway Recruitment Board (RRB NTPC, Group D, ALP, JE, Technician) exams.",
+    "metaTitle": "Railway RRB Photo & Signature Resizer — 30–70 KB, 200 DPI | UploadRight",
+    "metaDescription": "Free RRB photo and signature resizer for NTPC, Group D, ALP, JE. Photo 35×45 mm 30-70 KB, Signature 50×20 mm 30-70 KB. 100% private.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 30,
+        "maxKB": 70,
+        "dpi": 200,
+        "aspectRatio": 0.78,
+        "background": "Plain white background",
+        "notes": "Color passport photo taken against white background. 30–70 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 394,
+        "heightPx": 157,
+        "physicalSize": "5.0 × 2.0 cm",
+        "minKB": 30,
+        "maxKB": 70,
+        "dpi": 200,
+        "aspectRatio": 2.5,
+        "background": "White paper, black ink",
+        "notes": "Running handwriting on white paper in black ink. 30–70 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo file size is below 30 KB or above 70 KB",
+      "Wearing sunglasses, caps, or goggles",
+      "Signature written in capital block letters"
+    ],
+    "faqs": [
+      {
+        "question": "What is the RRB photo size requirement?",
+        "answer": "RRB requires a 35 × 45 mm (276 × 354 px) colour photo between 30 KB and 70 KB in JPG format."
+      },
+      {
+        "question": "What is the RRB signature size?",
+        "answer": "RRB requires signature of 50 × 20 mm between 30 KB and 70 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://www.rrbcdg.gov.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Railway Recruitment Control Board, Ministry of Railways"
+  },
+  {
+    "slug": "gate-photo-resizer",
+    "title": "GATE Photo & Signature Resizer",
+    "shortTitle": "GATE Exam",
+    "exam": "GATE",
+    "category": "nta",
+    "categoryLabel": "NTA / Academic",
+    "description": "Resize your photograph and signature for Graduate Aptitude Test in Engineering (GATE / GOAPS). High-resolution specs with exact 480×640 px framing.",
+    "metaTitle": "GATE Photo & Signature Resizer — 480×640 px, 20–200 KB | UploadRight",
+    "metaDescription": "Free GATE image resizer. Photo 480×640 px 20-200 KB, Signature 160×560 px 10-200 KB, 200 DPI. 100% client side.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 480,
+        "heightPx": 640,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 20,
+        "maxKB": 200,
+        "dpi": 200,
+        "aspectRatio": 0.75,
+        "background": "White background",
+        "notes": "High resolution passport photograph with 60–70% face area. 20–200 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 560,
+        "heightPx": 160,
+        "physicalSize": "7.0 × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 200,
+        "dpi": 200,
+        "aspectRatio": 3.5,
+        "background": "White paper, dark blue or black ink",
+        "notes": "Sign inside rectangular box with dark ink pen. 10–200 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Face area less than 60% of photograph",
+      "Signature blurred or clipped",
+      "File size outside 20–200 KB range"
+    ],
+    "faqs": [
+      {
+        "question": "What is the GATE photo pixel dimension?",
+        "answer": "GATE requires photo dimensions between 480 × 640 px and 480 × 640 px minimum, file size 20 KB to 200 KB in JPG format."
+      },
+      {
+        "question": "What is the GATE signature specification?",
+        "answer": "GATE signature must be 160 × 560 px to 560 × 160 px, file size between 10 KB and 200 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://gate2025.iitr.ac.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "GATE Committee, Indian Institute of Technology"
+  },
+  {
+    "slug": "uppsc-otr-resizer",
+    "title": "UPPSC OTR Photo & Signature Resizer",
+    "shortTitle": "UPPSC OTR",
+    "exam": "UPPSC",
+    "category": "state",
+    "categoryLabel": "State Govt",
+    "description": "Resize your photograph and signature for Uttar Pradesh Public Service Commission (UPPSC One Time Registration OTR) portal.",
+    "metaTitle": "UPPSC OTR Photo & Signature Resizer — Max 50 KB, 200 DPI | UploadRight",
+    "metaDescription": "Free online UPPSC OTR photo and signature resizer. Photo max 50 KB, Signature max 30 KB. Accepted on otr.pariksha.nic.in.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 10,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.78,
+        "background": "Light grey or white background",
+        "notes": "Recent passport photo with clear frontal view. Max 50 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 276,
+        "heightPx": 118,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 5,
+        "maxKB": 30,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign in black ink on white unruled paper. Max 30 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo exceeds 50 KB limit",
+      "Signature exceeds 30 KB limit",
+      "Signature background is dark or shadow-filled"
+    ],
+    "faqs": [
+      {
+        "question": "What is UPPSC OTR photo file size?",
+        "answer": "UPPSC OTR requires a passport photo under 50 KB (3.5 × 4.5 cm) in JPG format."
+      },
+      {
+        "question": "What is UPPSC OTR signature size?",
+        "answer": "UPPSC OTR signature must be under 30 KB (3.5 × 1.5 cm) in JPG format."
+      }
+    ],
+    "sourceUrl": "https://otr.pariksha.nic.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Uttar Pradesh Public Service Commission (UPPSC)"
+  },
+  {
+    "slug": "bpsc-photo-resizer",
+    "title": "BPSC Photo & Signature Resizer",
+    "shortTitle": "BPSC Exam",
+    "exam": "BPSC",
+    "category": "state",
+    "categoryLabel": "State Govt",
+    "description": "Resize your photo and Hindi/English signatures for Bihar Public Service Commission (BPSC TRE, CCE, Judiciary) applications.",
+    "metaTitle": "BPSC Photo & Signature Resizer — Max 25 KB, 200 DPI | UploadRight",
+    "metaDescription": "Free BPSC photo & signature resizer. Photo 250×250 px max 25 KB, Signature 250×150 px max 15 KB. 100% private.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 250,
+        "heightPx": 250,
+        "physicalSize": "2.5 × 2.5 cm",
+        "minKB": 10,
+        "maxKB": 25,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "Light plain background",
+        "notes": "Square passport photograph. 250×250 px, max 25 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature (English/Hindi)",
+        "docType": "signature",
+        "widthPx": 250,
+        "heightPx": 150,
+        "physicalSize": "3.5 × 2.0 cm",
+        "minKB": 5,
+        "maxKB": 15,
+        "dpi": 200,
+        "aspectRatio": 1.66,
+        "background": "White paper, blue/black ink",
+        "notes": "Sign in black ink. 250×150 px, max 15 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo exceeds strict 25 KB limit",
+      "Signature exceeds strict 15 KB limit",
+      "Incorrect dimensions causing aspect ratio squash"
+    ],
+    "faqs": [
+      {
+        "question": "What is the BPSC photo size limit?",
+        "answer": "BPSC requires a square photo of 250 × 250 pixels with file size under 25 KB in JPG format."
+      },
+      {
+        "question": "What is the BPSC signature size limit?",
+        "answer": "BPSC requires signature dimensions of 250 × 150 pixels with file size under 15 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://onlinebpsc.bihar.gov.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Bihar Public Service Commission (BPSC)"
+  },
+  {
+    "slug": "state-police-resizer",
+    "title": "State Police Constable & SI Photo & Signature Resizer",
+    "shortTitle": "Police Constable & SI",
+    "exam": "State Police",
+    "category": "state",
+    "categoryLabel": "State Govt",
+    "description": "Resize candidate photograph and signature for UP Police, Delhi Police, Bihar Police, Maharashtra Police, and Rajasthan Police recruitment.",
+    "metaTitle": "Police Constable Photo & Signature Resizer — 20–50 KB | UploadRight",
+    "metaDescription": "Free Police recruitment photo and signature resizer for Constable & SI. Photo 3.5×4.5 cm (20–50 KB), Signature (10–20 KB). 100% private.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.78,
+        "background": "White or light grey background",
+        "notes": "Recent passport photo with both ears visible. 20–50 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 276,
+        "heightPx": 118,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign in black ballpoint pen on plain white paper. 10–20 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo file size exceeds 50 KB or is under 20 KB",
+      "Signature background is grey/shadowed",
+      "Photo shows side profile instead of straight frontal view"
+    ],
+    "faqs": [
+      {
+        "question": "What is the photo size for Police Constable recruitment?",
+        "answer": "Most state police recruitment boards require a 3.5 × 4.5 cm photo between 20 KB and 50 KB in JPG format."
+      },
+      {
+        "question": "What is the signature requirement for Police exams?",
+        "answer": "Police exams require a clean signature on white paper between 10 KB and 20 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://uppbpb.gov.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "State Police Recruitment & Promotion Boards"
+  },
+  {
+    "slug": "ssc-cgl",
+    "title": "SSC CGL Photo & Signature Resizer 2026",
+    "shortTitle": "SSC CGL",
+    "exam": "SSC CGL",
+    "category": "ssc",
+    "categoryLabel": "SSC Exams",
+    "description": "Resize your candidate photo and signature for SSC CGL Tier 1 & Tier 2 online applications to exact 276×354 px (3.5×4.5 cm) and 140×60 px requirements.",
+    "metaTitle": "SSC CGL Photo & Signature Resizer 2026 — 20–50 KB, 200 DPI | UploadRight",
+    "metaDescription": "Free online SSC CGL photo and signature resizer. Photo 20–50 KB, Signature 10–20 KB, 200 DPI. 100% private in-browser, guaranteed accepted on ssc.gov.in.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "CGL Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.78,
+        "background": "White or light plain background",
+        "notes": "Recent passport photo without caps, masks or spectacles. 20–50 KB."
+      },
+      {
+        "id": "signature",
+        "label": "CGL Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "4.0 × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign in black pen on white unruled paper. Running handwriting only.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo exceeds 50 KB or is below 20 KB limit",
+      "Candidate wearing spectacles with flash glare",
+      "Signature background is dark grey or shadowy"
+    ],
+    "faqs": [
+      {
+        "question": "What is the SSC CGL 2026 photo size limit?",
+        "answer": "SSC CGL requires photo dimensions of 3.5 × 4.5 cm (276 × 354 px), file size strictly between 20 KB and 50 KB, 200 DPI."
+      },
+      {
+        "question": "What is the SSC CGL signature size?",
+        "answer": "SSC CGL signature must be 4.0 × 2.0 cm (140 × 60 px) between 10 KB and 20 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://ssc.gov.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Staff Selection Commission (SSC) Examination Guidelines"
+  },
+  {
+    "slug": "ssc-chsl",
+    "title": "SSC CHSL Photo & Signature Resizer 2026",
+    "shortTitle": "SSC CHSL",
+    "exam": "SSC CHSL",
+    "category": "ssc",
+    "categoryLabel": "SSC Exams",
+    "description": "Resize your photo and signature for SSC Combined Higher Secondary Level (CHSL 10+2) application. Guaranteed compliance with ssc.gov.in portal.",
+    "metaTitle": "SSC CHSL Photo & Signature Resizer 2026 — 20–50 KB, 200 DPI | UploadRight",
+    "metaDescription": "Free online SSC CHSL photo and signature resizer. Photo 276×354 px (20-50 KB), Signature 140×60 px (10-20 KB), 200 DPI. 100% private.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "CHSL Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.78,
+        "background": "White or light background",
+        "notes": "Recent passport photograph with face occupying 70–80% of frame."
+      },
+      {
+        "id": "signature",
+        "label": "CHSL Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "4.0 × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Signature in running handwriting on white unruled paper. 10–20 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo is blurry or below 20 KB",
+      "Signature contains capital letters throughout",
+      "Incorrect dimensions causing squashed appearance"
+    ],
+    "faqs": [
+      {
+        "question": "What is the photo size for SSC CHSL 10+2?",
+        "answer": "SSC CHSL requires 3.5 × 4.5 cm (276 × 354 pixels) photo between 20 KB and 50 KB."
+      },
+      {
+        "question": "What is the signature size for SSC CHSL?",
+        "answer": "SSC CHSL signature must be 4.0 × 2.0 cm (140 × 60 pixels) between 10 KB and 20 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://ssc.gov.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Staff Selection Commission (SSC)"
+  },
+  {
+    "slug": "ssc-gd",
+    "title": "SSC GD Constable Photo & Signature Resizer 2026",
+    "shortTitle": "SSC GD",
+    "exam": "SSC GD",
+    "category": "ssc",
+    "categoryLabel": "SSC Exams",
+    "description": "Resize your photo and signature for SSC GD Constable (CAPF, SSF, Rifleman GD) online application.",
+    "metaTitle": "SSC GD Constable Photo & Signature Resizer — 20–50 KB | UploadRight",
+    "metaDescription": "Free online SSC GD photo and signature resizer. Photo 20–50 KB, Signature 10–20 KB, 200 DPI. 100% private in-browser.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "GD Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.78,
+        "background": "Light plain background",
+        "notes": "Recent passport photo with frontal view. 20–50 KB."
+      },
+      {
+        "id": "signature",
+        "label": "GD Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "4.0 × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign in black ink on white unruled paper. 10–20 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "File size exceeds 50 KB",
+      "Signature background is dark grey",
+      "Face tilted or eyes closed"
+    ],
+    "faqs": [
+      {
+        "question": "What is the SSC GD Constable photo size?",
+        "answer": "SSC GD Constable photo must be 276 × 354 px (3.5 × 4.5 cm) between 20 KB and 50 KB."
+      },
+      {
+        "question": "What is the SSC GD signature size?",
+        "answer": "SSC GD signature must be 140 × 60 px between 10 KB and 20 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://ssc.gov.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Staff Selection Commission (SSC)"
+  },
+  {
+    "slug": "ibps-po",
+    "title": "IBPS PO Photo, Signature & Thumb Resizer 2026",
+    "shortTitle": "IBPS PO",
+    "exam": "IBPS PO",
+    "category": "banking",
+    "categoryLabel": "Banking Exams",
+    "description": "Resize candidate photograph, signature, left thumb impression, and handwritten declaration for IBPS Probationary Officer (CRP PO/MT).",
+    "metaTitle": "IBPS PO Photo Signature Thumb Resizer 2026 — 4-in-1 Kit | UploadRight",
+    "metaDescription": "Free IBPS PO image resizer. Photo 200×230 px 20-50 KB, Signature 140×60 px 10-20 KB, Thumb 240×240 px. 100% private.",
+    "hasDeclaration": true,
+    "slots": [
+      {
+        "id": "photo",
+        "label": "PO Photo",
+        "docType": "photo",
+        "widthPx": 200,
+        "heightPx": 230,
+        "physicalSize": "2.5 × 2.9 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.87,
+        "background": "Light plain background",
+        "notes": "Recent passport photo with clear frontal view. 20–50 KB."
+      },
+      {
+        "id": "signature",
+        "label": "PO Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "4.0 × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign in black ink. Never use capital letters. 10–20 KB.",
+        "whitenerDefault": true
+      },
+      {
+        "id": "thumb",
+        "label": "Left Thumb Impression",
+        "docType": "thumb",
+        "widthPx": 240,
+        "heightPx": 240,
+        "physicalSize": "3.0 × 3.0 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "White paper, blue or black ink",
+        "notes": "Clear left thumb impression on white paper without smudging.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo exceeds 50 KB or is below 20 KB",
+      "Signature signed in capital block letters",
+      "Thumb impression smudged or incomplete"
+    ],
+    "faqs": [
+      {
+        "question": "What is the IBPS PO photo size?",
+        "answer": "IBPS PO requires photo dimensions of 200 × 230 px, file size between 20 KB and 50 KB in JPG format."
+      },
+      {
+        "question": "Can I sign in blue ink for IBPS PO?",
+        "answer": "No. IBPS explicitly mandates black ink pen for signature on white unruled paper."
+      }
+    ],
+    "sourceUrl": "https://www.ibps.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Institute of Banking Personnel Selection (IBPS)"
+  },
+  {
+    "slug": "ibps-clerk",
+    "title": "IBPS Clerk Photo & Signature Resizer 2026",
+    "shortTitle": "IBPS Clerk",
+    "exam": "IBPS Clerk",
+    "category": "banking",
+    "categoryLabel": "Banking Exams",
+    "description": "Resize candidate photograph, signature, left thumb impression, and handwritten declaration for IBPS Clerk (CRP Clerical Cadre).",
+    "metaTitle": "IBPS Clerk Photo & Signature Resizer 2026 — 20–50 KB | UploadRight",
+    "metaDescription": "Free IBPS Clerk photo resizer. Photo 200×230 px (20-50 KB), Signature 140×60 px (10-20 KB), Thumb (20-50 KB). 100% private.",
+    "hasDeclaration": true,
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Clerk Photo",
+        "docType": "photo",
+        "widthPx": 200,
+        "heightPx": 230,
+        "physicalSize": "2.5 × 2.9 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.87,
+        "background": "Light plain background",
+        "notes": "Recent passport photo with clear frontal view. 20–50 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Clerk Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "4.0 × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign in black ink. 10–20 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo exceeds 50 KB limit",
+      "Signature signed in capital block letters",
+      "Declaration in capital letters"
+    ],
+    "faqs": [
+      {
+        "question": "What is the IBPS Clerk photo size?",
+        "answer": "IBPS Clerk requires 200 × 230 px photo with file size between 20 KB and 50 KB in JPG format."
+      },
+      {
+        "question": "What is the IBPS Clerk signature size?",
+        "answer": "IBPS Clerk signature must be 140 × 60 px between 10 KB and 20 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://www.ibps.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Institute of Banking Personnel Selection (IBPS)"
+  },
+  {
+    "slug": "rrb-ntpc",
+    "title": "RRB NTPC Photo & Signature Resizer 2026",
+    "shortTitle": "RRB NTPC",
+    "exam": "RRB NTPC",
+    "category": "central",
+    "categoryLabel": "Central Govt",
+    "description": "Resize your candidate photo and signature for Railway RRB Non-Technical Popular Categories (NTPC Graduate & Undergraduate) recruitment.",
+    "metaTitle": "RRB NTPC Photo & Signature Resizer 2026 — 30–70 KB | UploadRight",
+    "metaDescription": "Free RRB NTPC photo resizer. Photo 35×45 mm (30-70 KB), Signature 50×20 mm (30-70 KB), 200 DPI. 100% private.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "NTPC Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 30,
+        "maxKB": 70,
+        "dpi": 200,
+        "aspectRatio": 0.78,
+        "background": "Plain white background",
+        "notes": "Color passport photo taken against white background. 30–70 KB."
+      },
+      {
+        "id": "signature",
+        "label": "NTPC Signature",
+        "docType": "signature",
+        "widthPx": 394,
+        "heightPx": 157,
+        "physicalSize": "5.0 × 2.0 cm",
+        "minKB": 30,
+        "maxKB": 70,
+        "dpi": 200,
+        "aspectRatio": 2.5,
+        "background": "White paper, black ink",
+        "notes": "Sign in black ink pen on white paper. 30–70 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo file size is below 30 KB or above 70 KB",
+      "Wearing sunglasses, caps, or goggles",
+      "Signature written in capital letters"
+    ],
+    "faqs": [
+      {
+        "question": "What is the RRB NTPC photo size requirement?",
+        "answer": "RRB NTPC requires a 35 × 45 mm (276 × 354 px) colour photo between 30 KB and 70 KB in JPG format."
+      },
+      {
+        "question": "What is the RRB NTPC signature size?",
+        "answer": "RRB NTPC requires signature of 50 × 20 mm between 30 KB and 70 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://www.rrbcdg.gov.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Railway Recruitment Control Board"
+  },
+  {
+    "slug": "delhi-police",
+    "title": "Delhi Police Constable & SI Photo Resizer 2026",
+    "shortTitle": "Delhi Police",
+    "exam": "Delhi Police",
+    "category": "state",
+    "categoryLabel": "Police Exams",
+    "description": "Resize candidate photograph and signature for Delhi Police Constable (Executive) and Sub-Inspector recruitment through SSC.",
+    "metaTitle": "Delhi Police Photo & Signature Resizer — 20–50 KB | UploadRight",
+    "metaDescription": "Free Delhi Police photo and signature resizer. Photo 20–50 KB (3.5×4.5 cm), Signature 10–20 KB (4×2 cm). 100% private in-browser.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Police Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.78,
+        "background": "White or light background",
+        "notes": "Recent passport photo with frontal view. 20–50 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Police Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "4.0 × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign in black ink on white unruled paper. 10–20 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo exceeds 50 KB or is below 20 KB",
+      "Signature background appears dark or grey",
+      "Wearing cap, sunglasses, or spectacles with glare"
+    ],
+    "faqs": [
+      {
+        "question": "What is Delhi Police Constable photo size?",
+        "answer": "Delhi Police requires a 3.5 × 4.5 cm photo between 20 KB and 50 KB in JPG format."
+      },
+      {
+        "question": "What is Delhi Police signature size?",
+        "answer": "Delhi Police requires a 4.0 × 2.0 cm signature between 10 KB and 20 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://delhipolice.gov.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Delhi Police Recruitment Board"
+  },
+  {
+    "slug": "upsc",
+    "title": "UPSC UPSC Civil Services Resizer",
+    "shortTitle": "UPSC Civil Services",
+    "exam": "UPSC CSE / OTR",
+    "category": "upsc",
+    "categoryLabel": "UPSC Exams",
+    "description": "Resize your photo and signature for UPSC Civil Services, IAS, IPS, IFS, CAPF, CDS, NDA, and UPSC OTR registration. Supports name & date placard for UPSC CSE.",
+    "metaTitle": "UPSC Photo & Signature Resizer — 550×550 px, Name & Date | UploadRight",
+    "metaDescription": "Free UPSC photo resizer. Resize to 550×550px (350-1000px range), 20-300KB for UPSC CSE, IAS, IPS, OTR. Add name & date placard. Mobile-friendly.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 550,
+        "heightPx": 550,
+        "physicalSize": "5.5 × 5.5 cm",
+        "minKB": 20,
+        "maxKB": 300,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "White or light background",
+        "notes": "Photo with candidate holding a placard showing Name and Date of photo. Dimensions can range from 350×350 to 1000×1000 px.",
+        "placardDefault": true
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 500,
+        "heightPx": 500,
+        "physicalSize": "5.0 × 5.0 cm",
+        "minKB": 20,
+        "maxKB": 300,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "White paper, black ink",
+        "notes": "Signature on white paper. Dimensions can range from 350×350 to 1000×1000 px.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo does not include name and date placard as required",
+      "Image dimensions outside the 350–1000 px range",
+      "File size exceeds 300 KB",
+      "Photo background is not plain white or light-coloured"
+    ],
+    "faqs": [
+      {
+        "question": "What is the UPSC CSE photo size for 2026?",
+        "answer": "UPSC CSE requires a photo of 550×550 pixels (default), with an acceptable range of 350×350 to 1000×1000 px. File size must be between 20 KB and 300 KB in JPEG format. The photo must include a placard showing the candidate's name and date."
+      },
+      {
+        "question": "How do I add name and date to my UPSC photo?",
+        "answer": "UploadRight has a built-in 'Add Name & Date' feature. Simply toggle it on, enter your full name and the date of the photo, and a clean white placard strip will be automatically added to the bottom of your photo in compliant typography."
+      }
+    ],
+    "sourceUrl": "https://upsconline.nic.in/upsc/OTRP/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Union Public Service Commission (UPSC) One Time Registration (OTR) Portal Rules"
+  },
+  {
+    "slug": "ibps",
+    "title": "IBPS Photo, Signature, Thumb & Declaration Resizer",
+    "shortTitle": "IBPS Exams",
+    "exam": "IBPS",
+    "category": "banking",
+    "categoryLabel": "Banking Exams",
+    "description": "Complete 4-in-1 resizer kit for IBPS PO, Clerk, SO, and RRB exams. Photo, signature, left thumb impression, and handwritten declaration — all in one session.",
+    "metaTitle": "IBPS Photo Signature Thumb Declaration Resizer — 4-in-1 Kit | UploadRight",
+    "metaDescription": "Free IBPS 4-in-1 image resizer. Photo 200×230px 20-50KB, Signature 140×60px 10-20KB, Thumb 240×240px, Declaration 800×400px. Works on mobile.",
+    "hasDeclaration": true,
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 200,
+        "heightPx": 230,
+        "physicalSize": "2.5 × 2.9 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.87,
+        "background": "White or off-white plain background",
+        "notes": "Recent colour passport photograph with visible face and ears."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign on white paper with black ink pen. Do not use all capitals.",
+        "whitenerDefault": true
+      },
+      {
+        "id": "thumb",
+        "label": "Left Thumb",
+        "docType": "thumb",
+        "widthPx": 240,
+        "heightPx": 240,
+        "physicalSize": "3.0 × 3.0 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "White paper with clear thumb impression",
+        "notes": "Left hand thumb impression on white paper. Use blue or black stamp pad ink.",
+        "whitenerDefault": true
+      },
+      {
+        "id": "declaration",
+        "label": "Declaration",
+        "docType": "declaration",
+        "widthPx": 800,
+        "heightPx": 400,
+        "physicalSize": "10.0 × 5.0 cm",
+        "minKB": 50,
+        "maxKB": 100,
+        "dpi": 200,
+        "aspectRatio": 2,
+        "background": "White unruled paper, black ink",
+        "notes": "Handwritten declaration in English. Use black ink on plain white unruled paper.",
+        "whitenerDefault": true,
+        "declarationKey": "ibps"
+      }
+    ],
+    "rejectionReasons": [
+      "Photo dimensions are not exactly 200×230 pixels",
+      "Signature file size below 10 KB (too small after compression)",
+      "Thumb impression background is grey instead of clean white",
+      "Declaration text is illegible or image is too dark"
+    ],
+    "faqs": [
+      {
+        "question": "What are the IBPS photo and signature size requirements for 2026?",
+        "answer": "IBPS requires: Photo — 200×230 px, 20–50 KB; Signature — 140×60 px, 10–20 KB; Left Thumb — 240×240 px, 20–50 KB; Handwritten Declaration — 800×400 px, 50–100 KB. All in JPEG format."
+      },
+      {
+        "question": "What should I write in the IBPS handwritten declaration?",
+        "answer": "The IBPS declaration text reads: 'I, [Your Name], hereby declare that all the particulars furnished by me in the application form are true and correct to the best of my knowledge and belief.' Use UploadRight's 1-click copy feature to get the exact official text."
+      },
+      {
+        "question": "How do I fix a dark signature photo for IBPS?",
+        "answer": "Use UploadRight's 'Whiten Paper & Sharpen Ink' feature. It automatically converts grey paper backgrounds to pure white while enhancing ink contrast, making your signature crystal clear for portal acceptance."
+      }
+    ],
+    "sourceUrl": "https://www.ibps.in/wp-content/uploads/Notification_CRP_PO_MT_XV.pdf",
+    "verifiedDate": "2026-03-01",
+    "authority": "Institute of Banking Personnel Selection (IBPS) Common Recruitment Process Bulletin"
+  },
+  {
+    "slug": "neet",
+    "title": "NEET UG Photo, Signature & Thumb Resizer",
+    "shortTitle": "NEET UG",
+    "exam": "NEET UG",
+    "category": "nta",
+    "categoryLabel": "NTA Exams",
+    "description": "Complete document resizer kit for NEET UG. Passport photo, postcard photo with name & date, signature, and thumb impression — all resized to NTA specifications.",
+    "metaTitle": "NEET UG Photo Signature Resizer — Passport & Postcard, Name & Date | UploadRight",
+    "metaDescription": "Free NEET UG photo resizer. Passport photo 500×700px, Postcard 1200×1800px with name & date, Signature 4-30KB. NTA-compliant. Mobile-friendly.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Passport Photo",
+        "docType": "photo",
+        "widthPx": 500,
+        "heightPx": 700,
+        "physicalSize": "2.5 × 3.5 inch",
+        "minKB": 10,
+        "maxKB": 200,
+        "dpi": 300,
+        "aspectRatio": 0.714,
+        "background": "White background",
+        "notes": "Recent passport-size photograph with name and date written on it.",
+        "placardDefault": true
+      },
+      {
+        "id": "postcard",
+        "label": "Postcard Photo",
+        "docType": "photo",
+        "widthPx": 1200,
+        "heightPx": 1800,
+        "physicalSize": "4 × 6 inch",
+        "minKB": 10,
+        "maxKB": 200,
+        "dpi": 300,
+        "aspectRatio": 0.667,
+        "background": "White background",
+        "notes": "Postcard-size photo (4×6 inches) with candidate's name and date clearly visible.",
+        "placardDefault": true
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 350,
+        "heightPx": 150,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 4,
+        "maxKB": 30,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign on white paper with black ink pen.",
+        "whitenerDefault": true
+      },
+      {
+        "id": "thumb",
+        "label": "Thumb Impression",
+        "docType": "thumb",
+        "widthPx": 350,
+        "heightPx": 350,
+        "physicalSize": "3.5 × 3.5 cm",
+        "minKB": 10,
+        "maxKB": 200,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "White paper",
+        "notes": "Left or right thumb impression on white paper using stamp pad ink.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Passport photo missing candidate name and date",
+      "Postcard photo not matching 4×6 inch dimensions",
+      "Signature file below 4 KB minimum (after compression on white background)",
+      "Thumb impression too faint or background not white"
+    ],
+    "faqs": [
+      {
+        "question": "What are the NEET UG 2026 photo requirements?",
+        "answer": "NEET UG requires: Passport Photo — 500×700 px (2.5×3.5 inch) at 300 DPI, 10–200 KB with name and date; Postcard Photo — 1200×1800 px (4×6 inch), 10–200 KB with name and date; Signature — 350×150 px, 4–30 KB; Thumb Impression — 350×350 px, 10–200 KB."
+      },
+      {
+        "question": "How do I add name and date on NEET photo?",
+        "answer": "Use UploadRight's 'Add Name & Date' toggle. It adds a professional white placard strip at the bottom of your photo with your name and the date of the photograph in bold, compliant typography — exactly as NTA requires."
+      }
+    ],
+    "sourceUrl": "https://exams.nta.ac.in/NEET/images/neet-ug-information-bulletin.pdf",
+    "verifiedDate": "2026-03-01",
+    "authority": "National Testing Agency (NTA) NEET (UG) Information Bulletin Appendix"
+  },
+  {
+    "slug": "jee",
+    "title": "JEE Main JEE Main Resizer",
+    "shortTitle": "JEE Main",
+    "exam": "JEE Main",
+    "category": "nta",
+    "categoryLabel": "NTA Exams",
+    "description": "Resize your photo and signature for JEE Main NTA registration. Exact dimensions and KB range for hassle-free JEE Main form submission.",
+    "metaTitle": "JEE Main Photo & Signature Resizer — NTA Compliant | UploadRight",
+    "metaDescription": "Free JEE Main photo resizer. Photo 3.5×4.5cm 10-200KB, Signature 3.5×1.5cm 4-30KB. NTA-compliant JPEG. Works on mobile. 100% private.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 500,
+        "heightPx": 643,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 10,
+        "maxKB": 200,
+        "dpi": 300,
+        "aspectRatio": 0.778,
+        "background": "White background",
+        "notes": "Recent passport-size colour photograph with 80% face coverage."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 350,
+        "heightPx": 150,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 4,
+        "maxKB": 30,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign on white paper with black ink pen. Signature should not be in all capital letters.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo file size exceeds 200 KB",
+      "Signature is below the 4 KB minimum",
+      "Photo does not have white background",
+      "Image is in PNG format instead of JPEG"
+    ],
+    "faqs": [
+      {
+        "question": "What is the JEE Main photo size requirement?",
+        "answer": "JEE Main requires a passport-size photo of 3.5×4.5 cm (approximately 500×643 px at 300 DPI). File size must be between 10 KB and 200 KB in JPEG format with a white background."
+      },
+      {
+        "question": "What is the JEE Main signature size?",
+        "answer": "JEE Main requires a signature of 3.5×1.5 cm (approximately 350×150 px). File size must be between 4 KB and 30 KB in JPEG format. Sign with black ink on white paper."
+      }
+    ],
+    "sourceUrl": "https://jeemain.nta.ac.in/images/jee-main-information-bulletin.pdf",
+    "verifiedDate": "2026-03-01",
+    "authority": "National Testing Agency (NTA) JEE (Main) Information Bulletin Appendix"
+  },
+  {
+    "slug": "ctet",
+    "title": "CTET CTET Resizer",
+    "shortTitle": "CTET",
+    "exam": "CTET",
+    "category": "central",
+    "categoryLabel": "Central Govt",
+    "description": "Resize your photo and signature for Central Teacher Eligibility Test (CTET) conducted by CBSE. Exact dimensions 3.5×4.5 cm and 3.5×1.5 cm with embedded DPI.",
+    "metaTitle": "CTET Photo & Signature Resizer — 10–100 KB, 200 DPI | UploadRight",
+    "metaDescription": "Free online CTET photo & signature resizer. Photo 3.5×4.5 cm (10–100 KB), Signature 3.5×1.5 cm (3–30 KB). 100% private in-browser.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 10,
+        "maxKB": 100,
+        "dpi": 200,
+        "aspectRatio": 0.78,
+        "background": "White or light background",
+        "notes": "Recent passport photograph with 80% face coverage. 10–100 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 276,
+        "heightPx": 118,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 3,
+        "maxKB": 30,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign in black pen on white unruled paper. 3–30 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo file size exceeds 100 KB or is below 10 KB",
+      "Signature file size exceeds 30 KB or is below 3 KB",
+      "Improper aspect ratio causing face distortion"
+    ],
+    "faqs": [
+      {
+        "question": "What is the photo size for CTET 2026?",
+        "answer": "CTET requires a photo of 3.5 × 4.5 cm with file size between 10 KB and 100 KB in JPG format."
+      },
+      {
+        "question": "What is the signature size for CTET?",
+        "answer": "CTET signature must be 3.5 × 1.5 cm with file size between 3 KB and 30 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://ctet.nic.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Central Board of Secondary Education (CBSE) CTET Unit"
+  },
+  {
+    "slug": "gate",
+    "title": "GATE GATE Resizer",
+    "shortTitle": "GATE",
+    "exam": "GATE",
+    "category": "nta",
+    "categoryLabel": "NTA / Academic",
+    "description": "Resize your photograph and signature for Graduate Aptitude Test in Engineering (GATE / GOAPS). High-resolution specs with exact 480×640 px framing.",
+    "metaTitle": "GATE Photo & Signature Resizer — 480×640 px, 20–200 KB | UploadRight",
+    "metaDescription": "Free GATE image resizer. Photo 480×640 px 20-200 KB, Signature 160×560 px 10-200 KB, 200 DPI. 100% client side.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 480,
+        "heightPx": 640,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 20,
+        "maxKB": 200,
+        "dpi": 200,
+        "aspectRatio": 0.75,
+        "background": "White background",
+        "notes": "High resolution passport photograph with 60–70% face area. 20–200 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 560,
+        "heightPx": 160,
+        "physicalSize": "7.0 × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 200,
+        "dpi": 200,
+        "aspectRatio": 3.5,
+        "background": "White paper, dark blue or black ink",
+        "notes": "Sign inside rectangular box with dark ink pen. 10–200 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Face area less than 60% of photograph",
+      "Signature blurred or clipped",
+      "File size outside 20–200 KB range"
+    ],
+    "faqs": [
+      {
+        "question": "What is the GATE photo pixel dimension?",
+        "answer": "GATE requires photo dimensions between 480 × 640 px and 480 × 640 px minimum, file size 20 KB to 200 KB in JPG format."
+      },
+      {
+        "question": "What is the GATE signature specification?",
+        "answer": "GATE signature must be 160 × 560 px to 560 × 160 px, file size between 10 KB and 200 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://gate2025.iitr.ac.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "GATE Committee, Indian Institute of Technology"
+  },
+  {
+    "slug": "uppsc",
+    "title": "UPPSC OTR UPPSC OTR Resizer",
+    "shortTitle": "UPPSC OTR",
+    "exam": "UPPSC",
+    "category": "state",
+    "categoryLabel": "State Govt",
+    "description": "Resize your photograph and signature for Uttar Pradesh Public Service Commission (UPPSC One Time Registration OTR) portal.",
+    "metaTitle": "UPPSC OTR Photo & Signature Resizer — Max 50 KB, 200 DPI | UploadRight",
+    "metaDescription": "Free online UPPSC OTR photo and signature resizer. Photo max 50 KB, Signature max 30 KB. Accepted on otr.pariksha.nic.in.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 10,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.78,
+        "background": "Light grey or white background",
+        "notes": "Recent passport photo with clear frontal view. Max 50 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 276,
+        "heightPx": 118,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 5,
+        "maxKB": 30,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign in black ink on white unruled paper. Max 30 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo exceeds 50 KB limit",
+      "Signature exceeds 30 KB limit",
+      "Signature background is dark or shadow-filled"
+    ],
+    "faqs": [
+      {
+        "question": "What is UPPSC OTR photo file size?",
+        "answer": "UPPSC OTR requires a passport photo under 50 KB (3.5 × 4.5 cm) in JPG format."
+      },
+      {
+        "question": "What is UPPSC OTR signature size?",
+        "answer": "UPPSC OTR signature must be under 30 KB (3.5 × 1.5 cm) in JPG format."
+      }
+    ],
+    "sourceUrl": "https://otr.pariksha.nic.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Uttar Pradesh Public Service Commission (UPPSC)"
+  },
+  {
+    "slug": "bpsc",
+    "title": "BPSC BPSC Resizer",
+    "shortTitle": "BPSC",
+    "exam": "BPSC",
+    "category": "state",
+    "categoryLabel": "State Govt",
+    "description": "Resize your photo and Hindi/English signatures for Bihar Public Service Commission (BPSC TRE, CCE, Judiciary) applications.",
+    "metaTitle": "BPSC Photo & Signature Resizer — Max 25 KB, 200 DPI | UploadRight",
+    "metaDescription": "Free BPSC photo & signature resizer. Photo 250×250 px max 25 KB, Signature 250×150 px max 15 KB. 100% private.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 250,
+        "heightPx": 250,
+        "physicalSize": "2.5 × 2.5 cm",
+        "minKB": 10,
+        "maxKB": 25,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "Light plain background",
+        "notes": "Square passport photograph. 250×250 px, max 25 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature (English/Hindi)",
+        "docType": "signature",
+        "widthPx": 250,
+        "heightPx": 150,
+        "physicalSize": "3.5 × 2.0 cm",
+        "minKB": 5,
+        "maxKB": 15,
+        "dpi": 200,
+        "aspectRatio": 1.66,
+        "background": "White paper, blue/black ink",
+        "notes": "Sign in black ink. 250×150 px, max 15 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo exceeds strict 25 KB limit",
+      "Signature exceeds strict 15 KB limit",
+      "Incorrect dimensions causing aspect ratio squash"
+    ],
+    "faqs": [
+      {
+        "question": "What is the BPSC photo size limit?",
+        "answer": "BPSC requires a square photo of 250 × 250 pixels with file size under 25 KB in JPG format."
+      },
+      {
+        "question": "What is the BPSC signature size limit?",
+        "answer": "BPSC requires signature dimensions of 250 × 150 pixels with file size under 15 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://onlinebpsc.bihar.gov.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Bihar Public Service Commission (BPSC)"
+  },
+  {
+    "slug": "railway-rrb",
+    "title": "Railway RRB Railway RRB Resizer",
+    "shortTitle": "Railway RRB",
+    "exam": "RRB",
+    "category": "central",
+    "categoryLabel": "Central Govt",
+    "description": "Resize candidate photo and signature for Railway Recruitment Board (RRB NTPC, Group D, ALP, JE, Technician) exams.",
+    "metaTitle": "Railway RRB Photo & Signature Resizer — 30–70 KB, 200 DPI | UploadRight",
+    "metaDescription": "Free RRB photo and signature resizer for NTPC, Group D, ALP, JE. Photo 35×45 mm 30-70 KB, Signature 50×20 mm 30-70 KB. 100% private.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 30,
+        "maxKB": 70,
+        "dpi": 200,
+        "aspectRatio": 0.78,
+        "background": "Plain white background",
+        "notes": "Color passport photo taken against white background. 30–70 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 394,
+        "heightPx": 157,
+        "physicalSize": "5.0 × 2.0 cm",
+        "minKB": 30,
+        "maxKB": 70,
+        "dpi": 200,
+        "aspectRatio": 2.5,
+        "background": "White paper, black ink",
+        "notes": "Running handwriting on white paper in black ink. 30–70 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo file size is below 30 KB or above 70 KB",
+      "Wearing sunglasses, caps, or goggles",
+      "Signature written in capital block letters"
+    ],
+    "faqs": [
+      {
+        "question": "What is the RRB photo size requirement?",
+        "answer": "RRB requires a 35 × 45 mm (276 × 354 px) colour photo between 30 KB and 70 KB in JPG format."
+      },
+      {
+        "question": "What is the RRB signature size?",
+        "answer": "RRB requires signature of 50 × 20 mm between 30 KB and 70 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://www.rrbcdg.gov.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "Railway Recruitment Control Board, Ministry of Railways"
+  },
+  {
+    "slug": "sbi-po",
+    "title": "SBI PO & Clerk Photo, Signature, Thumb & Declaration Resizer",
+    "shortTitle": "SBI PO",
+    "exam": "SBI PO / Clerk",
+    "category": "banking",
+    "categoryLabel": "Banking Exams",
+    "description": "Complete 4-in-1 document resizer for SBI Probationary Officer and Clerk exams. Resize photo, signature, thumb impression, and handwritten declaration to SBI specifications.",
+    "metaTitle": "SBI PO Clerk Photo Signature Resizer — 4-in-1 Kit | UploadRight",
+    "metaDescription": "Free SBI PO/Clerk 4-in-1 resizer. Photo 200×230px 20-50KB, Signature 140×60px 10-20KB, Thumb 240×240px, Declaration 800×400px. Mobile-friendly.",
+    "hasDeclaration": true,
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 200,
+        "heightPx": 230,
+        "physicalSize": "2.5 × 2.9 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.87,
+        "background": "White background",
+        "notes": "Recent colour passport-size photograph."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign on white paper with black ink pen.",
+        "whitenerDefault": true
+      },
+      {
+        "id": "thumb",
+        "label": "Left Thumb",
+        "docType": "thumb",
+        "widthPx": 240,
+        "heightPx": 240,
+        "physicalSize": "3.0 × 3.0 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "White paper",
+        "notes": "Left hand thumb impression on white paper.",
+        "whitenerDefault": true
+      },
+      {
+        "id": "declaration",
+        "label": "Declaration",
+        "docType": "declaration",
+        "widthPx": 800,
+        "heightPx": 400,
+        "physicalSize": "10.0 × 5.0 cm",
+        "minKB": 50,
+        "maxKB": 100,
+        "dpi": 200,
+        "aspectRatio": 2,
+        "background": "White unruled paper, black ink",
+        "notes": "Handwritten declaration in English on white unruled paper.",
+        "whitenerDefault": true,
+        "declarationKey": "sbi"
+      }
+    ],
+    "rejectionReasons": [
+      "Photo or signature file size outside the allowed KB range",
+      "Thumb impression too faint or background not white",
+      "Declaration text not matching the official SBI format",
+      "Image format is not baseline JPEG"
+    ],
+    "faqs": [
+      {
+        "question": "What is the SBI PO photo size requirement?",
+        "answer": "SBI PO requires a photo of 200×230 pixels, between 20–50 KB in JPEG format. The same specification applies to SBI Clerk, SBI SO, and other SBI recruitment exams."
+      },
+      {
+        "question": "What is the SBI handwritten declaration text?",
+        "answer": "The SBI declaration reads: 'I, [Name], hereby declare that all the particulars and information provided in this application are true, complete, and correct to the best of my knowledge and belief.' UploadRight provides the exact text with a 1-click copy button."
+      }
+    ],
+    "sourceUrl": "https://sbi.co.in/web/careers/current-openings",
+    "verifiedDate": "2026-03-01",
+    "authority": "State Bank of India (SBI) Central Recruitment & Promotion Department Notice"
+  },
+  {
+    "slug": "sbi-clerk",
+    "title": "SBI PO & Clerk Photo, Signature, Thumb & Declaration Resizer",
+    "shortTitle": "SBI Clerk",
+    "exam": "SBI PO / Clerk",
+    "category": "banking",
+    "categoryLabel": "Banking Exams",
+    "description": "Complete 4-in-1 document resizer for SBI Probationary Officer and Clerk exams. Resize photo, signature, thumb impression, and handwritten declaration to SBI specifications.",
+    "metaTitle": "SBI PO Clerk Photo Signature Resizer — 4-in-1 Kit | UploadRight",
+    "metaDescription": "Free SBI PO/Clerk 4-in-1 resizer. Photo 200×230px 20-50KB, Signature 140×60px 10-20KB, Thumb 240×240px, Declaration 800×400px. Mobile-friendly.",
+    "hasDeclaration": true,
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 200,
+        "heightPx": 230,
+        "physicalSize": "2.5 × 2.9 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.87,
+        "background": "White background",
+        "notes": "Recent colour passport-size photograph."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign on white paper with black ink pen.",
+        "whitenerDefault": true
+      },
+      {
+        "id": "thumb",
+        "label": "Left Thumb",
+        "docType": "thumb",
+        "widthPx": 240,
+        "heightPx": 240,
+        "physicalSize": "3.0 × 3.0 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "White paper",
+        "notes": "Left hand thumb impression on white paper.",
+        "whitenerDefault": true
+      },
+      {
+        "id": "declaration",
+        "label": "Declaration",
+        "docType": "declaration",
+        "widthPx": 800,
+        "heightPx": 400,
+        "physicalSize": "10.0 × 5.0 cm",
+        "minKB": 50,
+        "maxKB": 100,
+        "dpi": 200,
+        "aspectRatio": 2,
+        "background": "White unruled paper, black ink",
+        "notes": "Handwritten declaration in English on white unruled paper.",
+        "whitenerDefault": true,
+        "declarationKey": "sbi"
+      }
+    ],
+    "rejectionReasons": [
+      "Photo or signature file size outside the allowed KB range",
+      "Thumb impression too faint or background not white",
+      "Declaration text not matching the official SBI format",
+      "Image format is not baseline JPEG"
+    ],
+    "faqs": [
+      {
+        "question": "What is the SBI PO photo size requirement?",
+        "answer": "SBI PO requires a photo of 200×230 pixels, between 20–50 KB in JPEG format. The same specification applies to SBI Clerk, SBI SO, and other SBI recruitment exams."
+      },
+      {
+        "question": "What is the SBI handwritten declaration text?",
+        "answer": "The SBI declaration reads: 'I, [Name], hereby declare that all the particulars and information provided in this application are true, complete, and correct to the best of my knowledge and belief.' UploadRight provides the exact text with a 1-click copy button."
+      }
+    ],
+    "sourceUrl": "https://sbi.co.in/web/careers/current-openings",
+    "verifiedDate": "2026-03-01",
+    "authority": "State Bank of India (SBI) Central Recruitment & Promotion Department Notice"
+  },
+  {
+    "slug": "up-police",
+    "title": "State Police Constable & SI UP Police Resizer",
+    "shortTitle": "UP Police",
+    "exam": "State Police",
+    "category": "state",
+    "categoryLabel": "State Govt",
+    "description": "Resize candidate photograph and signature for UP Police, Delhi Police, Bihar Police, Maharashtra Police, and Rajasthan Police recruitment.",
+    "metaTitle": "Police Constable Photo & Signature Resizer — 20–50 KB | UploadRight",
+    "metaDescription": "Free Police recruitment photo and signature resizer for Constable & SI. Photo 3.5×4.5 cm (20–50 KB), Signature (10–20 KB). 100% private.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.78,
+        "background": "White or light grey background",
+        "notes": "Recent passport photo with both ears visible. 20–50 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 276,
+        "heightPx": 118,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "aspectRatio": 2.33,
+        "background": "White paper, black ink",
+        "notes": "Sign in black ballpoint pen on plain white paper. 10–20 KB.",
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo file size exceeds 50 KB or is under 20 KB",
+      "Signature background is grey/shadowed",
+      "Photo shows side profile instead of straight frontal view"
+    ],
+    "faqs": [
+      {
+        "question": "What is the photo size for Police Constable recruitment?",
+        "answer": "Most state police recruitment boards require a 3.5 × 4.5 cm photo between 20 KB and 50 KB in JPG format."
+      },
+      {
+        "question": "What is the signature requirement for Police exams?",
+        "answer": "Police exams require a clean signature on white paper between 10 KB and 20 KB in JPG format."
+      }
+    ],
+    "sourceUrl": "https://uppbpb.gov.in/",
+    "verifiedDate": "2026-03-01",
+    "authority": "State Police Recruitment & Promotion Boards"
+  }
+]

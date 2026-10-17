@@ -1,0 +1,1988 @@
+---
+// UploadRight — Official Figma Design System Exam Studio & Universal Engine
+// Design System: Monochrome editorial canvas (#000000 / #ffffff), 2px hairline borders (#e6e6e6),
+// tactile pill CTAs (rounded-full), pastel accents (#dceeb1, #c5b0f4, #c8e6cd), 100% client-side privacy.
+import presets from '../data/presets.json';
+
+interface Props {
+  activePresetSlug?: string;
+  initialSlotIndex?: number;
+  initialMode?:
+    | 'preset'
+    | 'custom'
+    | 'placard'
+    | 'whitener'
+    | 'compressor'
+    | 'signature-compressor'
+    | 'photo-resizer'
+    | 'image-resizer'
+    | 'signature-resizer';
+}
+
+const {
+  activePresetSlug = 'ssc-photo-resizer',
+  initialSlotIndex = 0,
+  initialMode = 'preset',
+} = Astro.props;
+
+const isGeneric = [
+  'custom',
+  'compressor',
+  'signature-compressor',
+  'photo-resizer',
+  'image-resizer',
+  'signature-resizer',
+  'whitener',
+].includes(initialMode);
+
+// Normalise active preset
+const initialPreset = presets.find(p => p.slug === activePresetSlug) || presets[0];
+const allPresetsJson = JSON.stringify(presets);
+---
+
+<div
+  id="workspace"
+  class="w-full max-w-6xl mx-auto px-4 sm:px-6"
+  data-all-presets={allPresetsJson}
+  data-active-slug={activePresetSlug}
+  data-initial-slot-index={initialSlotIndex}
+  data-initial-mode={initialMode}
+>
+  <!-- Top Center Mode Selector (Only on homepage or exam presets / placard) -->
+  {!isGeneric && (
+    <div class="flex items-center justify-center mb-6">
+      <div class="inline-flex p-1 bg-[#f0f0ee] border-2 border-[#e6e6e6] rounded-full shadow-inner gap-1">
+        <button
+          type="button"
+          id="top-tab-resizer"
+          class={`top-mode-btn px-6 py-2 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            initialMode !== 'placard'
+              ? 'bg-white text-black shadow-xs'
+              : 'text-neutral-600 hover:text-black'
+          }`}
+          data-topmode="resizer"
+        >
+          Image Resizer
+        </button>
+        <button
+          type="button"
+          id="top-tab-namedate"
+          class={`top-mode-btn px-6 py-2 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            initialMode === 'placard'
+              ? 'bg-white text-black shadow-xs'
+              : 'text-neutral-600 hover:text-black'
+          }`}
+          data-topmode="namedate"
+        >
+          Add Name &amp; Date
+        </button>
+      </div>
+    </div>
+  )}
+
+  <!-- Main Studio Card: Figma Split Two-Column Container -->
+  <div class="bg-white rounded-3xl border-2 border-[#e6e6e6] shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 transition-all">
+    
+    <!-- LEFT COLUMN: Step 1 Configuration (lg:col-span-5) -->
+    <div class="lg:col-span-5 p-5 sm:p-6 bg-[#f7f7f5]/80 border-b lg:border-b-0 lg:border-r-2 border-[#e6e6e6] flex flex-col justify-between space-y-6">
+      <div class="space-y-5">
+        
+        <!-- Step 1 Header -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-full bg-black text-white font-mono text-xs flex items-center justify-center font-bold">1</span>
+            <div>
+              <h2 class="text-base font-bold text-black tracking-tight leading-none">Configuration</h2>
+              <span id="step1-subtitle" class="text-[11px] font-mono uppercase text-neutral-500 tracking-wider">
+                {initialMode === 'placard' ? 'Name & Date' :
+                 initialMode === 'compressor' ? 'Target File Size' :
+                 initialMode === 'signature-compressor' ? 'Signature Settings' :
+                 initialMode === 'photo-resizer' ? 'Photo Dimensions' :
+                 initialMode === 'signature-resizer' ? 'Signature Dimensions' :
+                 initialMode === 'image-resizer' ? 'Image Dimensions' :
+                 initialMode === 'custom' ? 'Custom Dimensions' :
+                 initialMode === 'whitener' ? 'Signature Whitener' :
+                 'Exam & Doc Type'}
+              </span>
+            </div>
+          </div>
+          <!-- Figma Pill: Privacy guarantee -->
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-[#e6e6e6] rounded-full text-[11px] font-mono text-neutral-600 shadow-xs">
+            <span class="w-2 h-2 rounded-full bg-[#1ea64a]"></span>
+            <span>Client RAM</span>
+          </div>
+        </div>
+
+        <!-- 1. DEDICATED ADD NAME & DATE PANEL (Clean, Zero Distraction, Exact ExamMint Image 1) -->
+        <div id="panel-namedate-mode" class={`space-y-4 ${initialMode === 'placard' ? '' : 'hidden'}`}>
+          <!-- Card 1: Add Name & Date Inputs -->
+          <div class="p-5 bg-white border-2 border-black/10 rounded-2xl shadow-xs space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center font-bold text-xs">✓</span>
+                <span class="text-xs font-bold text-black uppercase tracking-wider font-mono">Add Name &amp; Date</span>
+              </div>
+              <span class="px-2.5 py-0.5 rounded-full bg-[#f7f7f5] text-[10px] font-mono font-medium text-neutral-500 border border-[#e6e6e6]">
+                Name or Date required
+              </span>
+            </div>
+
+            <!-- Candidate Name -->
+            <div class="space-y-1.5">
+              <label for="namedate-name-input" class="text-xs font-bold text-neutral-700 block">
+                Name (Block Letters)
+              </label>
+              <div class="relative">
+                <span class="absolute left-3 top-2.5 text-neutral-400">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <input
+                  type="text"
+                  id="namedate-name-input"
+                  placeholder="Enter your full name"
+                  class="w-full pl-9 pr-3 py-2.5 text-xs bg-[#f7f7f5] hover:bg-white focus:bg-white border-2 border-[#e6e6e6] focus:border-black rounded-xl uppercase font-mono tracking-wide focus:outline-none transition-colors"
+                />
+              </div>
+            </div>
+
+            <!-- Date of Photo -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <label for="namedate-date-input" class="text-xs font-bold text-neutral-700">
+                  Date of Photo
+                </label>
+                <label class="flex items-center gap-1.5 text-xs text-neutral-600 cursor-pointer select-none">
+                  <input type="checkbox" id="namedate-include-date" checked class="w-3.5 h-3.5 rounded border-[#e6e6e6] text-black accent-black cursor-pointer" />
+                  <span>Include Date</span>
+                </label>
+              </div>
+              <div class="relative">
+                <span class="absolute left-3 top-2.5 text-neutral-400">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </span>
+                <input
+                  type="text"
+                  id="namedate-date-input"
+                  placeholder="DD-MM-YYYY"
+                  class="w-full pl-9 pr-3 py-2.5 text-xs bg-[#f7f7f5] hover:bg-white focus:bg-white border-2 border-[#e6e6e6] focus:border-black rounded-xl font-mono focus:outline-none transition-colors"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Resize Settings (Optional) -->
+          <div class="p-5 bg-white border-2 border-dashed border-[#cccccc] hover:border-black rounded-2xl space-y-3 transition-colors">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-neutral-600">⚙️</span>
+                <span class="text-xs font-bold text-black uppercase tracking-wider font-mono">Resize Settings</span>
+                <span class="px-2 py-0.5 rounded-full bg-[#f7f7f5] text-[10px] font-mono text-neutral-500 border border-[#e6e6e6]">OPTIONAL</span>
+              </div>
+              <label class="flex items-center cursor-pointer">
+                <input type="checkbox" id="namedate-enable-resize" class="w-4 h-4 rounded border-[#e6e6e6] text-black accent-black cursor-pointer" />
+              </label>
+            </div>
+
+            <div id="namedate-resize-inputs" class="grid grid-cols-2 gap-3 opacity-50 pointer-events-none transition-opacity">
+              <div>
+                <label for="namedate-width-input" class="text-[11px] font-bold text-neutral-600 block mb-1">Width (px)</label>
+                <input
+                  type="number"
+                  id="namedate-width-input"
+                  placeholder="Width"
+                  value="350"
+                  min="10"
+                  max="4000"
+                  class="w-full px-3 py-2 text-xs bg-[#f7f7f5] border-2 border-[#e6e6e6] focus:border-black rounded-xl font-mono focus:outline-none"
+                />
+              </div>
+              <div>
+                <label for="namedate-height-input" class="text-[11px] font-bold text-neutral-600 block mb-1">Height (px)</label>
+                <input
+                  type="number"
+                  id="namedate-height-input"
+                  placeholder="Height"
+                  value="450"
+                  min="10"
+                  max="4000"
+                  class="w-full px-3 py-2 text-xs bg-[#f7f7f5] border-2 border-[#e6e6e6] focus:border-black rounded-xl font-mono focus:outline-none"
+                />
+              </div>
+            </div>
+            <p class="text-[11px] text-neutral-500 font-mono">Leave unchecked to keep original dimensions.</p>
+          </div>
+        </div>
+
+        <!-- 2. GENERIC IMAGE COMPRESSOR PANEL -->
+        {initialMode === 'compressor' && (
+          <div id="panel-compressor-config" class="space-y-4">
+            <div class="p-5 bg-white border-2 border-black/10 rounded-2xl shadow-xs space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-black uppercase tracking-wider font-mono">Target Compression Size</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-[#dceeb1] text-[10px] font-mono font-bold text-black border border-black/10">Zero Quality Loss</span>
+              </div>
+
+              <!-- Quick Target KB Presets -->
+              <div class="space-y-1.5">
+                <span class="text-[11px] font-mono text-neutral-500 block">Quick Target KB Presets:</span>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <button type="button" class="compressor-preset-btn px-2.5 py-2 rounded-xl text-xs font-bold font-mono border-2 border-[#e6e6e6] hover:border-black transition cursor-pointer" data-min="5" data-max="20">Under 20 KB</button>
+                  <button type="button" class="compressor-preset-btn px-2.5 py-2 rounded-xl text-xs font-bold font-mono border-2 border-black bg-black text-white transition cursor-pointer" data-min="20" data-max="50">20–50 KB</button>
+                  <button type="button" class="compressor-preset-btn px-2.5 py-2 rounded-xl text-xs font-bold font-mono border-2 border-[#e6e6e6] hover:border-black transition cursor-pointer" data-min="50" data-max="100">50–100 KB</button>
+                  <button type="button" class="compressor-preset-btn px-2.5 py-2 rounded-xl text-xs font-bold font-mono border-2 border-[#e6e6e6] hover:border-black transition cursor-pointer" data-min="100" data-max="200">Under 200 KB</button>
+                </div>
+              </div>
+
+              <!-- Custom Min/Max KB Input -->
+              <div class="grid grid-cols-2 gap-3 pt-1">
+                <div>
+                  <label for="compressor-min-input" class="text-[11px] font-bold text-neutral-600 block mb-1">Min File Size (KB)</label>
+                  <input
+                    type="number"
+                    id="compressor-min-input"
+                    value="20"
+                    min="1"
+                    max="2000"
+                    class="w-full px-3 py-2 text-xs bg-[#f7f7f5] border-2 border-[#e6e6e6] focus:border-black rounded-xl font-mono focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label for="compressor-max-input" class="text-[11px] font-bold text-neutral-600 block mb-1">Max File Size (KB)</label>
+                  <input
+                    type="number"
+                    id="compressor-max-input"
+                    value="50"
+                    min="2"
+                    max="5000"
+                    class="w-full px-3 py-2 text-xs bg-[#f7f7f5] border-2 border-[#e6e6e6] focus:border-black rounded-xl font-mono focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <!-- Resolution & Format -->
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label for="compressor-dpi-select" class="text-[11px] font-bold text-neutral-600 block mb-1">DPI Resolution</label>
+                  <select
+                    id="compressor-dpi-select"
+                    class="w-full px-3 py-2 text-xs bg-[#f7f7f5] border-2 border-[#e6e6e6] focus:border-black rounded-xl font-mono focus:outline-none cursor-pointer"
+                  >
+                    <option value="200" selected>200 DPI (Govt Standard)</option>
+                    <option value="300">300 DPI (High Res)</option>
+                    <option value="96">96 DPI (Web Standard)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="text-[11px] font-bold text-neutral-600 block mb-1">Target Format</label>
+                  <div class="w-full px-3 py-2 text-xs bg-[#f7f7f5] border-2 border-[#e6e6e6] rounded-xl font-mono text-neutral-800 flex items-center justify-between">
+                    <span>JPG Baseline</span>
+                    <span class="text-[10px] text-neutral-400">JFIF</span>
+                  </div>
+                </div>
+              </div>
+
+              <p class="text-[11px] text-neutral-500 font-mono">
+                Binary-search quantization tests compression ratios in real-time inside your browser to strictly hit your target size.
+              </p>
+            </div>
+          </div>
+        )}
+
+        <!-- 3. GENERIC SIGNATURE COMPRESSOR PANEL -->
+        {initialMode === 'signature-compressor' && (
+          <div id="panel-sigcompress-config" class="space-y-4">
+            <div class="p-5 bg-white border-2 border-black/10 rounded-2xl shadow-xs space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-black uppercase tracking-wider font-mono">Signature Settings</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-[#dceeb1] text-[10px] font-mono font-bold text-black border border-black/10">Govt Format</span>
+              </div>
+
+              <!-- Quick Presets -->
+              <div class="space-y-1.5">
+                <span class="text-[11px] font-mono text-neutral-500 block">Target File Size:</span>
+                <div class="grid grid-cols-3 gap-2">
+                  <button type="button" class="sig-kb-preset-btn px-2 py-2 rounded-xl text-xs font-bold font-mono border-2 border-black bg-black text-white transition cursor-pointer" data-min="10" data-max="20">10–20 KB</button>
+                  <button type="button" class="sig-kb-preset-btn px-2 py-2 rounded-xl text-xs font-bold font-mono border-2 border-[#e6e6e6] hover:border-black transition cursor-pointer" data-min="20" data-max="50">20–50 KB</button>
+                  <button type="button" class="sig-kb-preset-btn px-2 py-2 rounded-xl text-xs font-bold font-mono border-2 border-[#e6e6e6] hover:border-black transition cursor-pointer" data-min="10" data-max="100">Under 100 KB</button>
+                </div>
+              </div>
+
+              <!-- Custom Min/Max KB -->
+              <div class="grid grid-cols-2 gap-3 pt-1">
+                <div>
+                  <label for="sigcompress-min-input" class="text-[11px] font-bold text-neutral-600 block mb-1">Min KB</label>
+                  <input
+                    type="number"
+                    id="sigcompress-min-input"
+                    value="10"
+                    min="1"
+                    max="500"
+                    class="w-full px-3 py-2 text-xs bg-[#f7f7f5] border-2 border-[#e6e6e6] focus:border-black rounded-xl font-mono focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label for="sigcompress-max-input" class="text-[11px] font-bold text-neutral-600 block mb-1">Max KB</label>
+                  <input
+                    type="number"
+                    id="sigcompress-max-input"
+                    value="20"
+                    min="2"
+                    max="1000"
+                    class="w-full px-3 py-2 text-xs bg-[#f7f7f5] border-2 border-[#e6e6e6] focus:border-black rounded-xl font-mono focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <!-- Whitener Feature -->
+              <div class="p-3 bg-[#f7f7f5] border border-[#e6e6e6] rounded-xl space-y-2">
+                <div class="flex items-center justify-between">
+                  <label class="flex items-center gap-2 cursor-pointer select-none">
+                    <input type="checkbox" id="sigcompress-enable-whitener" checked class="w-4 h-4 rounded border-[#e6e6e6] text-black accent-black cursor-pointer" />
+                    <span class="text-xs font-bold text-black font-mono">✨ Auto-Whiten Paper</span>
+                  </label>
+                  <span class="text-[10px] font-mono text-neutral-500">200 DPI</span>
+                </div>
+                <p class="text-[11px] text-neutral-600 font-mono">Removes grey shadows, yellow casts, and dirty phone paper automatically.</p>
+              </div>
+
+              <!-- Dimensions option -->
+              <label class="flex items-center gap-2 cursor-pointer select-none text-xs font-mono text-neutral-700">
+                <input type="checkbox" id="sigcompress-standard-dims" checked class="w-4 h-4 rounded border-[#e6e6e6] text-black accent-black cursor-pointer" />
+                <span>Standard 140 × 60 px ratio (SSC / IBPS standard)</span>
+              </label>
+            </div>
+          </div>
+        )}
+
+        <!-- 4. CUSTOM / GENERIC RESIZER CONFIG PANEL -->
+        {['custom', 'photo-resizer', 'image-resizer', 'signature-resizer', 'whitener'].includes(initialMode) && (
+          <div id="panel-custom-config" class="space-y-4">
+            <div class="p-4 bg-white border-2 border-[#e6e6e6] rounded-2xl space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-black uppercase tracking-wider font-mono">Target Dimensions</span>
+                <div class="flex items-center gap-1 text-xs">
+                  <span class="text-neutral-500 mr-1 font-mono text-[11px]">Unit:</span>
+                  <button type="button" class="unit-btn px-2 py-0.5 rounded text-xs font-bold bg-black text-white" data-unit="px">px</button>
+                  <button type="button" class="unit-btn px-2 py-0.5 rounded text-xs font-medium bg-[#f7f7f5] text-black hover:bg-neutral-200" data-unit="cm">cm</button>
+                  <button type="button" class="unit-btn px-2 py-0.5 rounded text-xs font-medium bg-[#f7f7f5] text-black hover:bg-neutral-200" data-unit="mm">mm</button>
+                  <button type="button" class="unit-btn px-2 py-0.5 rounded text-xs font-medium bg-[#f7f7f5] text-black hover:bg-neutral-200" data-unit="inch">in</button>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label for="custom-width-input" class="text-[11px] font-bold text-neutral-600 block mb-1">Width (<span class="unit-label">px</span>)</label>
+                  <input
+                    type="number"
+                    id="custom-width-input"
+                    value={initialMode === 'signature-resizer' || initialMode === 'whitener' ? '140' : '350'}
+                    min="10"
+                    max="4000"
+                    class="w-full px-3 py-2 text-xs bg-[#f7f7f5] border-2 border-[#e6e6e6] focus:border-black rounded-xl font-mono focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label for="custom-height-input" class="text-[11px] font-bold text-neutral-600 block mb-1">Height (<span class="unit-label">px</span>)</label>
+                  <input
+                    type="number"
+                    id="custom-height-input"
+                    value={initialMode === 'signature-resizer' || initialMode === 'whitener' ? '60' : '450'}
+                    min="10"
+                    max="4000"
+                    class="w-full px-3 py-2 text-xs bg-[#f7f7f5] border-2 border-[#e6e6e6] focus:border-black rounded-xl font-mono focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label for="custom-minkb-input" class="text-[11px] font-bold text-neutral-600 block mb-1">Min KB</label>
+                  <input
+                    type="number"
+                    id="custom-minkb-input"
+                    value={initialMode === 'signature-resizer' || initialMode === 'whitener' ? '10' : '20'}
+                    min="1"
+                    max="2000"
+                    class="w-full px-3 py-2 text-xs bg-[#f7f7f5] border-2 border-[#e6e6e6] focus:border-black rounded-xl font-mono focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label for="custom-maxkb-input" class="text-[11px] font-bold text-neutral-600 block mb-1">Max KB</label>
+                  <input
+                    type="number"
+                    id="custom-maxkb-input"
+                    value={initialMode === 'signature-resizer' || initialMode === 'whitener' ? '20' : (initialMode === 'image-resizer' ? '100' : '50')}
+                    min="2"
+                    max="5000"
+                    class="w-full px-3 py-2 text-xs bg-[#f7f7f5] border-2 border-[#e6e6e6] focus:border-black rounded-xl font-mono focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="custom-dpi-select" class="text-[11px] font-bold text-neutral-600 block mb-1">Resolution (DPI)</label>
+                <select
+                  id="custom-dpi-select"
+                  class="w-full px-3 py-2 text-xs bg-[#f7f7f5] border-2 border-[#e6e6e6] focus:border-black rounded-xl font-mono focus:outline-none cursor-pointer"
+                >
+                  <option value="200" selected>200 DPI (UPSC / SSC / Banking Standard)</option>
+                  <option value="300">300 DPI (High Resolution Print)</option>
+                  <option value="600">600 DPI (Strict Biometric)</option>
+                  <option value="96">96 DPI (Standard Web)</option>
+                </select>
+              </div>
+
+              <div class="flex items-center gap-4 pt-1 text-xs text-neutral-700">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" id="custom-lock-ratio" checked class="w-4 h-4 text-black rounded border-[#e6e6e6] accent-black" />
+                  <span>Lock ratio</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" id="custom-pad-white" class="w-4 h-4 text-black rounded border-[#e6e6e6] accent-black" />
+                  <span>Fit with white borders</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <!-- 5. EXAM PRESET MODE PANEL (Only on official exam preset routes) -->
+        {!isGeneric && initialMode !== 'placard' && (
+          <div id="panel-resizer-mode" class="space-y-4">
+            
+            <!-- Selected Exam Card with < Change Button -->
+            <div id="selected-exam-bar" class="p-4 bg-white border-2 border-black/10 rounded-2xl flex items-center justify-between shadow-xs">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-bold text-sm shadow-xs">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                  <span class="text-[10px] text-neutral-500 uppercase font-mono block">Selected Exam</span>
+                  <span id="selected-exam-title-text" class="text-sm font-bold text-black">{initialPreset.shortTitle || initialPreset.exam}</span>
+                </div>
+              </div>
+              <button
+                type="button"
+                id="btn-change-exam"
+                class="px-3.5 py-1.5 rounded-full text-xs font-bold text-black hover:bg-[#f7f7f5] border border-[#e6e6e6] hover:border-black transition-colors cursor-pointer flex items-center gap-1"
+              >
+                <svg id="btn-change-icon" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                <span id="btn-change-text">Change</span>
+              </button>
+            </div>
+
+            <!-- Collapsible Exam Picker Grid (Reveals when < Change is clicked) -->
+            <div id="exam-picker-collapsible" class="space-y-3 bg-white p-4 border-2 border-[#e6e6e6] rounded-2xl hidden">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-black uppercase tracking-wider font-mono">Select Target Exam</span>
+                <span id="exam-count-badge" class="text-[11px] font-mono text-neutral-500">{presets.length} Presets</span>
+              </div>
+
+              <!-- Search Input -->
+              <div class="relative">
+                <input
+                  type="text"
+                  id="exam-search-input"
+                  placeholder="Search exams (UPSC, SSC, GDS, IBPS, NEET...)"
+                  class="w-full pl-9 pr-3 py-2 text-xs bg-[#f7f7f5] hover:bg-white focus:bg-white border-2 border-[#e6e6e6] focus:border-black rounded-xl transition-colors focus:outline-none"
+                />
+                <svg class="w-4 h-4 absolute left-3 top-2.5 text-neutral-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </div>
+
+              <!-- Category Filter Pills (Zero Horizontal Scrollbar) -->
+              <div class="flex flex-wrap items-center gap-1.5 text-xs">
+                <button type="button" class="cat-filter-btn px-3 py-1 rounded-full text-xs font-bold bg-black text-white transition-all cursor-pointer" data-cat="all">All</button>
+                <button type="button" class="cat-filter-btn px-3 py-1 rounded-full text-xs font-medium bg-[#f7f7f5] text-black border border-[#e6e6e6] hover:border-black transition-all cursor-pointer" data-cat="ssc">SSC</button>
+                <button type="button" class="cat-filter-btn px-3 py-1 rounded-full text-xs font-medium bg-[#f7f7f5] text-black border border-[#e6e6e6] hover:border-black transition-all cursor-pointer" data-cat="banking">Banking</button>
+                <button type="button" class="cat-filter-btn px-3 py-1 rounded-full text-xs font-medium bg-[#f7f7f5] text-black border border-[#e6e6e6] hover:border-black transition-all cursor-pointer" data-cat="upsc">UPSC</button>
+                <button type="button" class="cat-filter-btn px-3 py-1 rounded-full text-xs font-medium bg-[#f7f7f5] text-black border border-[#e6e6e6] hover:border-black transition-all cursor-pointer" data-cat="police">Police</button>
+                <button type="button" class="cat-filter-btn px-3 py-1 rounded-full text-xs font-medium bg-[#f7f7f5] text-black border border-[#e6e6e6] hover:border-black transition-all cursor-pointer" data-cat="central">Central</button>
+                <button type="button" class="cat-filter-btn px-3 py-1 rounded-full text-xs font-medium bg-[#f7f7f5] text-black border border-[#e6e6e6] hover:border-black transition-all cursor-pointer" data-cat="state">State</button>
+              </div>
+
+              <!-- Straight 2-Column Grid of Exam Cards (NO SCROLL CONTAINER) -->
+              <div id="exam-pills-list" class="grid grid-cols-2 gap-2 pt-1">
+                {presets.map((p, idx) => (
+                  <a
+                    href={`/${p.slug}`}
+                    class={`exam-card-btn p-2.5 rounded-xl text-left border-2 transition-all cursor-pointer group flex flex-col justify-between ${
+                      idx >= 8 ? 'hidden-exam hidden' : ''
+                    } ${
+                      p.slug === initialPreset.slug
+                        ? 'bg-black text-white border-black font-semibold shadow-xs'
+                        : 'bg-white text-black border-[#e6e6e6] hover:border-black hover:bg-[#f7f7f5]'
+                    }`}
+                    data-slug={p.slug}
+                    data-cat={p.category}
+                    data-index={idx}
+                    data-search={`${p.title} ${p.exam} ${p.categoryLabel} ${p.shortTitle}`.toLowerCase()}
+                  >
+                    <span class="text-xs font-bold block truncate">{p.shortTitle || p.exam}</span>
+                    <span class={`text-[10px] block truncate font-mono mt-0.5 ${p.slug === initialPreset.slug ? 'text-neutral-300' : 'text-neutral-500'}`}>{p.categoryLabel}</span>
+                  </a>
+                ))}
+                <!-- Custom Size link inside grid -->
+                <a
+                  href="/custom"
+                  id="btn-exam-custom-card"
+                  class="exam-card-btn p-2.5 rounded-xl text-left border-2 border-dashed border-[#888888] hover:border-black bg-white hover:bg-[#f7f7f5] text-black transition-all cursor-pointer flex flex-col justify-between"
+                  data-slug="custom-mode"
+                >
+                  <span class="text-xs font-bold block truncate">⚙️ Custom Size</span>
+                  <span class="text-[10px] block truncate font-mono mt-0.5 text-neutral-500">Any px or KB</span>
+                </a>
+              </div>
+
+              <!-- Straight Expand/Collapse Button (Zero Scroll) -->
+              <button
+                type="button"
+                id="btn-toggle-all-exams"
+                class="w-full py-2 rounded-xl border border-dashed border-[#cccccc] hover:border-black text-neutral-600 hover:text-black text-xs font-semibold font-mono text-center transition cursor-pointer"
+              >
+                + View All Exams ({presets.length} Presets)
+              </button>
+            </div>
+
+            <!-- Document Type Selector (Exact ExamMint Image 3 & 4) -->
+            <div id="doc-type-section" class="space-y-2 pt-1">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-black uppercase tracking-wider font-mono">Choose Document Type</span>
+                <span id="active-slot-counter" class="text-[11px] font-mono text-neutral-500">1 of {initialPreset.slots.length}</span>
+              </div>
+              <div id="doc-type-grid" class="grid grid-cols-2 gap-3">
+                <!-- Dynamically populated document cards via renderSlotPills() -->
+              </div>
+            </div>
+
+            <!-- Image Requirements Card (Exact ExamMint Image 4) -->
+            <div id="image-requirements-card" class="p-4 bg-white border-2 border-[#e6e6e6] rounded-2xl space-y-2">
+              <div class="flex items-center gap-2 text-xs font-mono font-semibold text-neutral-500 uppercase border-b border-[#f1f1f1] pb-2">
+                <span class="text-black font-bold">ℹ️ Image Requirements</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2 text-center pt-1">
+                <div class="p-2 bg-[#f7f7f5] rounded-xl border border-[#e6e6e6]">
+                  <span class="text-[10px] text-neutral-500 uppercase font-mono block">Dimensions</span>
+                  <span id="spec-dimensions" class="text-xs font-bold text-black font-mono mt-0.5 block">{initialPreset.slots[0].widthPx}×{initialPreset.slots[0].heightPx} px</span>
+                </div>
+                <div class="p-2 bg-[#f7f7f5] rounded-xl border border-[#e6e6e6]">
+                  <span class="text-[10px] text-neutral-500 uppercase font-mono block">Size</span>
+                  <span id="spec-filesize" class="text-xs font-bold text-black font-mono mt-0.5 block">{initialPreset.slots[0].minKB}–{initialPreset.slots[0].maxKB} KB</span>
+                </div>
+                <div class="p-2 bg-[#dceeb1] rounded-xl border border-black/10">
+                  <span class="text-[10px] text-neutral-700 uppercase font-mono block">Format</span>
+                  <span id="spec-dpi" class="text-xs font-bold text-black font-mono mt-0.5 block">JPG · {initialPreset.slots[0].dpi} DPI</span>
+                </div>
+              </div>
+              <div id="spec-notes" class="text-[11px] text-neutral-600 leading-snug pt-1">
+                {initialPreset.slots[0].notes || 'Ensure clear passport composition with neutral background.'}
+              </div>
+            </div>
+          </div>
+        )}
+
+        <!-- Universal Image Adjustments Card (Always available) -->
+        <div id="image-adjustments-card" class="p-4 bg-white border-2 border-[#e6e6e6] rounded-2xl space-y-3">
+          <span class="text-[10px] font-mono font-bold text-neutral-500 uppercase tracking-wider block">Image Adjustments</span>
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between text-[11px] font-mono text-neutral-600 mb-1">
+                <span>Brightness</span>
+                <span id="brightness-val-text" class="font-bold text-black">0</span>
+              </div>
+              <input type="range" id="brightness-slider" min="-50" max="50" value="0" class="w-full accent-black h-1.5 bg-[#f7f7f5] rounded-lg cursor-pointer" />
+            </div>
+            <div>
+              <div class="flex justify-between text-[11px] font-mono text-neutral-600 mb-1">
+                <span>Contrast</span>
+                <span id="contrast-val-text" class="font-bold text-black">0</span>
+              </div>
+              <input type="range" id="contrast-slider" min="-50" max="50" value="0" class="w-full accent-black h-1.5 bg-[#f7f7f5] rounded-lg cursor-pointer" />
+            </div>
+            <div id="whitener-adjustment-box" class={initialMode === 'signature-compressor' || initialMode === 'signature-resizer' || initialMode === 'whitener' ? '' : 'hidden'}>
+              <div class="flex justify-between text-[11px] font-mono text-neutral-600 mb-1">
+                <span>Signature Clean Up</span>
+                <span id="whitener-val-text" class="font-bold text-black">220</span>
+              </div>
+              <input type="range" id="whitener-slider" min="140" max="245" value="220" class="w-full accent-black h-1.5 bg-[#f7f7f5] rounded-lg cursor-pointer" />
+              <span class="text-[9px] text-neutral-400 font-mono block mt-0.5">Cleans shadow casts or yellow paper to pure white.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Help Link -->
+      <div class="pt-4 border-t border-[#e6e6e6] flex items-center justify-between text-[11px] text-neutral-500 font-mono">
+        {isGeneric ? (
+          <a href="/" class="text-black font-semibold hover:underline flex items-center gap-1">
+            <span>Looking for a specific exam? Browse 38+ Exams</span>
+            <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        ) : (
+          <a id="exam-full-guide-link" href={`/${initialPreset.slug}`} class="text-black font-semibold hover:underline flex items-center gap-1">
+            <span>Read Official Guidelines</span>
+            <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        )}
+        <span>Zero Storage</span>
+      </div>
+    </div>
+
+
+    <!-- RIGHT COLUMN: Step 2 Upload & Process Studio (lg:col-span-7) -->
+    <div class="lg:col-span-7 p-6 sm:p-8 bg-white flex flex-col justify-start space-y-6">
+      
+      <!-- Step 2 Header -->
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="w-7 h-7 rounded-full bg-black text-white font-mono text-xs flex items-center justify-center font-bold">2</span>
+          <div>
+            <h2 class="text-base font-bold text-black tracking-tight leading-none">Upload &amp; Process</h2>
+            <span class="text-[11px] font-mono uppercase text-neutral-500 tracking-wider">Drag, Crop &amp; Verify</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <!-- Reset button (visible when image loaded) -->
+          <button id="cancel-opening-image" type="button" class="text-xs text-neutral-500 hover:text-black font-medium transition cursor-pointer hidden">
+            Choose Another Image
+          </button>
+        </div>
+      </div>
+
+      <!-- STAGE 1: Drag & Drop Upload Zone -->
+      <div id="upload-container" class="space-y-4">
+        <div
+          id="drop-zone"
+          class="border-2 border-dashed border-[#cccccc] hover:border-black bg-[#fafafa] hover:bg-white rounded-3xl p-8 sm:p-14 transition-all cursor-pointer flex flex-col items-center justify-center gap-4 text-center group min-h-[360px]"
+          tabindex="0"
+          role="button"
+          aria-label="Upload document image"
+        >
+          <div class="w-16 h-16 rounded-full bg-white border-2 border-[#e6e6e6] flex items-center justify-center text-black shadow-xs group-hover:scale-105 group-hover:border-black transition-all">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+          </div>
+
+          <div class="space-y-1.5 max-w-sm">
+            <p id="upload-headline" class="text-base sm:text-lg font-bold text-black">
+              Drop photo or signature here
+            </p>
+            <p class="text-xs text-neutral-500 leading-relaxed">
+              Supports JPG, PNG, WEBP, HEIC up to 25 MB · Instant client-side RAM execution
+            </p>
+          </div>
+
+          <button
+            type="button"
+            class="mt-2 px-7 py-2.5 rounded-full bg-black hover:bg-[#222222] text-white text-xs sm:text-sm font-bold shadow-md transition-all active:scale-95 cursor-pointer"
+          >
+            Browse Files
+          </button>
+          <input type="file" id="file-input" class="hidden" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" />
+        </div>
+
+        <!-- Quick Sample Specimen & Camera Row -->
+        <div class="flex items-center justify-center gap-3 pt-1 flex-wrap">
+          <button id="btn-sample" type="button" class="px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border border-[#e6e6e6] text-xs font-semibold text-black transition-colors cursor-pointer flex items-center gap-1.5">
+            <span>🧪 Try Sample Photo</span>
+          </button>
+          <button id="btn-sample-sig" type="button" class="px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border border-[#e6e6e6] text-xs font-semibold text-black transition-colors cursor-pointer flex items-center gap-1.5">
+            <span>✍️ Try Sample Signature</span>
+          </button>
+          <button id="btn-camera" type="button" class="px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border border-[#e6e6e6] text-xs font-semibold text-black transition-colors cursor-pointer flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            <span>Live Camera</span>
+          </button>
+        </div>
+      </div>
+
+
+      <!-- STAGE 2: Precision Cropper Studio (Exact ExamMint Image 4) -->
+      <div id="image-editor-container" class="space-y-4 hidden">
+        
+        <!-- File Name Bar (Exact ExamMint Image 4) -->
+        <div id="cropper-file-bar" class="p-3 px-4 bg-white border-2 border-[#e6e6e6] rounded-2xl flex items-center justify-between text-xs font-mono shadow-xs">
+          <div class="flex items-center gap-2 truncate">
+            <span class="text-neutral-400">📄</span>
+            <span id="cropper-filename-display" class="truncate font-bold text-black">document.jpg (0 KB)</span>
+          </div>
+          <button id="cropper-file-close-btn" type="button" class="text-neutral-400 hover:text-black font-bold text-sm cursor-pointer ml-2 p-1" title="Close Image">✕</button>
+        </div>
+
+        <div class="flex items-center justify-between text-xs">
+          <span class="font-bold text-black uppercase font-mono tracking-wider">Crop &amp; Adjust</span>
+          <div class="flex items-center gap-2">
+            <button id="btn-rotate-left" type="button" class="w-8 h-8 rounded-full bg-white hover:bg-black hover:text-white border border-[#e6e6e6] text-black transition-colors flex items-center justify-center cursor-pointer" title="Rotate Counter-Clockwise (-90°)">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 .57-8.38"/></svg>
+            </button>
+            <button id="btn-rotate-right" type="button" class="w-8 h-8 rounded-full bg-white hover:bg-black hover:text-white border border-[#e6e6e6] text-black transition-colors flex items-center justify-center cursor-pointer" title="Rotate Clockwise (+90°)">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38"/></svg>
+            </button>
+            <button id="btn-reset-crop" type="button" class="w-8 h-8 rounded-full bg-white hover:bg-black hover:text-white border border-[#e6e6e6] text-black transition-colors flex items-center justify-center cursor-pointer" title="Reset Zoom">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Cropper Viewport (Clean Framing — No Oval Overlay) -->
+        <div class="relative bg-black rounded-2xl overflow-hidden min-h-[300px] sm:min-h-[360px] max-h-[460px] w-full flex items-center justify-center border-2 border-black">
+          <img id="cropper-image" alt="Source Document" class="max-w-full block max-h-full" />
+        </div>
+
+        <!-- Action Buttons (Cancel + Apply & Optimize) -->
+        <div class="flex items-center gap-3">
+          <button
+            id="btn-cancel-crop"
+            type="button"
+            class="py-3.5 px-6 rounded-full bg-white hover:bg-[#f7f7f5] text-black border-2 border-[#e6e6e6] hover:border-black font-bold text-sm transition-all cursor-pointer"
+          >
+            Cancel
+          </button>
+          <button
+            id="btn-apply-crop"
+            type="button"
+            class="btn-apply-crop-action flex-1 py-3.5 rounded-full bg-black hover:bg-[#222222] active:scale-[0.98] text-white font-bold text-sm sm:text-base shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2"
+          >
+            <span id="btn-apply-crop-text">Apply &amp; Optimize</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+
+      <!-- Processing Spinner -->
+      <div id="processing-loader" class="text-center py-20 space-y-4 hidden">
+        <div class="w-10 h-10 border-3 border-black border-t-transparent rounded-full animate-spin mx-auto"></div>
+        <div class="space-y-1">
+          <p class="text-sm font-bold text-black">Executing Binary Search Engine...</p>
+          <p class="text-xs font-mono text-neutral-500">Injecting exact DPI header &amp; targeting strict KB window</p>
+        </div>
+      </div>
+
+
+      <!-- STAGE 3: Verified Result & Download (ExamMint 4-point Checklist Replication) -->
+      <div id="preview-container" class="space-y-6 hidden">
+        
+        <!-- Official Portal Audit Receipt -->
+        <div class="p-4 bg-[#f7f7f5] border-2 border-black rounded-2xl space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#1ea64a]"></span>
+              <span class="text-xs font-bold text-black uppercase font-mono tracking-wider">Official Portal Audit Passed</span>
+            </div>
+            <span id="res-quality-tag" class="text-xs font-mono px-2.5 py-0.5 rounded-full bg-white text-black font-bold border border-black/20">
+              Q: 92%
+            </span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-xs">
+            <div class="p-2 bg-white rounded-xl border border-[#e6e6e6]">
+              <span class="text-[10px] text-neutral-500 uppercase font-mono block">Dimensions</span>
+              <span id="res-audit-dims" class="font-bold text-black font-mono mt-0.5 block">--</span>
+            </div>
+            <div class="p-2 bg-white rounded-xl border border-[#e6e6e6]">
+              <span class="text-[10px] text-neutral-500 uppercase font-mono block">File Size</span>
+              <span id="res-audit-kb" class="font-bold text-black font-mono mt-0.5 block">--</span>
+            </div>
+            <div class="p-2 bg-white rounded-xl border border-[#e6e6e6]">
+              <span class="text-[10px] text-neutral-500 uppercase font-mono block">Format</span>
+              <span class="font-bold text-black font-mono mt-0.5 block">Baseline JPG</span>
+            </div>
+            <div class="p-2 bg-[#dceeb1] rounded-xl border border-black/10">
+              <span class="text-[10px] text-neutral-700 uppercase font-mono block">DPI Header</span>
+              <span id="res-audit-dpi" class="font-bold text-black font-mono mt-0.5 block">--</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result File Bar matching Stage 2 -->
+        <div id="result-file-bar" class="p-3 px-4 bg-white border-2 border-[#e6e6e6] rounded-2xl flex items-center justify-between text-xs font-mono shadow-xs">
+          <div class="flex items-center gap-2 truncate">
+            <span class="text-neutral-400">📄</span>
+            <span id="result-filename-display" class="truncate font-bold text-black">document.jpg (0 KB)</span>
+          </div>
+          <span class="px-2.5 py-0.5 rounded-full bg-[#dceeb1] text-black font-bold text-[10px] border border-black/10">✓ Optimized</span>
+        </div>
+
+        <!-- Hero Formatted Output Image Preview (Enlarged & Aligned) -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-black uppercase font-mono tracking-wider">Ready for Official Upload</span>
+            <span id="processed-info" class="text-xs font-mono font-bold text-neutral-600">--</span>
+          </div>
+          <div class="relative bg-[#fafafa] rounded-2xl overflow-hidden min-h-[300px] sm:min-h-[360px] max-h-[440px] w-full flex items-center justify-center border-2 border-black p-4 shadow-sm">
+            <img id="processed-image" alt="Formatted Output" class="max-h-[330px] max-w-full object-contain rounded-lg shadow-sm" />
+          </div>
+        </div>
+
+        <!-- Primary Action Pill: Download Button -->
+        <div class="space-y-3 pt-2">
+          <button
+            id="download-btn"
+            type="button"
+            class="w-full py-4 rounded-full bg-black hover:bg-[#222222] text-white font-bold text-sm sm:text-base shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <span id="download-btn-text">Download Image</span>
+          </button>
+
+          <div class="flex items-center justify-center gap-3 text-xs pt-1 flex-wrap font-mono">
+            <button id="btn-next-slot" type="button" class="px-4 py-2 rounded-full border border-black bg-white hover:bg-black hover:text-white transition font-semibold cursor-pointer hidden">
+              Next Document: <span id="next-slot-name">Signature</span> →
+            </button>
+            <button id="btn-zip-kit" type="button" class="px-4 py-2 rounded-full bg-[#dceeb1] hover:bg-[#c8e6cd] text-black border border-black font-bold transition cursor-pointer">
+              Download Kit (.zip)
+            </button>
+            <button id="process-another-btn" type="button" class="px-4 py-2 rounded-full border border-[#e6e6e6] hover:border-black text-neutral-700 hover:text-black transition cursor-pointer">
+              Process Another
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Live Camera Modal (Clean, No Oval Overlay) -->
+  <div id="camera-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border-2 border-black max-w-md w-full overflow-hidden shadow-2xl p-6 space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-bold text-black uppercase font-mono tracking-wider">Live Camera Capture</h3>
+        <button id="btn-camera-close" type="button" class="text-neutral-400 hover:text-black font-bold text-sm cursor-pointer">✕</button>
+      </div>
+
+      <div class="relative bg-black rounded-2xl overflow-hidden aspect-4/3 flex items-center justify-center border-2 border-black">
+        <video id="camera-video" autoplay playsinline class="w-full h-full object-cover"></video>
+      </div>
+
+      <div class="flex items-center justify-between gap-3 pt-2">
+        <button id="btn-camera-flip" type="button" class="px-4 py-2.5 rounded-full border border-[#e6e6e6] text-xs font-bold font-mono hover:border-black transition cursor-pointer">
+          Flip Camera
+        </button>
+        <button id="btn-camera-capture" type="button" class="flex-1 py-2.5 rounded-full bg-black text-white text-xs font-bold shadow-md hover:bg-neutral-800 transition cursor-pointer">
+          Capture Photo
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  import { processImage, loadImageFile, generateFilename, downloadBlob, sanitizeFilename } from '../utils/imageEngine';
+  import Cropper from 'cropperjs';
+  import 'cropperjs/dist/cropper.min.css';
+
+  const root = document.getElementById('workspace')!;
+  const allPresets = JSON.parse(root.dataset.allPresets || '[]');
+  
+  // Inspect URL parameters first
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramExam = urlParams.get('exam');
+  const paramDoc = urlParams.get('document');
+  const paramDate = urlParams.get('date');
+
+  let activeSlug = root.dataset.activeSlug || allPresets[0].slug;
+  if (paramExam) {
+    const matched = allPresets.find((p: any) => p.slug === paramExam || p.slug.startsWith(paramExam));
+    if (matched) activeSlug = matched.slug;
+  }
+
+  let activePreset = allPresets.find((p: any) => p.slug === activeSlug) || allPresets[0];
+  let slots = activePreset.slots;
+  
+  let activeSlotIndex = parseInt(root.dataset.initialSlotIndex || '0', 10);
+  if (paramDoc) {
+    const docIdx = slots.findIndex((s: any) => s.docType === paramDoc || s.id === paramDoc);
+    if (docIdx !== -1) activeSlotIndex = docIdx;
+  }
+  if (activeSlotIndex >= slots.length) activeSlotIndex = 0;
+
+  let initialModeProp = root.dataset.initialMode || 'preset';
+  let topMode: 'resizer' | 'namedate' = (initialModeProp === 'placard' || paramDate === 'true') ? 'namedate' : 'resizer';
+  let isCustomSizeActive = initialModeProp === 'custom';
+
+  let cropper: Cropper | null = null;
+  let currentRequestId = 0;
+  const completedKit: Map<string, { blob: Blob; filename: string }> = new Map();
+
+  // Top Tabs
+  const topTabResizer = document.getElementById('top-tab-resizer');
+  const topTabNamedate = document.getElementById('top-tab-namedate');
+  const panelResizerMode = document.getElementById('panel-resizer-mode');
+  const panelNamedateMode = document.getElementById('panel-namedate-mode');
+  const step1Subtitle = document.getElementById('step1-subtitle');
+  const uploadHeadline = document.getElementById('upload-headline');
+  const btnApplyCropText = document.getElementById('btn-apply-crop-text');
+
+  // Selected Exam Bar & Collapsible Picker
+  const selectedExamBar = document.getElementById('selected-exam-bar');
+  const selectedExamTitleText = document.getElementById('selected-exam-title-text');
+  const btnChangeExam = document.getElementById('btn-change-exam');
+  const btnChangeText = document.getElementById('btn-change-text');
+  const examPickerCollapsible = document.getElementById('exam-picker-collapsible');
+  const docTypeSection = document.getElementById('doc-type-section');
+  const imageRequirementsCard = document.getElementById('image-requirements-card');
+  const imageAdjustmentsCard = document.getElementById('image-adjustments-card');
+  const panelCustomConfig = document.getElementById('panel-custom-config');
+  const examFullGuideLink = document.getElementById('exam-full-guide-link') as HTMLAnchorElement | null;
+  const btnToggleAllExams = document.getElementById('btn-toggle-all-exams');
+  let isAllExamsExpanded = false;
+
+  // Custom Controls
+  const customWidthInput = document.getElementById('custom-width-input') as HTMLInputElement | null;
+  const customHeightInput = document.getElementById('custom-height-input') as HTMLInputElement | null;
+  const customMinKbInput = document.getElementById('custom-minkb-input') as HTMLInputElement | null;
+  const customMaxKbInput = document.getElementById('custom-maxkb-input') as HTMLInputElement | null;
+  const customDpiSelect = document.getElementById('custom-dpi-select') as HTMLSelectElement | null;
+  const customLockRatio = document.getElementById('custom-lock-ratio') as HTMLInputElement | null;
+  const customPadWhite = document.getElementById('custom-pad-white') as HTMLInputElement | null;
+  const unitBtns = document.querySelectorAll('.unit-btn');
+  const unitLabels = document.querySelectorAll('.unit-label');
+  let currentUnit = 'px';
+
+  // Dedicated Compressor Controls
+  const compressorMinInput = document.getElementById('compressor-min-input') as HTMLInputElement | null;
+  const compressorMaxInput = document.getElementById('compressor-max-input') as HTMLInputElement | null;
+  const compressorDpiSelect = document.getElementById('compressor-dpi-select') as HTMLSelectElement | null;
+  const compressorPresetBtns = document.querySelectorAll('.compressor-preset-btn');
+
+  // Dedicated Signature Compressor Controls
+  const sigcompressMinInput = document.getElementById('sigcompress-min-input') as HTMLInputElement | null;
+  const sigcompressMaxInput = document.getElementById('sigcompress-max-input') as HTMLInputElement | null;
+  const sigcompressEnableWhitener = document.getElementById('sigcompress-enable-whitener') as HTMLInputElement | null;
+  const sigcompressStandardDims = document.getElementById('sigcompress-standard-dims') as HTMLInputElement | null;
+  const sigKbPresetBtns = document.querySelectorAll('.sig-kb-preset-btn');
+
+  // Name & Date Controls
+  const namedateNameInput = document.getElementById('namedate-name-input') as HTMLInputElement | null;
+  const namedateIncludeDate = document.getElementById('namedate-include-date') as HTMLInputElement | null;
+  const namedateDateInput = document.getElementById('namedate-date-input') as HTMLInputElement | null;
+  const namedateEnableResize = document.getElementById('namedate-enable-resize') as HTMLInputElement | null;
+  const namedateResizeInputs = document.getElementById('namedate-resize-inputs');
+  const namedateWidthInput = document.getElementById('namedate-width-input') as HTMLInputElement | null;
+  const namedateHeightInput = document.getElementById('namedate-height-input') as HTMLInputElement | null;
+
+  // Preset Search & Filter
+  const examSearchInput = document.getElementById('exam-search-input') as HTMLInputElement | null;
+  const catFilterBtns = document.querySelectorAll('.cat-filter-btn');
+  const examCardBtns = document.querySelectorAll('.exam-card-btn');
+  const docTypeGrid = document.getElementById('doc-type-grid');
+  const activeSlotCounter = document.getElementById('active-slot-counter');
+  const specDpi = document.getElementById('spec-dpi');
+  const specDimensions = document.getElementById('spec-dimensions');
+  const specFilesize = document.getElementById('spec-filesize');
+  const specNotes = document.getElementById('spec-notes');
+
+  // Adjustments Sliders
+  const brightnessSlider = document.getElementById('brightness-slider') as HTMLInputElement;
+  const brightnessValText = document.getElementById('brightness-val-text')!;
+  const contrastSlider = document.getElementById('contrast-slider') as HTMLInputElement;
+  const contrastValText = document.getElementById('contrast-val-text')!;
+  const whitenerSlider = document.getElementById('whitener-slider') as HTMLInputElement;
+  const whitenerValText = document.getElementById('whitener-val-text')!;
+  const whitenerAdjustmentBox = document.getElementById('whitener-adjustment-box')!;
+
+  // Stages & Containers
+  const dropZone = document.getElementById('drop-zone')!;
+  const fileInput = document.getElementById('file-input') as HTMLInputElement;
+  const uploadContainer = document.getElementById('upload-container')!;
+  const imageEditorContainer = document.getElementById('image-editor-container')!;
+  const cropperImage = document.getElementById('cropper-image') as HTMLImageElement;
+  const cropperFileBar = document.getElementById('cropper-file-bar')!;
+  const cropperFilenameDisplay = document.getElementById('cropper-filename-display')!;
+  const cropperFileCloseBtn = document.getElementById('cropper-file-close-btn')!;
+  const btnRotateLeft = document.getElementById('btn-rotate-left')!;
+  const btnRotateRight = document.getElementById('btn-rotate-right')!;
+  const btnResetCrop = document.getElementById('btn-reset-crop')!;
+  const btnCancelCrop = document.getElementById('btn-cancel-crop')!;
+  const cancelOpeningImage = document.getElementById('cancel-opening-image')!;
+  const btnApplyCrop = document.getElementById('btn-apply-crop')!;
+  const processingLoader = document.getElementById('processing-loader')!;
+  const previewContainer = document.getElementById('preview-container')!;
+  const resultFilenameDisplay = document.getElementById('result-filename-display');
+  const originalImage = document.getElementById('original-image') as HTMLImageElement | null;
+  const processedImage = document.getElementById('processed-image') as HTMLImageElement;
+  const originalInfo = document.getElementById('original-info');
+  const processedInfo = document.getElementById('processed-info')!;
+  const resQualityTag = document.getElementById('res-quality-tag')!;
+  const resAuditDims = document.getElementById('res-audit-dims')!;
+  const resAuditKb = document.getElementById('res-audit-kb')!;
+  const resAuditDpi = document.getElementById('res-audit-dpi')!;
+  const downloadBtn = document.getElementById('download-btn')!;
+  const downloadBtnText = document.getElementById('download-btn-text')!;
+  const btnNextSlot = document.getElementById('btn-next-slot')!;
+  const nextSlotName = document.getElementById('next-slot-name')!;
+  const btnZipKit = document.getElementById('btn-zip-kit')!;
+  const processAnotherBtn = document.getElementById('process-another-btn')!;
+
+  // Camera & Samples
+  const btnCamera = document.getElementById('btn-camera')!;
+  const btnSample = document.getElementById('btn-sample')!;
+  const btnSampleSig = document.getElementById('btn-sample-sig')!;
+  const cameraModal = document.getElementById('camera-modal')!;
+  const cameraVideo = document.getElementById('camera-video') as HTMLVideoElement;
+  const btnCameraFlip = document.getElementById('btn-camera-flip')!;
+  const btnCameraCapture = document.getElementById('btn-camera-capture')!;
+  const btnCameraClose = document.getElementById('btn-camera-close')!;
+  let cameraStream: MediaStream | null = null;
+  let cameraFacing = 'user';
+
+  let lastProcessedResult: { blob: Blob; filename: string } | null = null;
+  let currentLoadedFile: File | null = null;
+
+  function init() {
+    setDefaultDate();
+    initModeUI();
+    setupEventListeners();
+  }
+
+  function setDefaultDate() {
+    if (!namedateDateInput) return;
+    const d = new Date();
+    const dd = String(d.getDate()).padStart(2, '0');
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const yyyy = d.getFullYear();
+    namedateDateInput.value = `${dd}-${mm}-${yyyy}`;
+  }
+
+  function setTopMode(mode: 'resizer' | 'namedate') {
+    topMode = mode;
+    if (mode === 'namedate') {
+      if (topTabNamedate) topTabNamedate.className = 'top-mode-btn px-6 py-2 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer bg-white text-black shadow-xs';
+      if (topTabResizer) topTabResizer.className = 'top-mode-btn px-6 py-2 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer text-neutral-600 hover:text-black';
+      if (panelNamedateMode) panelNamedateMode.classList.remove('hidden');
+      if (panelResizerMode) panelResizerMode.classList.add('hidden');
+      if (step1Subtitle) step1Subtitle.textContent = 'Name & Date';
+      if (uploadHeadline) uploadHeadline.textContent = 'Click or drop image to add Name & Date';
+      if (btnApplyCropText) btnApplyCropText.textContent = 'Apply & Add Slate';
+    } else {
+      if (topTabResizer) topTabResizer.className = 'top-mode-btn px-6 py-2 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer bg-white text-black shadow-xs';
+      if (topTabNamedate) topTabNamedate.className = 'top-mode-btn px-6 py-2 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer text-neutral-600 hover:text-black';
+      if (panelResizerMode) panelResizerMode.classList.remove('hidden');
+      if (panelNamedateMode) panelNamedateMode.classList.add('hidden');
+      if (step1Subtitle) step1Subtitle.textContent = 'Exam & Doc Type';
+      if (uploadHeadline) uploadHeadline.textContent = 'Drop photo or signature here';
+      if (btnApplyCropText) btnApplyCropText.textContent = 'Apply & Optimize';
+    }
+  }
+
+  function initModeUI() {
+    if (topMode === 'namedate') {
+      setTopMode('namedate');
+      return;
+    }
+
+    if (initialModeProp === 'compressor') {
+      if (step1Subtitle) step1Subtitle.textContent = 'Target File Size';
+      if (uploadHeadline) uploadHeadline.textContent = 'Drop image here to compress to exact KB';
+      if (btnApplyCropText) btnApplyCropText.textContent = 'Apply & Compress';
+      return;
+    }
+
+    if (initialModeProp === 'signature-compressor') {
+      if (step1Subtitle) step1Subtitle.textContent = 'Signature Settings';
+      if (uploadHeadline) uploadHeadline.textContent = 'Drop signature photo to whiten & compress';
+      if (btnApplyCropText) btnApplyCropText.textContent = 'Apply & Compress';
+      if (whitenerAdjustmentBox) whitenerAdjustmentBox.classList.remove('hidden');
+      return;
+    }
+
+    if (initialModeProp === 'signature-resizer' || initialModeProp === 'whitener') {
+      if (step1Subtitle) step1Subtitle.textContent = 'Signature Dimensions';
+      if (uploadHeadline) uploadHeadline.textContent = 'Drop signature here to resize';
+      if (btnApplyCropText) btnApplyCropText.textContent = 'Apply & Resize';
+      if (whitenerAdjustmentBox) whitenerAdjustmentBox.classList.remove('hidden');
+      updateCustomSpecs();
+      return;
+    }
+
+    if (initialModeProp === 'photo-resizer') {
+      if (step1Subtitle) step1Subtitle.textContent = 'Photo Dimensions';
+      if (uploadHeadline) uploadHeadline.textContent = 'Drop passport photo here to resize';
+      if (btnApplyCropText) btnApplyCropText.textContent = 'Apply & Resize';
+      updateCustomSpecs();
+      return;
+    }
+
+    if (initialModeProp === 'image-resizer') {
+      if (step1Subtitle) step1Subtitle.textContent = 'Image Dimensions';
+      if (uploadHeadline) uploadHeadline.textContent = 'Drop image here to resize';
+      if (btnApplyCropText) btnApplyCropText.textContent = 'Apply & Resize';
+      updateCustomSpecs();
+      return;
+    }
+
+    if (initialModeProp === 'custom') {
+      if (step1Subtitle) step1Subtitle.textContent = 'Custom Dimensions';
+      if (uploadHeadline) uploadHeadline.textContent = 'Drop image here to resize';
+      if (btnApplyCropText) btnApplyCropText.textContent = 'Apply & Resize';
+      updateCustomSpecs();
+      return;
+    }
+
+    // Default: Exam Preset mode
+    setTopMode('resizer');
+    renderSlotPills();
+    updateSpecsView();
+  }
+
+  function updateSpecsView() {
+    if (isCustomSizeActive) {
+      updateCustomSpecs();
+      return;
+    }
+    const slot = slots[activeSlotIndex] || slots[0];
+    if (specDimensions) specDimensions.textContent = `${slot.widthPx}×${slot.heightPx} px`;
+    if (specFilesize) specFilesize.textContent = `${slot.minKB}–${slot.maxKB} KB`;
+    if (specDpi) specDpi.textContent = `JPG · ${slot.dpi} DPI`;
+    if (specNotes) specNotes.textContent = slot.notes || slot.background || 'Ensure clear passport composition with neutral background.';
+
+    const isSignature = ['signature', 'thumb', 'declaration'].includes(slot.docType);
+    if (whitenerAdjustmentBox) whitenerAdjustmentBox.classList.toggle('hidden', !isSignature);
+
+    if (cropper) {
+      cropper.setAspectRatio(slot.widthPx / slot.heightPx);
+    }
+  }
+
+  function updateCustomSpecs() {
+    const w = parseInt(customWidthInput?.value || '350', 10);
+    const h = parseInt(customHeightInput?.value || '450', 10);
+    const minKb = parseInt(customMinKbInput?.value || '20', 10);
+    const maxKb = parseInt(customMaxKbInput?.value || '50', 10);
+    const dpi = parseInt(customDpiSelect?.value || '200', 10);
+
+    if (specDimensions) specDimensions.textContent = `${w}×${h} px`;
+    if (specFilesize) specFilesize.textContent = `${minKb}–${maxKb} KB`;
+    if (specDpi) specDpi.textContent = `JPG · ${dpi} DPI`;
+
+    if (cropper && customLockRatio && customLockRatio.checked) {
+      cropper.setAspectRatio(w / h);
+    }
+  }
+
+  function setupEventListeners() {
+    // Top Mode Switcher
+    if (topTabResizer) {
+      topTabResizer.addEventListener('click', () => {
+        setTopMode('resizer');
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.delete('date');
+        window.history.replaceState({}, '', newUrl.toString());
+      });
+    }
+
+    if (topTabNamedate) {
+      topTabNamedate.addEventListener('click', () => {
+        setTopMode('namedate');
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.set('date', 'true');
+        window.history.replaceState({}, '', newUrl.toString());
+      });
+    }
+
+    // Change Exam Collapsible Toggle
+    if (btnChangeExam && examPickerCollapsible && btnChangeText) {
+      btnChangeExam.addEventListener('click', () => {
+        const isHidden = examPickerCollapsible.classList.contains('hidden');
+        examPickerCollapsible.classList.toggle('hidden', !isHidden);
+        btnChangeText.textContent = isHidden ? 'Close' : 'Change';
+      });
+    }
+
+    // Compressor Presets
+    compressorPresetBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const min = (btn as HTMLElement).dataset.min || '20';
+        const max = (btn as HTMLElement).dataset.max || '50';
+        if (compressorMinInput) compressorMinInput.value = min;
+        if (compressorMaxInput) compressorMaxInput.value = max;
+        compressorPresetBtns.forEach(b => {
+          b.className = 'compressor-preset-btn px-2.5 py-2 rounded-xl text-xs font-bold font-mono border-2 border-[#e6e6e6] hover:border-black transition cursor-pointer';
+        });
+        btn.className = 'compressor-preset-btn px-2.5 py-2 rounded-xl text-xs font-bold font-mono border-2 border-black bg-black text-white transition cursor-pointer';
+      });
+    });
+
+    // Signature Compressor Presets
+    sigKbPresetBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const min = (btn as HTMLElement).dataset.min || '10';
+        const max = (btn as HTMLElement).dataset.max || '20';
+        if (sigcompressMinInput) sigcompressMinInput.value = min;
+        if (sigcompressMaxInput) sigcompressMaxInput.value = max;
+        sigKbPresetBtns.forEach(b => {
+          b.className = 'sig-kb-preset-btn px-2 py-2 rounded-xl text-xs font-bold font-mono border-2 border-[#e6e6e6] hover:border-black transition cursor-pointer';
+        });
+        btn.className = 'sig-kb-preset-btn px-2 py-2 rounded-xl text-xs font-bold font-mono border-2 border-black bg-black text-white transition cursor-pointer';
+      });
+    });
+
+    // Name & Date Options
+    if (namedateIncludeDate && namedateDateInput) {
+      namedateIncludeDate.addEventListener('change', () => {
+        namedateDateInput.disabled = !namedateIncludeDate.checked;
+        namedateDateInput.classList.toggle('opacity-50', !namedateIncludeDate.checked);
+      });
+    }
+
+    if (namedateEnableResize && namedateResizeInputs) {
+      namedateEnableResize.addEventListener('change', () => {
+        const enabled = namedateEnableResize.checked;
+        namedateResizeInputs.classList.toggle('opacity-50', !enabled);
+        namedateResizeInputs.classList.toggle('pointer-events-none', !enabled);
+        if (cropper) {
+          if (enabled) {
+            const w = parseInt(namedateWidthInput?.value || '350', 10);
+            const h = parseInt(namedateHeightInput?.value || '450', 10);
+            cropper.setAspectRatio(w / h);
+          } else {
+            cropper.setAspectRatio(NaN);
+          }
+        }
+      });
+    }
+
+    [namedateWidthInput, namedateHeightInput].filter(Boolean).forEach(inp => {
+      inp!.addEventListener('input', () => {
+        if (cropper && namedateEnableResize && namedateEnableResize.checked) {
+          const w = parseInt(namedateWidthInput?.value || '350', 10);
+          const h = parseInt(namedateHeightInput?.value || '450', 10);
+          cropper.setAspectRatio(w / h);
+        }
+      });
+    });
+
+    // Toggle All Exams straight expansion (Zero Scroll)
+    if (btnToggleAllExams) {
+      btnToggleAllExams.addEventListener('click', () => {
+        isAllExamsExpanded = !isAllExamsExpanded;
+        document.querySelectorAll('.hidden-exam').forEach(el => {
+          el.classList.toggle('hidden', !isAllExamsExpanded);
+        });
+        btnToggleAllExams.textContent = isAllExamsExpanded
+          ? '− Show Fewer Presets'
+          : `+ View All Exams (${allPresets.length} Presets)`;
+      });
+    }
+
+    // Custom Mode Card Click
+    const btnExamCustomCard = document.getElementById('btn-exam-custom-card');
+    if (btnExamCustomCard && selectedExamTitleText && panelCustomConfig) {
+      btnExamCustomCard.addEventListener('click', () => {
+        isCustomSizeActive = true;
+        selectedExamTitleText.textContent = 'Custom Size';
+        panelCustomConfig.classList.remove('hidden');
+        if (imageRequirementsCard) imageRequirementsCard.classList.add('hidden');
+        if (docTypeSection) docTypeSection.classList.add('hidden');
+        if (examPickerCollapsible) examPickerCollapsible.classList.add('hidden');
+        if (btnChangeText) btnChangeText.textContent = 'Change';
+        updateCustomSpecs();
+      });
+    }
+
+    // Custom Inputs
+    [customWidthInput, customHeightInput, customMinKbInput, customMaxKbInput, customDpiSelect].filter(Boolean).forEach(el => {
+      el!.addEventListener('input', () => {
+        updateCustomSpecs();
+        if (cropper && customLockRatio && customLockRatio.checked) {
+          const w = parseInt(customWidthInput?.value || '350', 10);
+          const h = parseInt(customHeightInput?.value || '450', 10);
+          cropper.setAspectRatio(w / h);
+        }
+      });
+    });
+
+    if (customLockRatio) {
+      customLockRatio.addEventListener('change', () => {
+        if (!cropper) return;
+        if (customLockRatio.checked) {
+          const w = parseInt(customWidthInput?.value || '350', 10);
+          const h = parseInt(customHeightInput?.value || '450', 10);
+          cropper.setAspectRatio(w / h);
+        } else {
+          cropper.setAspectRatio(NaN);
+        }
+      });
+    }
+
+    // Sliders
+    brightnessSlider.addEventListener('input', () => {
+      brightnessValText.textContent = brightnessSlider.value;
+    });
+
+    contrastSlider.addEventListener('input', () => {
+      contrastValText.textContent = contrastSlider.value;
+    });
+
+    whitenerSlider.addEventListener('input', () => {
+      whitenerValText.textContent = whitenerSlider.value;
+    });
+
+    // Units
+    unitBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const newUnit = (btn as HTMLElement).dataset.unit || 'px';
+        if (newUnit === currentUnit) return;
+        convertCustomUnits(currentUnit, newUnit);
+        currentUnit = newUnit;
+        unitBtns.forEach(b => {
+          if ((b as HTMLElement).dataset.unit === newUnit) {
+            b.classList.add('bg-black', 'text-white');
+            b.classList.remove('bg-[#f7f7f5]', 'text-black');
+          } else {
+            b.classList.remove('bg-black', 'text-white');
+            b.classList.add('bg-[#f7f7f5]', 'text-black');
+          }
+        });
+        unitLabels.forEach(l => l.textContent = newUnit);
+      });
+    });
+
+    // Exam Search
+    examSearchInput.addEventListener('input', () => {
+      const q = examSearchInput.value.trim().toLowerCase();
+      examCardBtns.forEach(btn => {
+        const searchMeta = (btn as HTMLElement).dataset.search || '';
+        const match = q === '' ? true : searchMeta.includes(q);
+        const idx = parseInt((btn as HTMLElement).dataset.index || '0', 10);
+        if (q === '') {
+          btn.classList.toggle('hidden', idx >= 8 && !isAllExamsExpanded);
+        } else {
+          btn.classList.toggle('hidden', !match);
+        }
+      });
+      if (btnToggleAllExams) {
+        btnToggleAllExams.classList.toggle('hidden', q !== '');
+      }
+    });
+
+    // Category Filter Chips
+    catFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        catFilterBtns.forEach(b => {
+          b.classList.remove('bg-black', 'text-white', 'font-bold');
+          b.classList.add('bg-[#f7f7f5]', 'text-black', 'font-medium', 'border', 'border-[#e6e6e6]');
+        });
+        btn.classList.add('bg-black', 'text-white', 'font-bold');
+        btn.classList.remove('bg-[#f7f7f5]', 'text-black', 'font-medium');
+
+        const cat = (btn as HTMLElement).dataset.cat || 'all';
+        examCardBtns.forEach(card => {
+          const cardCat = (card as HTMLElement).dataset.cat || '';
+          const idx = parseInt((card as HTMLElement).dataset.index || '0', 10);
+          if (cat === 'all') {
+            card.classList.toggle('hidden', idx >= 8 && !isAllExamsExpanded);
+          } else {
+            card.classList.toggle('hidden', cardCat !== cat);
+          }
+        });
+        if (btnToggleAllExams) {
+          btnToggleAllExams.classList.toggle('hidden', cat !== 'all');
+        }
+      });
+    });
+
+    // Exam Card selection - natural link redirection to each exam's dedicated page
+
+    // Dropzone
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        fileInput.click();
+      }
+    });
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files?.length) {
+        loadFile(fileInput.files[0]);
+      }
+    });
+
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('border-black', 'bg-[#f7f7f5]');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('border-black', 'bg-[#f7f7f5]');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('border-black', 'bg-[#f7f7f5]');
+      if (e.dataTransfer?.files.length) {
+        loadFile(e.dataTransfer.files[0]);
+      }
+    });
+
+    btnCancelCrop.addEventListener('click', resetUploader);
+    cancelOpeningImage.addEventListener('click', resetUploader);
+    cropperFileCloseBtn.addEventListener('click', resetUploader);
+    processAnotherBtn.addEventListener('click', resetUploader);
+
+    // Rotation & Reset
+    btnRotateLeft.addEventListener('click', () => {
+      if (cropper) cropper.rotate(-90);
+    });
+    btnRotateRight.addEventListener('click', () => {
+      if (cropper) cropper.rotate(90);
+    });
+    btnResetCrop.addEventListener('click', () => {
+      if (cropper) cropper.reset();
+    });
+
+    // Apply & Optimize
+    document.querySelectorAll('.btn-apply-crop-action').forEach(btn => {
+      btn.addEventListener('click', () => {
+        handleProcess();
+      });
+    });
+
+    // Download Button
+    downloadBtn.addEventListener('click', () => {
+      if (lastProcessedResult) {
+        downloadBlob(lastProcessedResult.blob, lastProcessedResult.filename);
+      }
+    });
+
+    btnZipKit.addEventListener('click', handleZipKit);
+    btnNextSlot.addEventListener('click', handleNextSlot);
+
+    // Demo Samples
+    btnSample.addEventListener('click', () => handleSampleDemo(false));
+    btnSampleSig.addEventListener('click', () => handleSampleDemo(true));
+
+    // Camera
+    btnCamera.addEventListener('click', openCamera);
+    btnCameraCapture.addEventListener('click', captureCamera);
+    btnCameraClose.addEventListener('click', closeCamera);
+    btnCameraFlip.addEventListener('click', flipCamera);
+  }
+
+  function convertCustomUnits(fromUnit: string, toUnit: string) {
+    const dpi = parseInt(customDpiSelect.value, 10) || 200;
+    let w = parseFloat(customWidthInput.value) || 350;
+    let h = parseFloat(customHeightInput.value) || 450;
+
+    let pxW = w;
+    let pxH = h;
+    if (fromUnit === 'cm') {
+      pxW = (w / 2.54) * dpi;
+      pxH = (h / 2.54) * dpi;
+    } else if (fromUnit === 'mm') {
+      pxW = (w / 25.4) * dpi;
+      pxH = (h / 25.4) * dpi;
+    } else if (fromUnit === 'inch') {
+      pxW = w * dpi;
+      pxH = h * dpi;
+    }
+
+    if (toUnit === 'px') {
+      customWidthInput.value = String(Math.round(pxW));
+      customHeightInput.value = String(Math.round(pxH));
+    } else if (toUnit === 'cm') {
+      customWidthInput.value = ((pxW / dpi) * 2.54).toFixed(1);
+      customHeightInput.value = ((pxH / dpi) * 2.54).toFixed(1);
+    } else if (toUnit === 'mm') {
+      customWidthInput.value = ((pxW / dpi) * 25.4).toFixed(0);
+      customHeightInput.value = ((pxH / dpi) * 25.4).toFixed(0);
+    } else if (toUnit === 'inch') {
+      customWidthInput.value = (pxW / dpi).toFixed(2);
+      customHeightInput.value = (pxH / dpi).toFixed(2);
+    }
+  }
+
+  function selectExam(slug: string) {
+    const found = allPresets.find((p: any) => p.slug === slug);
+    if (!found) return;
+    activeSlug = slug;
+    activePreset = found;
+    slots = found.slots;
+    activeSlotIndex = 0;
+    isCustomSizeActive = false;
+
+    selectedExamTitleText.textContent = found.shortTitle || found.exam;
+    if (examFullGuideLink) examFullGuideLink.href = `/${found.slug}`;
+
+    panelCustomConfig.classList.add('hidden');
+    imageRequirementsCard.classList.remove('hidden');
+    docTypeSection.classList.remove('hidden');
+    examPickerCollapsible.classList.add('hidden');
+    btnChangeText.textContent = 'Change';
+
+    examCardBtns.forEach(btn => {
+      const bSlug = (btn as HTMLElement).dataset.slug;
+      if (bSlug === slug) {
+        btn.className = 'exam-card-btn p-2.5 rounded-xl text-left border-2 transition-all cursor-pointer group flex flex-col justify-between bg-black text-white border-black font-semibold shadow-xs';
+      } else {
+        btn.className = 'exam-card-btn p-2.5 rounded-xl text-left border-2 transition-all cursor-pointer group flex flex-col justify-between bg-white text-black border-[#e6e6e6] hover:border-black hover:bg-[#f7f7f5]';
+      }
+    });
+
+    renderSlotPills();
+    updateSpecsView();
+
+    // Update URL query state without full reload
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set('exam', slug);
+    window.history.replaceState({}, '', newUrl.toString());
+  }
+
+  function renderSlotPills() {
+    docTypeGrid.innerHTML = '';
+    activeSlotCounter.textContent = `${activeSlotIndex + 1} of ${slots.length}`;
+
+    slots.forEach((s: any, idx: number) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      const isSelected = idx === activeSlotIndex;
+
+      btn.className = `p-3 rounded-2xl border-2 text-left transition-all cursor-pointer flex flex-col justify-between ${
+        isSelected
+          ? 'bg-black text-white border-black shadow-md'
+          : 'bg-white text-black border-[#e6e6e6] hover:border-black hover:bg-[#f7f7f5]'
+      }`;
+
+      const icon = s.docType === 'photo' ? '📷' : s.docType === 'signature' ? '✍️' : s.docType === 'thumb' ? '👆' : '📄';
+      const subtitle = s.docType === 'photo' ? 'Passport' : s.docType === 'signature' ? 'Sign' : s.docType === 'thumb' ? 'Thumb' : 'Doc';
+
+      btn.innerHTML = `
+        <div class="flex items-center justify-between">
+          <span class="text-base">${icon}</span>
+          ${completedKit.has(s.id) ? '<span class="w-2 h-2 rounded-full bg-[#1ea64a]"></span>' : ''}
+        </div>
+        <div class="mt-2">
+          <span class="text-xs font-bold block truncate">${s.label}</span>
+          <span class="text-[10px] block font-mono ${isSelected ? 'text-neutral-300' : 'text-neutral-500'}">${s.widthPx}×${s.heightPx}</span>
+        </div>
+      `;
+
+      btn.addEventListener('click', () => {
+        activeSlotIndex = idx;
+        renderSlotPills();
+        updateSpecsView();
+      });
+
+      docTypeGrid.appendChild(btn);
+    });
+  }
+
+  async function loadFile(file: File) {
+    currentLoadedFile = file;
+    try {
+      const img = await loadImageFile(file);
+      if (originalImage) originalImage.src = img.src;
+      if (originalInfo) originalInfo.textContent = `${img.naturalWidth}×${img.naturalHeight} px · ${(file.size / 1024).toFixed(1)} KB`;
+
+      cropperFilenameDisplay.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+
+      uploadContainer.classList.add('hidden');
+      imageEditorContainer.classList.remove('hidden');
+      cancelOpeningImage.classList.remove('hidden');
+      previewContainer.classList.add('hidden');
+
+      if (cropper) {
+        cropper.destroy();
+        cropper = null;
+      }
+
+      let targetRatio = NaN;
+      if (topMode === 'namedate') {
+        if (namedateEnableResize && namedateEnableResize.checked) {
+          const w = parseInt(namedateWidthInput?.value || '350', 10);
+          const h = parseInt(namedateHeightInput?.value || '450', 10);
+          targetRatio = w / h;
+        } else {
+          targetRatio = NaN;
+        }
+      } else if (initialModeProp === 'compressor') {
+        targetRatio = NaN; // free aspect ratio
+      } else if (initialModeProp === 'signature-compressor') {
+        const useStd = sigcompressStandardDims ? sigcompressStandardDims.checked : true;
+        targetRatio = useStd ? (140 / 60) : NaN;
+      } else if (initialModeProp === 'photo-resizer') {
+        targetRatio = 350 / 450;
+      } else if (['signature-resizer', 'whitener'].includes(initialModeProp)) {
+        targetRatio = 140 / 60;
+      } else if (isCustomSizeActive || ['custom', 'image-resizer'].includes(initialModeProp)) {
+        const w = parseInt(customWidthInput?.value || '350', 10);
+        const h = parseInt(customHeightInput?.value || '450', 10);
+        if (customLockRatio && customLockRatio.checked) targetRatio = w / h;
+      } else {
+        const slot = slots[activeSlotIndex] || slots[0];
+        targetRatio = slot ? (slot.widthPx / slot.heightPx) : NaN;
+      }
+
+      cropperImage.src = img.src;
+      const initCropper = () => {
+        if (cropper) cropper.destroy();
+        cropper = new Cropper(cropperImage, {
+          aspectRatio: targetRatio,
+          viewMode: 1,
+          dragMode: 'move',
+          autoCropArea: 0.92,
+          responsive: true,
+          restore: false,
+          guides: true,
+          center: true,
+          highlight: false,
+          cropBoxMovable: true,
+          cropBoxResizable: true,
+          toggleDragModeOnDblclick: false,
+        });
+      };
+
+      if (cropperImage.complete) {
+        initCropper();
+      } else {
+        cropperImage.onload = () => initCropper();
+      }
+
+    } catch (err: any) {
+      alert(`Could not open image: ${err.message || 'Please check file format.'}`);
+    }
+  }
+
+  function resetUploader() {
+    uploadContainer.classList.remove('hidden');
+    imageEditorContainer.classList.add('hidden');
+    cancelOpeningImage.classList.add('hidden');
+    processingLoader.classList.add('hidden');
+    previewContainer.classList.add('hidden');
+    if (cropper) {
+      cropper.destroy();
+      cropper = null;
+    }
+    fileInput.value = '';
+    currentLoadedFile = null;
+  }
+
+  async function handleProcess() {
+    if (!cropper) return;
+    const requestId = ++currentRequestId;
+
+    imageEditorContainer.classList.add('hidden');
+    processingLoader.classList.remove('hidden');
+
+    try {
+      const croppedCanvas = cropper.getCroppedCanvas();
+      if (!croppedCanvas) throw new Error('Could not extract crop canvas');
+
+      let targetWidth = 350;
+      let targetHeight = 450;
+      let minKB = 20;
+      let maxKB = 50;
+      let dpi = 200;
+      let padWhite = false;
+      let slotId = 'document';
+      let docType = 'photo';
+      let placardName: string | undefined = undefined;
+      let placardDate: string | undefined = undefined;
+
+      const brightnessVal = parseInt(brightnessSlider.value, 10) || 0;
+      const contrastVal = parseInt(contrastSlider.value, 10) || 0;
+      const whitenerThresholdVal = parseInt(whitenerSlider.value, 10) || 220;
+
+      if (topMode === 'namedate') {
+        const nameVal = namedateNameInput?.value.trim() || '';
+        const dateVal = (namedateIncludeDate && namedateIncludeDate.checked) ? (namedateDateInput?.value.trim() || '') : '';
+        placardName = nameVal || undefined;
+        placardDate = dateVal || undefined;
+
+        if (namedateEnableResize && namedateEnableResize.checked) {
+          targetWidth = parseInt(namedateWidthInput?.value || '350', 10);
+          targetHeight = parseInt(namedateHeightInput?.value || '450', 10);
+        } else {
+          targetWidth = croppedCanvas.width;
+          targetHeight = croppedCanvas.height;
+        }
+        minKB = 20;
+        maxKB = 100;
+        dpi = 200;
+        slotId = 'photo_namedate';
+      } else if (initialModeProp === 'compressor') {
+        targetWidth = croppedCanvas.width;
+        targetHeight = croppedCanvas.height;
+        minKB = parseInt(compressorMinInput?.value || '20', 10);
+        maxKB = parseInt(compressorMaxInput?.value || '50', 10);
+        dpi = parseInt(compressorDpiSelect?.value || '200', 10);
+        slotId = 'image';
+        docType = 'photo';
+      } else if (initialModeProp === 'signature-compressor') {
+        const useStd = sigcompressStandardDims ? sigcompressStandardDims.checked : true;
+        if (useStd) {
+          targetWidth = 140;
+          targetHeight = 60;
+        } else {
+          targetWidth = croppedCanvas.width;
+          targetHeight = croppedCanvas.height;
+        }
+        minKB = parseInt(sigcompressMinInput?.value || '10', 10);
+        maxKB = parseInt(sigcompressMaxInput?.value || '20', 10);
+        dpi = 200;
+        slotId = 'signature';
+        docType = 'signature';
+      } else if (isCustomSizeActive || ['custom', 'photo-resizer', 'image-resizer', 'signature-resizer', 'whitener'].includes(initialModeProp)) {
+        targetWidth = parseInt(customWidthInput?.value || '350', 10);
+        targetHeight = parseInt(customHeightInput?.value || '450', 10);
+        minKB = parseInt(customMinKbInput?.value || '20', 10);
+        maxKB = parseInt(customMaxKbInput?.value || '50', 10);
+        dpi = parseInt(customDpiSelect?.value || '200', 10);
+        padWhite = customPadWhite ? customPadWhite.checked : false;
+        slotId = 'custom';
+        if (['signature-resizer', 'whitener'].includes(initialModeProp)) {
+          docType = 'signature';
+        }
+      } else {
+        const slot = slots[activeSlotIndex] || slots[0];
+        targetWidth = slot.widthPx;
+        targetHeight = slot.heightPx;
+        minKB = slot.minKB;
+        maxKB = slot.maxKB;
+        dpi = slot.dpi;
+        padWhite = false;
+        slotId = slot.id;
+        docType = slot.docType;
+      }
+
+      const isSignature = ['signature', 'thumb', 'declaration'].includes(docType) ||
+        (initialModeProp === 'signature-compressor' && (sigcompressEnableWhitener ? sigcompressEnableWhitener.checked : true)) ||
+        initialModeProp === 'signature-resizer' ||
+        initialModeProp === 'whitener';
+
+      const options = {
+        targetWidth,
+        targetHeight,
+        minKB,
+        maxKB,
+        dpi,
+        padWhiteBorders: padWhite,
+        applyWhitener: isSignature,
+        whitenerThreshold: whitenerThresholdVal,
+        brightness: brightnessVal,
+        contrast: contrastVal,
+        placardName,
+        placardDate,
+      };
+
+      const result = await processImage(croppedCanvas, options);
+      if (requestId !== currentRequestId) return;
+
+      const outputUrl = URL.createObjectURL(result.blob);
+      processedImage.src = outputUrl;
+
+      const actualKB = result.sizeKB.toFixed(1);
+      processedInfo.textContent = `${result.width}×${result.height} px · ${actualKB} KB (${result.dpi} DPI)`;
+
+      // Audit Checklist update
+      resQualityTag.textContent = `Q: ${Math.round(result.qualityUsed * 100)}%`;
+      resAuditDims.textContent = `${result.width}×${result.height} px`;
+      resAuditKb.textContent = `${actualKB} KB`;
+      resAuditDpi.textContent = `${result.dpi} DPI`;
+
+      let prefix = activePreset.slug;
+      if (topMode === 'namedate') prefix = 'photo-namedate';
+      else if (initialModeProp === 'compressor') prefix = 'compressed';
+      else if (initialModeProp === 'signature-compressor') prefix = 'signature-compressed';
+      else if (initialModeProp === 'photo-resizer') prefix = 'passport-photo';
+      else if (initialModeProp === 'signature-resizer') prefix = 'signature-resized';
+      else if (initialModeProp === 'whitener') prefix = 'signature-whitened';
+      else if (initialModeProp === 'image-resizer') prefix = 'image-resized';
+      else if (isCustomSizeActive || initialModeProp === 'custom') prefix = 'custom-resized';
+
+      const safeFilename = generateFilename(
+        prefix,
+        slotId,
+        result.blob.size
+      );
+      lastProcessedResult = { blob: result.blob, filename: safeFilename };
+      downloadBtnText.textContent = `Download ${safeFilename} (${actualKB} KB)`;
+      if (resultFilenameDisplay) {
+        resultFilenameDisplay.textContent = `${safeFilename} (${actualKB} KB)`;
+      }
+
+      if (topMode !== 'namedate' && !isCustomSizeActive && initialModeProp === 'preset') {
+        completedKit.set(slotId, { blob: result.blob, filename: safeFilename });
+        renderSlotPills();
+
+        if (activeSlotIndex < slots.length - 1) {
+          const nextSlot = slots[activeSlotIndex + 1];
+          nextSlotName.textContent = nextSlot.label;
+          btnNextSlot.classList.remove('hidden');
+        } else {
+          btnNextSlot.classList.add('hidden');
+        }
+      }
+
+      processingLoader.classList.add('hidden');
+      previewContainer.classList.remove('hidden');
+
+    } catch (err: any) {
+      processingLoader.classList.add('hidden');
+      imageEditorContainer.classList.remove('hidden');
+      alert(`Processing error: ${err.message || 'Could not satisfy file size constraints.'}`);
+    }
+  }
+
+  function handleNextSlot() {
+    if (activeSlotIndex < slots.length - 1) {
+      activeSlotIndex++;
+      renderSlotPills();
+      updateSpecsView();
+      resetUploader();
+    }
+  }
+
+  async function handleZipKit() {
+    if (completedKit.size === 0) {
+      alert('Please process at least one document before downloading the full kit.');
+      return;
+    }
+    const JSZip = (await import('jszip')).default;
+    const zip = new JSZip();
+
+    completedKit.forEach(({ blob, filename }) => {
+      zip.file(filename, blob);
+    });
+
+    const zipBlob = await zip.generateAsync({ type: 'blob' });
+    downloadBlob(zipBlob, `${sanitizeFilename(activePreset.slug)}_complete_kit.zip`);
+  }
+
+  // Live Camera
+  async function openCamera() {
+    try {
+      cameraStream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: cameraFacing, width: { ideal: 1280 }, height: { ideal: 720 } }
+      });
+      cameraVideo.srcObject = cameraStream;
+      cameraModal.classList.remove('hidden');
+    } catch (err: any) {
+      alert(`Camera access denied or unavailable: ${err.message}`);
+    }
+  }
+
+  function closeCamera() {
+    if (cameraStream) {
+      cameraStream.getTracks().forEach(t => t.stop());
+      cameraStream = null;
+    }
+    cameraModal.classList.add('hidden');
+  }
+
+  function flipCamera() {
+    cameraFacing = cameraFacing === 'user' ? 'environment' : 'user';
+    closeCamera();
+    openCamera();
+  }
+
+  function captureCamera() {
+    if (!cameraVideo.videoWidth) return;
+    const canvas = document.createElement('canvas');
+    canvas.width = cameraVideo.videoWidth;
+    canvas.height = cameraVideo.videoHeight;
+    const ctx = canvas.getContext('2d')!;
+    ctx.drawImage(cameraVideo, 0, 0);
+    closeCamera();
+
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const file = new File([blob], 'camera_capture.jpg', { type: 'image/jpeg' });
+        loadFile(file);
+      }
+    }, 'image/jpeg', 0.95);
+  }
+
+  function handleSampleDemo(isSignature: boolean) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 600;
+    canvas.height = 700;
+    const ctx = canvas.getContext('2d')!;
+
+    if (!isSignature) {
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, 600, 700);
+
+      ctx.fillStyle = '#1e293b';
+      ctx.beginPath();
+      ctx.ellipse(300, 640, 240, 160, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.beginPath();
+      ctx.moveTo(270, 480);
+      ctx.lineTo(300, 540);
+      ctx.lineTo(330, 480);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.fillStyle = '#E5B895';
+      ctx.fillRect(265, 380, 70, 110);
+
+      ctx.beginPath();
+      ctx.ellipse(300, 280, 115, 145, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#0f172a';
+      ctx.beginPath();
+      ctx.arc(300, 200, 125, Math.PI * 0.9, Math.PI * 2.1);
+      ctx.fill();
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.beginPath();
+      ctx.ellipse(255, 270, 18, 12, 0, 0, Math.PI * 2);
+      ctx.ellipse(345, 270, 18, 12, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#1e293b';
+      ctx.beginPath();
+      ctx.arc(255, 270, 8, 0, Math.PI * 2);
+      ctx.arc(345, 270, 8, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.strokeStyle = '#975A16';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.arc(300, 320, 14, 0, Math.PI);
+      ctx.stroke();
+    } else {
+      ctx.fillStyle = '#FAF9F6';
+      ctx.fillRect(0, 0, 600, 700);
+
+      ctx.strokeStyle = '#0F172A';
+      ctx.lineWidth = 6;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.beginPath();
+      ctx.moveTo(120, 360);
+      ctx.bezierCurveTo(160, 240, 220, 230, 260, 350);
+      ctx.bezierCurveTo(280, 420, 320, 300, 380, 340);
+      ctx.bezierCurveTo(420, 360, 460, 310, 490, 350);
+      ctx.moveTo(180, 370);
+      ctx.lineTo(440, 370);
+      ctx.stroke();
+    }
+
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const file = new File([blob], isSignature ? 'sample_signature.jpg' : 'sample_candidate_photo.jpg', { type: 'image/jpeg' });
+        loadFile(file);
+      }
+    }, 'image/jpeg', 0.95);
+  }
+
+  // Initialize
+  init();
+</script>

@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ExamToolWorkspace from '../components/ExamToolWorkspace.astro';
+
+const title = "Compress Image to 20KB, 50KB, 100KB Online Free — UploadRight";
+const description = "Compress JPG, PNG images to exact file size limits (under 20 KB, 50 KB, 100 KB, or 200 KB) for government exam applications. 100% private in-browser compression.";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does UploadRight compress images to exact KB thresholds?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UploadRight uses binary-search quantization. Instead of rough guessing, it tests compression ratios in real-time inside your browser to find the highest possible visual quality that fits within your exact minimum and maximum KB range."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will compressing my photo make it look blurry?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. By using high-efficiency bicubic resampling and selective quantization, facial features, eyes, and borders remain sharp and legible even at 20 KB to 50 KB."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do if my photo is below the minimum required KB?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Certain portals reject files that are too small (e.g. under 20 KB). UploadRight embeds ISO-compliant binary padding to safely bring the file into the valid range without corrupting the JPEG structure."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description} canonicalSlug="image-compressor" jsonLd={[faqSchema]}>
+  <Header slot="header" />
+
+  <div class="relative bg-white py-10 sm:py-16">
+    <!-- Hero Header -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 space-y-4">
+      <nav class="flex items-center gap-2 text-xs text-[#86868B]" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#1D1D1F] transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-[#1D1D1F] font-medium" aria-current="page">Image Compressor</span>
+      </nav>
+
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5F5F7] border border-[#E5E5EA] text-xs font-semibold text-[#1D1D1F]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#0062FF]"></span>
+          <span>Target Size Precision · Zero Server Uploads</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-[#1D1D1F] tracking-tight leading-tight">
+          Compress Image to <span class="text-[#0062FF]">Exact KB</span>
+        </h1>
+        <p class="text-sm sm:text-base text-[#86868B] max-w-2xl leading-relaxed">
+          Compress any image to exactly 20 KB, 50 KB, 100 KB, or custom file size windows with zero blur. Fully processed in your device's memory.
+        </p>
+      </div>
+    </section>
+
+    <!-- Studio Workspace -->
+    <section id="studio" class="mb-16">
+      <ExamToolWorkspace initialMode="compressor" />
+    </section>
+
+    <!-- Target File Size Cards -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-16 space-y-6">
+      <div class="space-y-1">
+        <h2 class="text-xl sm:text-2xl font-bold text-[#1D1D1F]">Common Government Exam Size Thresholds</h2>
+        <p class="text-xs sm:text-sm text-[#86868B]">Click any preset inside the tool to instantly configure target KB bounds.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-2">
+          <span class="text-xs font-semibold text-[#0062FF] uppercase tracking-wider block">Standard Photo</span>
+          <h3 class="text-lg font-bold text-[#1D1D1F]">20 KB – 50 KB</h3>
+          <p class="text-xs text-[#86868B] leading-relaxed">
+            The mandatory standard for SSC CGL, CHSL, MTS, GD, IBPS PO, SBI Clerk, and State Police Constable applications.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-2">
+          <span class="text-xs font-semibold text-[#0062FF] uppercase tracking-wider block">Standard Signature</span>
+          <h3 class="text-lg font-bold text-[#1D1D1F]">10 KB – 20 KB</h3>
+          <p class="text-xs text-[#86868B] leading-relaxed">
+            Mandatory window for digital signature uploads on SSC, IBPS, and Railway RRB recruitment portals.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#F5F5F7] border border-[#E5E5EA] space-y-2">
+          <span class="text-xs font-semibold text-[#0062FF] uppercase tracking-wider block">National Entrances</span>
+          <h3 class="text-lg font-bold text-[#1D1D1F]">10 KB – 200 KB</h3>
+          <p class="text-xs text-[#86868B] leading-relaxed">
+            Required size window for NTA NEET UG, JEE Main, CUET, and GATE high-resolution passport photos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
+      <div class="space-y-1">
+        <h2 class="text-xl sm:text-2xl font-bold text-[#1D1D1F]">Image Compression FAQs</h2>
+      </div>
+
+      <div class="divide-y divide-[#E5E5EA] border-y border-[#E5E5EA]">
+        {faqSchema.mainEntity.map(faq => (
+          <details class="py-4 group cursor-pointer">
+            <summary class="flex items-center justify-between text-sm font-bold text-[#1D1D1F] list-none">
+              <span>{faq.name}</span>
+              <span class="text-[#86868B] group-open:rotate-180 transition-transform">▾</span>
+            </summary>
+            <p class="pt-2 text-xs text-[#86868B] leading-relaxed">
+              {faq.acceptedAnswer.text}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

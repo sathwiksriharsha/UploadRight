@@ -1,0 +1,34 @@
+{
+  "ibps": {
+    "title": "IBPS Official Handwritten Declaration Text",
+    "text": "I, __________ (Name of the candidate), hereby declare that all the particulars furnished by me in the online application form are correct and true to the best of my knowledge and belief. I understand that in the event of any information being found false or incorrect at any stage, my candidature/appointment is liable to be cancelled/terminated without any notice.",
+    "instructions": [
+      "Write in your own handwriting using black ink pen",
+      "Use white unruled plain paper",
+      "Do not write in ALL CAPITAL letters",
+      "Write your full name clearly where indicated",
+      "The declaration should be legible and neat"
+    ]
+  },
+  "sbi": {
+    "title": "SBI Official Handwritten Declaration Text",
+    "text": "I, __________ (Name of the candidate), hereby declare that all the particulars and information provided in this application are true, complete, and correct to the best of my knowledge and belief. I understand that in the event of any information being found false or incorrect or ineligibility being detected at any stage, my candidature/appointment is liable to be cancelled/terminated without any notice or compensation.",
+    "instructions": [
+      "Write in your own handwriting using black ink pen",
+      "Use white unruled plain paper",
+      "Do not write in ALL CAPITAL letters",
+      "Write clearly and legibly",
+      "Include your full name where indicated"
+    ]
+  },
+  "rrb": {
+    "title": "RRB Official Handwritten Declaration Text",
+    "text": "I, __________ (Name of the candidate), hereby declare that all the statements made in this application are true, complete, and correct to the best of my knowledge and belief. In the event of any information being found false or incorrect or ineligibility being detected before or after the examination, action can be taken against me by the RRB.",
+    "instructions": [
+      "Write in your own handwriting",
+      "Use black or blue ink pen on white paper",
+      "Do not use printed text",
+      "Keep the handwriting clear and readable"
+    ]
+  }
+}

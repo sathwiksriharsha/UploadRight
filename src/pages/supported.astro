@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import presets from '../data/presets.json';
+
+const title = "Supported Exams & Official Dimension Guidelines | UploadRight";
+const description = "Complete directory of supported Indian government and competitive exams with official photo, signature, and thumb impression specifications.";
+
+// Group presets by category
+const categories = [
+  { id: 'central', label: 'Central Government', color: '#dceeb1' },
+  { id: 'banking', label: 'Banking & Insurance', color: '#c5b0f4' },
+  { id: 'police', label: 'Police & Defense', color: '#c8e6cd' },
+  { id: 'state', label: 'State PSCs', color: '#f4ecd6' },
+];
+---
+
+<BaseLayout title={title} description={description} canonicalSlug="supported">
+  <Header slot="header" />
+
+  <div class="relative bg-white py-12 sm:py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-12">
+      <div class="space-y-4">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#dceeb1] text-black">
+          EXAMINATION DIRECTORY
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black text-black tracking-tight leading-tight">
+          Supported Exams &amp; Guidelines
+        </h1>
+        <p class="text-base text-neutral-600 max-w-2xl leading-relaxed">
+          Explore all supported competitive examinations with verified pixel dimensions, physical centimeter sizes, KB windows, and official notices.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {presets.map(p => (
+          <a
+            href={`/${p.slug}`}
+            class="group p-6 rounded-2xl border-2 border-[#e6e6e6] hover:border-black bg-[#f7f7f5]/50 hover:bg-white transition flex flex-col justify-between"
+          >
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-mono uppercase text-neutral-500 font-semibold">{p.categoryLabel}</span>
+                <span class="text-xs font-mono text-neutral-400 group-hover:text-black transition">→</span>
+              </div>
+              <h2 class="text-lg font-bold text-black group-hover:underline">{p.shortTitle || p.exam}</h2>
+              <p class="text-xs text-neutral-600 line-clamp-2">{p.description}</p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-[#e6e6e6] flex items-center justify-between text-xs font-mono text-neutral-500">
+              <span>{p.slots[0].widthPx}×{p.slots[0].heightPx} px</span>
+              <span class="font-semibold text-black">{p.slots[0].minKB}–{p.slots[0].maxKB} KB</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
