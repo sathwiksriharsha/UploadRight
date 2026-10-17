@@ -5,3 +5,5 @@
 /slate /add-name-date 301
 /whitener /signature-whitener 301
 /pan-card /uti-pan-card 301
+/sitemap.xml /sitemap-index.xml 301
+
