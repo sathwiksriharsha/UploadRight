@@ -907,7 +907,8 @@
         "dpi": 200,
         "aspectRatio": 0.78,
         "background": "White or light background",
-        "notes": "Recent passport photo with clear front view."
+        "notes": "Recent passport photo with clear front view.",
+        "defaultNameDate": true
       },
       {
         "id": "signature",
@@ -2073,7 +2074,8 @@
         "dpi": 200,
         "aspectRatio": 0.78,
         "background": "White or light background",
-        "notes": "Recent passport photo with clear front view."
+        "notes": "Recent passport photo with clear front view.",
+        "defaultNameDate": true
       },
       {
         "id": "signature",
@@ -3194,5 +3196,129 @@
         "answer": "UploadRight strictly enforces the required pixel dimensions, byte safety thresholds, and 200/300 DPI binary JFIF headers inside client-side RAM, ensuring 100% portal acceptance."
       }
     ]
+  },
+  {
+    "slug": "uti-pan-card",
+    "title": "UTI PAN Card Photo & Signature Resizer",
+    "shortTitle": "UTI PAN Card",
+    "exam": "UTI PAN Card",
+    "category": "govtid",
+    "categoryLabel": "Government ID",
+    "description": "Resize photo and signature for UTIITSL PAN Card application. Supports 300 DPI photo and 600 DPI signature header injection that passes UTI's strict binary validation.",
+    "metaTitle": "UTI PAN Card Photo & Signature Resizer — 300 & 600 DPI | UploadRight",
+    "metaDescription": "Free UTI PAN Card photo and signature resizer. Resize photo to 213×213 px at 300 DPI (<30 KB) and signature to 400×200 px at 600 DPI (<60 KB). 100% private in browser.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo (300 DPI)",
+        "docType": "photo",
+        "widthPx": 213,
+        "heightPx": 213,
+        "physicalSize": "2.5 × 2.5 cm",
+        "minKB": 10,
+        "maxKB": 28,
+        "dpi": 300,
+        "aspectRatio": 1,
+        "background": "White background",
+        "notes": "UTIITSL requires strictly 213×213 px at 300 DPI, under 30 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature (600 DPI)",
+        "docType": "signature",
+        "widthPx": 400,
+        "heightPx": 200,
+        "physicalSize": "4.0 × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 55,
+        "dpi": 600,
+        "aspectRatio": 2,
+        "background": "White background",
+        "notes": "UTIITSL requires strictly 600 DPI binary JFIF marker, under 60 KB.",
+        "defaultWhitener": true,
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "Photo JPEG header shows 96 DPI instead of required 300 DPI",
+      "Signature JPEG header shows 96 DPI instead of required 600 DPI",
+      "Photo dimensions do not match 213×213 px",
+      "File size exceeds the allowed maximum"
+    ],
+    "faqs": [
+      {
+        "question": "Why does UTI PAN Card portal reject my signature?",
+        "answer": "UTI's portal requires the signature JPEG to have exactly 600 DPI embedded in the JFIF binary header. Standard tools export at 72 or 96 DPI. UploadRight's DPI injector writes the exact 600 DPI value into the JPEG binary, passing UTI's strict validation."
+      },
+      {
+        "question": "What is the UTI PAN Card photo specification?",
+        "answer": "UTIITSL PAN Card requires: Photo — 213×213 px at 300 DPI, under 30 KB; Signature — 400×200 px at 600 DPI, under 60 KB. Both in JPEG format with DPI values embedded in the file header."
+      }
+    ],
+    "sourceUrl": "https://www.utiitsl.com/pan-card/guidelines-for-uploading-photo-and-signature",
+    "verifiedDate": "2026-03-01",
+    "authority": "UTI Infrastructure Technology And Services Limited (UTIITSL) Official PAN Upload Specs"
+  },
+  {
+    "slug": "nsdl-pan-card",
+    "title": "NSDL PAN Card Photo & Signature Resizer",
+    "shortTitle": "NSDL PAN Card",
+    "exam": "NSDL PAN Card",
+    "category": "govtid",
+    "categoryLabel": "Government ID",
+    "description": "Resize photo and signature for NSDL (Protean) PAN Card application with correct 200 DPI embedding. Passes the portal's binary DPI header check.",
+    "metaTitle": "NSDL PAN Card Photo & Signature Resizer — 200 DPI | UploadRight",
+    "metaDescription": "Free NSDL PAN Card photo and signature resizer. Photo 276×197 px (3.5×2.5 cm) at 200 DPI (<50 KB), Signature 354×157 px (4.5×2.0 cm) at 200 DPI (<50 KB). 100% private.",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photo (200 DPI)",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 197,
+        "physicalSize": "3.5 × 2.5 cm",
+        "minKB": 15,
+        "maxKB": 45,
+        "dpi": 200,
+        "aspectRatio": 1.4,
+        "background": "White background",
+        "notes": "Protean NSDL requires 3.5×2.5 cm at 200 DPI, strictly under 50 KB."
+      },
+      {
+        "id": "signature",
+        "label": "Signature (200 DPI)",
+        "docType": "signature",
+        "widthPx": 354,
+        "heightPx": 157,
+        "physicalSize": "4.5 × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 45,
+        "dpi": 200,
+        "aspectRatio": 2.25,
+        "background": "White background",
+        "notes": "Protean NSDL requires 4.5×2.0 cm at 200 DPI, strictly under 50 KB.",
+        "defaultWhitener": true,
+        "whitenerDefault": true
+      }
+    ],
+    "rejectionReasons": [
+      "JPEG header does not contain 200 DPI — standard canvas export writes 96 DPI",
+      "Photo dimensions do not match 276×197 px",
+      "File size exceeds 50 KB",
+      "Image is blurry or face is not clearly visible"
+    ],
+    "faqs": [
+      {
+        "question": "Why does NSDL PAN Card portal reject my photo even though it looks correct?",
+        "answer": "NSDL's portal inspects the binary JFIF header of the JPEG file for exact DPI values. Standard image editors and HTML canvas export at 96 DPI by default. UploadRight injects the exact 200 DPI value into the JPEG binary header, passing the portal's DPI check every time."
+      },
+      {
+        "question": "What is the NSDL PAN Card photo size?",
+        "answer": "NSDL (Protean) PAN Card requires a photo of 3.5×2.5 cm (276×197 px) at 200 DPI, under 50 KB in JPEG format."
+      }
+    ],
+    "sourceUrl": "https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html",
+    "verifiedDate": "2026-03-01",
+    "authority": "Protean eGov Technologies (formerly NSDL) Online PAN Application Portal Guidelines"
   }
 ]

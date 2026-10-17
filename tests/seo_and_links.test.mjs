@@ -20,7 +20,7 @@ function getAllHtmlFiles(dir) {
   return results;
 }
 
-const expectedOrigin = (process.env.PUBLIC_SITE_URL || process.env.CF_PAGES_URL || 'https://uploadright.pages.dev').replace(/\/$/, '');
+const expectedOrigin = (process.env.PUBLIC_SITE_URL || 'https://uploadright.pages.dev').replace(/\/$/, '');
 
 test('SEO Audit: All static pages have title, meta description, canonical, h1 and valid JSON-LD', () => {
   const htmlFiles = getAllHtmlFiles(distDir);

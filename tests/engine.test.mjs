@@ -322,3 +322,61 @@ test('Declarations Data Integrity', () => {
   assert.ok(declarations.sbi && declarations.sbi.text.length > 50);
   assert.ok(declarations.rrb && declarations.rrb.text.length > 50);
 });
+
+test('Exam-Specific Multi-Slot Bundles & DPI Verification', () => {
+  // Banking 4-slot kits
+  const bankingSlugs = ['ibps-po', 'ibps-clerk', 'sbi-po', 'sbi-clerk', 'rbi-grade-b'];
+  for (const slug of bankingSlugs) {
+    const p = presets.find(x => x.slug === slug);
+    assert.ok(p, `Banking kit ${slug} must exist`);
+    assert.equal(p.slots.length, 4, `${slug} must contain exactly 4 slots`);
+    assert.equal(p.slots[0].docType, 'photo');
+    assert.equal(p.slots[1].docType, 'signature');
+    assert.equal(p.slots[1].defaultWhitener, true, `${slug} signature must auto-enable whitener`);
+    assert.equal(p.slots[2].docType, 'thumb');
+    assert.equal(p.slots[2].defaultWhitener, true, `${slug} thumb must auto-enable whitener`);
+    assert.equal(p.slots[3].docType, 'declaration');
+    assert.equal(p.slots[3].defaultWhitener, true, `${slug} declaration must auto-enable whitener`);
+    assert.equal(p.slots[3].widthPx, 800);
+    assert.equal(p.slots[3].heightPx, 400);
+  }
+
+  // NEET 4-slot kit
+  const neet = presets.find(x => x.slug === 'neet');
+  assert.ok(neet, 'NEET preset must exist');
+  assert.equal(neet.slots.length, 4, 'NEET must contain 4 slots');
+  assert.equal(neet.slots[1].widthPx, 1200);
+  assert.equal(neet.slots[1].heightPx, 1800);
+  assert.equal(neet.slots[1].dpi, 300, 'NEET Postcard photo must be 300 DPI');
+  assert.equal(neet.slots[0].defaultNameDate, true);
+  assert.equal(neet.slots[1].defaultNameDate, true);
+
+  // PAN Card Portals
+  const uti = presets.find(x => x.slug === 'uti-pan-card');
+  assert.ok(uti, 'uti-pan-card preset must exist');
+  assert.equal(uti.slots[0].dpi, 300, 'UTI Photo must be 300 DPI');
+  assert.equal(uti.slots[0].widthPx, 213);
+  assert.equal(uti.slots[0].heightPx, 213);
+  assert.equal(uti.slots[1].dpi, 600, 'UTI Signature must be 600 DPI');
+  assert.equal(uti.slots[1].widthPx, 400);
+  assert.equal(uti.slots[1].heightPx, 200);
+
+  const nsdl = presets.find(x => x.slug === 'nsdl-pan-card');
+  assert.ok(nsdl, 'nsdl-pan-card preset must exist');
+  assert.equal(nsdl.slots[0].dpi, 200);
+  assert.equal(nsdl.slots[1].dpi, 200);
+
+  // BPSC 3-slot bi-script bundle
+  const bpsc = presets.find(x => x.slug === 'bpsc');
+  assert.ok(bpsc, 'BPSC preset must exist');
+  assert.equal(bpsc.slots.length, 3, 'BPSC must contain 3 slots');
+  assert.equal(bpsc.slots[0].docType, 'photo');
+  assert.equal(bpsc.slots[1].docType, 'signature');
+  assert.equal(bpsc.slots[2].docType, 'signature');
+
+  // UPPSC & TNPSC defaultNameDate check
+  const uppsc = presets.find(x => x.slug === 'uppsc');
+  assert.ok(uppsc.slots[0].defaultNameDate, true, 'UPPSC photo must auto-enable name/date placard');
+  const tnpsc = presets.find(x => x.slug === 'tnpsc');
+  assert.ok(tnpsc.slots[0].defaultNameDate, true, 'TNPSC photo must auto-enable name/date placard');
+});

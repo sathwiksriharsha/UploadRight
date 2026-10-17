@@ -1016,6 +1016,7 @@ const allPresetsJson = JSON.stringify(presets);
   if (activeSlotIndex >= slots.length) activeSlotIndex = 0;
 
   let initialModeProp = root.dataset.initialMode || 'preset';
+  let isGeneric = ['image-resizer', 'photo-resizer', 'signature-resizer', 'signature-compressor', 'whitener', 'custom', 'compressor'].includes(initialModeProp);
   let topMode: 'resizer' | 'namedate' = (initialModeProp === 'placard' || paramDate === 'true') ? 'namedate' : 'resizer';
   let isCustomSizeActive = initialModeProp === 'custom';
 
@@ -1344,6 +1345,18 @@ const allPresetsJson = JSON.stringify(presets);
     }
   }
 
+  function applyLiveFilters() {
+    const bVal = parseInt(brightnessSlider?.value || '0', 10);
+    const cVal = parseInt(contrastSlider?.value || '0', 10);
+    const bFactor = 1 + (bVal / 100);
+    const cFactor = 1 + (cVal / 100);
+    const filterStyle = (bVal === 0 && cVal === 0) ? 'none' : `brightness(${bFactor}) contrast(${cFactor})`;
+    const imgs = document.querySelectorAll('.cropper-container img, #cropper-image');
+    imgs.forEach(img => {
+      (img as HTMLElement).style.filter = filterStyle;
+    });
+  }
+
   function setupEventListeners() {
     // Top Mode Switcher
     if (topTabResizer) {
@@ -1493,12 +1506,14 @@ const allPresetsJson = JSON.stringify(presets);
     if (brightnessSlider && brightnessValText) {
       brightnessSlider.addEventListener('input', () => {
         brightnessValText.textContent = brightnessSlider.value;
+        applyLiveFilters();
       });
     }
 
     if (contrastSlider && contrastValText) {
       contrastSlider.addEventListener('input', () => {
         contrastValText.textContent = contrastSlider.value;
+        applyLiveFilters();
       });
     }
 
@@ -1682,6 +1697,27 @@ const allPresetsJson = JSON.stringify(presets);
     if (btnResetCrop) {
       btnResetCrop.addEventListener('click', () => {
         if (cropper) cropper.reset();
+        if (brightnessSlider) brightnessSlider.value = '0';
+        if (brightnessValText) brightnessValText.textContent = '0';
+        if (contrastSlider) contrastSlider.value = '0';
+        if (contrastValText) contrastValText.textContent = '0';
+        applyLiveFilters();
+      });
+    }
+
+    // 1-Click Copy Declaration
+    if (btnCopyDeclaration && declCardText && copyDeclText) {
+      btnCopyDeclaration.addEventListener('click', async () => {
+        const textToCopy = declCardText.textContent?.replace(/^"|"$/g, '').trim() || '';
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+          copyDeclText.textContent = 'Copied to Clipboard! ✓';
+          setTimeout(() => {
+            if (copyDeclText) copyDeclText.textContent = '1-Click Copy Declaration Text';
+          }, 2500);
+        } catch {
+          copyDeclText.textContent = 'Selected! Press Ctrl+C';
+        }
       });
     }
 
@@ -1888,6 +1924,9 @@ const allPresetsJson = JSON.stringify(presets);
             cropBoxMovable: true,
             cropBoxResizable: true,
             toggleDragModeOnDblclick: false,
+            ready() {
+              applyLiveFilters();
+            }
           });
         };
 
@@ -1915,6 +1954,11 @@ const allPresetsJson = JSON.stringify(presets);
     }
     if (fileInput) fileInput.value = '';
     currentLoadedFile = null;
+    if (brightnessSlider) brightnessSlider.value = '0';
+    if (brightnessValText) brightnessValText.textContent = '0';
+    if (contrastSlider) contrastSlider.value = '0';
+    if (contrastValText) contrastValText.textContent = '0';
+    applyLiveFilters();
   }
 
   async function handleProcess() {

@@ -5,7 +5,7 @@ import presets from '../data/presets.json';
 ---
 
 <section id="requirements" class="py-12 sm:py-16 bg-white border-t border-[#E5E5EA]">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
+  <div class="max-w-6xl sm:max-w-7xl mx-auto px-4 sm:px-6 space-y-6">
     <div class="text-center space-y-2">
       <h2 class="text-xl sm:text-2xl font-bold text-[#1D1D1F] tracking-tight">
         Official Examination Specifications
@@ -16,17 +16,17 @@ import presets from '../data/presets.json';
     </div>
 
     <!-- Responsive Table Card -->
-    <div class="bg-white rounded-2xl border border-[#E5E5EA] overflow-hidden">
+    <div class="bg-white rounded-2xl border border-[#E5E5EA] overflow-hidden shadow-xs">
       <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse text-xs">
           <thead>
             <tr class="bg-[#F7F7F8] border-b border-[#D9D9DE] text-[#626274] font-semibold">
-              <th class="py-3.5 px-4 sm:px-6">Examination / Portal</th>
-              <th class="py-3.5 px-4">Document Slot</th>
-              <th class="py-3.5 px-4 font-mono">Pixel Dimensions</th>
-              <th class="py-3.5 px-4 font-mono">File Size (KB)</th>
-              <th class="py-3.5 px-4 font-mono">DPI Header</th>
-              <th class="py-3.5 px-4 sm:px-6">Mandatory Background</th>
+              <th class="py-3.5 px-4 sm:px-6 whitespace-nowrap">Examination / Portal</th>
+              <th class="py-3.5 px-4 whitespace-nowrap">Document Slot</th>
+              <th class="py-3.5 px-4 font-mono whitespace-nowrap">Pixel Dimensions</th>
+              <th class="py-3.5 px-4 font-mono whitespace-nowrap">File Size (KB)</th>
+              <th class="py-3.5 px-4 font-mono whitespace-nowrap">DPI Header</th>
+              <th class="py-3.5 px-4 sm:px-6 min-w-[220px]">Mandatory Background</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-[#D9D9DE] text-[#101013]">
@@ -34,29 +34,29 @@ import presets from '../data/presets.json';
               preset.slots.map((slot, index) => (
                 <tr class="hover:bg-[#F0F6FE]/30 transition-colors">
                   {index === 0 ? (
-                    <td class="py-3 px-4 sm:px-6 font-bold text-xs" rowspan={preset.slots.length}>
+                    <td class="py-3 px-4 sm:px-6 font-bold text-xs whitespace-nowrap align-top" rowspan={preset.slots.length}>
                       <a href={`/${preset.slug}`} class="text-[#0062FF] hover:underline">
                         {preset.exam}
                       </a>
                       <span class="block text-[10px] text-[#626274] font-normal">{preset.categoryLabel}</span>
                     </td>
                   ) : null}
-                  <td class="py-3 px-4 font-medium text-xs">
+                  <td class="py-3 px-4 font-medium text-xs whitespace-nowrap align-middle">
                     {slot.label}
                   </td>
-                  <td class="py-3 px-4 font-mono font-semibold">
-                    {slot.widthPx} × {slot.heightPx} px
-                    {slot.physicalSize && <span class="block text-[10px] text-[#626274] font-normal">{slot.physicalSize}</span>}
+                  <td class="py-3 px-4 font-mono font-semibold whitespace-nowrap align-middle">
+                    {slot.widthPx}&nbsp;×&nbsp;{slot.heightPx}&nbsp;px
+                    {slot.physicalSize && <span class="block text-[10px] text-[#626274] font-normal whitespace-nowrap">{slot.physicalSize}</span>}
                   </td>
-                  <td class="py-3 px-4 font-mono">
-                    <span class="px-2 py-0.5 rounded bg-[#F7F7F8] border border-[#D9D9DE] font-semibold">
-                      {slot.minKB}–{slot.maxKB} KB
+                  <td class="py-3 px-4 font-mono whitespace-nowrap align-middle">
+                    <span class="px-2.5 py-1 rounded-md bg-[#F7F7F8] border border-[#D9D9DE] font-semibold text-neutral-900 whitespace-nowrap inline-block">
+                      {slot.minKB}–{slot.maxKB}&nbsp;KB
                     </span>
                   </td>
-                  <td class="py-3 px-4 font-mono text-[#0062FF] font-semibold whitespace-nowrap">
+                  <td class="py-3 px-4 font-mono text-[#0062FF] font-semibold whitespace-nowrap align-middle">
                     {slot.dpi}&nbsp;DPI
                   </td>
-                  <td class="py-3 px-4 sm:px-6 text-[#626274] text-[11px]">
+                  <td class="py-3 px-4 sm:px-6 text-[#626274] text-[11px] align-middle">
                     {slot.background}
                   </td>
                 </tr>
