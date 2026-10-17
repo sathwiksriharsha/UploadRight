@@ -579,6 +579,58 @@ const allPresetsJson = JSON.stringify(presets);
               <div id="spec-notes" class="text-[11px] text-neutral-600 leading-snug pt-1">
                 {initialPreset.slots[0].notes || 'Ensure clear passport composition with neutral background.'}
               </div>
+
+              <!-- 1-Click Name & Date Placard Row (Auto-toggled when defaultNameDate: true) -->
+              <div id="slot-namedate-toggle-row" class="pt-2 border-t border-[#f1f1f1] flex items-center justify-between text-xs font-mono">
+                <label class="flex items-center gap-2 cursor-pointer select-none text-neutral-800">
+                  <input type="checkbox" id="slot-namedate-checkbox" class="w-4 h-4 text-black rounded border-[#e6e6e6] accent-black cursor-pointer" />
+                  <span class="font-bold">Add Name &amp; Date Placard</span>
+                </label>
+                <span id="slot-namedate-badge" class="px-2 py-0.5 rounded-full text-[10px] bg-[#f7f7f5] text-neutral-500 border border-[#e6e6e6]">Optional</span>
+              </div>
+              <div id="slot-namedate-inputs-row" class="space-y-2 pt-2 border-t border-[#f1f1f1] hidden">
+                <div class="grid grid-cols-2 gap-2">
+                  <input
+                    type="text"
+                    id="slot-candidate-name-input"
+                    placeholder="Candidate Name"
+                    class="px-2.5 py-1.5 text-xs bg-[#f7f7f5] border border-[#e6e6e6] rounded-lg uppercase font-mono focus:outline-none focus:border-black"
+                  />
+                  <input
+                    type="text"
+                    id="slot-candidate-date-input"
+                    placeholder="DD-MM-YYYY"
+                    class="px-2.5 py-1.5 text-xs bg-[#f7f7f5] border border-[#e6e6e6] rounded-lg font-mono focus:outline-none focus:border-black"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Official Handwritten Declaration Card (Auto-shown on declaration slots) -->
+            <div id="declaration-box-card" class="p-4 bg-white border-2 border-black rounded-2xl space-y-3 hidden shadow-xs">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5 text-xs font-mono font-bold text-black uppercase">
+                  <span>✍️</span>
+                  <span id="decl-card-title">Handwritten Declaration</span>
+                </div>
+                <span class="px-2 py-0.5 rounded-full bg-[#f7f7f5] text-[10px] font-mono text-neutral-600 border border-[#e6e6e6]">Black Ink Only</span>
+              </div>
+              <div class="p-3 bg-[#f7f7f5] rounded-xl border border-[#e6e6e6] text-xs font-mono text-neutral-800 leading-relaxed space-y-2">
+                <p id="decl-card-text" class="italic select-all">
+                  "I, _______ (Name of candidate), hereby declare that all the information submitted by me in the application form is correct, true and valid. I will present the supporting documents as and when required."
+                </p>
+                <button
+                  id="btn-copy-declaration"
+                  type="button"
+                  class="w-full py-2 rounded-lg bg-black text-white hover:bg-[#222222] text-xs font-bold font-mono transition flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+                >
+                  <span id="copy-decl-icon">📋</span>
+                  <span id="copy-decl-text">1-Click Copy Declaration Text</span>
+                </button>
+              </div>
+              <p class="text-[10px] text-amber-700 font-mono">
+                ⚠️ Write in running handwriting on clean white paper. Applications with ALL CAPITAL LETTERS are rejected!
+              </p>
             </div>
           </div>
         )}
@@ -680,12 +732,13 @@ const allPresetsJson = JSON.stringify(presets);
 
           <button
             type="button"
+            id="browse-btn"
             class="mt-2 px-7 py-2.5 rounded-full bg-black hover:bg-[#222222] text-white text-xs sm:text-sm font-bold shadow-md transition-all active:scale-95 cursor-pointer"
           >
             Browse Files
           </button>
-          <input type="file" id="file-input" class="hidden" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" />
         </div>
+        <input type="file" id="file-input" class="hidden" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" />
 
         <!-- Quick Sample Specimen & Camera Row -->
         <div class="flex items-center justify-center gap-3 pt-1 flex-wrap">
@@ -933,6 +986,7 @@ const allPresetsJson = JSON.stringify(presets);
 
 <script>
   import { processImage, loadImageFile, generateFilename, downloadBlob, sanitizeFilename } from '../utils/imageEngine';
+  import declarationsData from '../data/declarations.json';
   import Cropper from 'cropperjs';
   import 'cropperjs/dist/cropper.min.css';
 
@@ -1038,56 +1092,72 @@ const allPresetsJson = JSON.stringify(presets);
   const specNotes = document.getElementById('spec-notes');
 
   // Adjustments Sliders
-  const brightnessSlider = document.getElementById('brightness-slider') as HTMLInputElement;
-  const brightnessValText = document.getElementById('brightness-val-text')!;
-  const contrastSlider = document.getElementById('contrast-slider') as HTMLInputElement;
-  const contrastValText = document.getElementById('contrast-val-text')!;
-  const whitenerSlider = document.getElementById('whitener-slider') as HTMLInputElement;
-  const whitenerValText = document.getElementById('whitener-val-text')!;
-  const whitenerAdjustmentBox = document.getElementById('whitener-adjustment-box')!;
+  const brightnessSlider = document.getElementById('brightness-slider') as HTMLInputElement | null;
+  const brightnessValText = document.getElementById('brightness-val-text');
+  const contrastSlider = document.getElementById('contrast-slider') as HTMLInputElement | null;
+  const contrastValText = document.getElementById('contrast-val-text');
+  const whitenerSlider = document.getElementById('whitener-slider') as HTMLInputElement | null;
+  const whitenerValText = document.getElementById('whitener-val-text');
+  const whitenerAdjustmentBox = document.getElementById('whitener-adjustment-box');
+
+  // Declaration Card Elements
+  const declarationBoxCard = document.getElementById('declaration-box-card');
+  const declCardTitle = document.getElementById('decl-card-title');
+  const declCardText = document.getElementById('decl-card-text');
+  const btnCopyDeclaration = document.getElementById('btn-copy-declaration');
+  const copyDeclText = document.getElementById('copy-decl-text');
+
+  // Slot Name & Date Elements
+  const slotNamedateToggleRow = document.getElementById('slot-namedate-toggle-row');
+  const slotNamedateCheckbox = document.getElementById('slot-namedate-checkbox') as HTMLInputElement | null;
+  const slotNamedateBadge = document.getElementById('slot-namedate-badge');
+  const slotNamedateInputsRow = document.getElementById('slot-namedate-inputs-row');
+  const slotCandidateNameInput = document.getElementById('slot-candidate-name-input') as HTMLInputElement | null;
+  const slotCandidateDateInput = document.getElementById('slot-candidate-date-input') as HTMLInputElement | null;
 
   // Stages & Containers
-  const dropZone = document.getElementById('drop-zone')!;
-  const fileInput = document.getElementById('file-input') as HTMLInputElement;
-  const uploadContainer = document.getElementById('upload-container')!;
-  const imageEditorContainer = document.getElementById('image-editor-container')!;
-  const cropperImage = document.getElementById('cropper-image') as HTMLImageElement;
-  const cropperFileBar = document.getElementById('cropper-file-bar')!;
-  const cropperFilenameDisplay = document.getElementById('cropper-filename-display')!;
-  const cropperFileCloseBtn = document.getElementById('cropper-file-close-btn')!;
-  const btnRotateLeft = document.getElementById('btn-rotate-left')!;
-  const btnRotateRight = document.getElementById('btn-rotate-right')!;
-  const btnResetCrop = document.getElementById('btn-reset-crop')!;
-  const btnCancelCrop = document.getElementById('btn-cancel-crop')!;
-  const cancelOpeningImage = document.getElementById('cancel-opening-image')!;
-  const btnApplyCrop = document.getElementById('btn-apply-crop')!;
-  const processingLoader = document.getElementById('processing-loader')!;
-  const previewContainer = document.getElementById('preview-container')!;
+  const dropZone = document.getElementById('drop-zone');
+  const fileInput = document.getElementById('file-input') as HTMLInputElement | null;
+  const browseBtn = document.getElementById('browse-btn');
+  const uploadContainer = document.getElementById('upload-container');
+  const imageEditorContainer = document.getElementById('image-editor-container');
+  const cropperImage = document.getElementById('cropper-image') as HTMLImageElement | null;
+  const cropperFileBar = document.getElementById('cropper-file-bar');
+  const cropperFilenameDisplay = document.getElementById('cropper-filename-display');
+  const cropperFileCloseBtn = document.getElementById('cropper-file-close-btn');
+  const btnRotateLeft = document.getElementById('btn-rotate-left');
+  const btnRotateRight = document.getElementById('btn-rotate-right');
+  const btnResetCrop = document.getElementById('btn-reset-crop');
+  const btnCancelCrop = document.getElementById('btn-cancel-crop');
+  const cancelOpeningImage = document.getElementById('cancel-opening-image');
+  const btnApplyCrop = document.getElementById('btn-apply-crop');
+  const processingLoader = document.getElementById('processing-loader');
+  const previewContainer = document.getElementById('preview-container');
   const resultFilenameDisplay = document.getElementById('result-filename-display');
   const originalImage = document.getElementById('original-image') as HTMLImageElement | null;
-  const processedImage = document.getElementById('processed-image') as HTMLImageElement;
+  const processedImage = document.getElementById('processed-image') as HTMLImageElement | null;
   const originalInfo = document.getElementById('original-info');
-  const processedInfo = document.getElementById('processed-info')!;
-  const resQualityTag = document.getElementById('res-quality-tag')!;
-  const resAuditDims = document.getElementById('res-audit-dims')!;
-  const resAuditKb = document.getElementById('res-audit-kb')!;
-  const resAuditDpi = document.getElementById('res-audit-dpi')!;
-  const downloadBtn = document.getElementById('download-btn')!;
-  const downloadBtnText = document.getElementById('download-btn-text')!;
-  const btnNextSlot = document.getElementById('btn-next-slot')!;
-  const nextSlotName = document.getElementById('next-slot-name')!;
-  const btnZipKit = document.getElementById('btn-zip-kit')!;
-  const processAnotherBtn = document.getElementById('process-another-btn')!;
+  const processedInfo = document.getElementById('processed-info');
+  const resQualityTag = document.getElementById('res-quality-tag');
+  const resAuditDims = document.getElementById('res-audit-dims');
+  const resAuditKb = document.getElementById('res-audit-kb');
+  const resAuditDpi = document.getElementById('res-audit-dpi');
+  const downloadBtn = document.getElementById('download-btn');
+  const downloadBtnText = document.getElementById('download-btn-text');
+  const btnNextSlot = document.getElementById('btn-next-slot');
+  const nextSlotName = document.getElementById('next-slot-name');
+  const btnZipKit = document.getElementById('btn-zip-kit');
+  const processAnotherBtn = document.getElementById('process-another-btn');
 
   // Camera & Samples
-  const btnCamera = document.getElementById('btn-camera')!;
-  const btnSample = document.getElementById('btn-sample')!;
-  const btnSampleSig = document.getElementById('btn-sample-sig')!;
-  const cameraModal = document.getElementById('camera-modal')!;
-  const cameraVideo = document.getElementById('camera-video') as HTMLVideoElement;
-  const btnCameraFlip = document.getElementById('btn-camera-flip')!;
-  const btnCameraCapture = document.getElementById('btn-camera-capture')!;
-  const btnCameraClose = document.getElementById('btn-camera-close')!;
+  const btnCamera = document.getElementById('btn-camera');
+  const btnSample = document.getElementById('btn-sample');
+  const btnSampleSig = document.getElementById('btn-sample-sig');
+  const cameraModal = document.getElementById('camera-modal');
+  const cameraVideo = document.getElementById('camera-video') as HTMLVideoElement | null;
+  const btnCameraFlip = document.getElementById('btn-camera-flip');
+  const btnCameraCapture = document.getElementById('btn-camera-capture');
+  const btnCameraClose = document.getElementById('btn-camera-close');
   let cameraStream: MediaStream | null = null;
   let cameraFacing = 'user';
 
@@ -1201,8 +1271,57 @@ const allPresetsJson = JSON.stringify(presets);
     if (specDpi) specDpi.textContent = `JPG · ${slot.dpi} DPI`;
     if (specNotes) specNotes.textContent = slot.notes || slot.background || 'Ensure clear passport composition with neutral background.';
 
-    const isSignature = ['signature', 'thumb', 'declaration'].includes(slot.docType);
-    if (whitenerAdjustmentBox) whitenerAdjustmentBox.classList.toggle('hidden', !isSignature);
+    // 1. Paper Whitener auto-activation on signatures/thumbs/declarations
+    const isWhitenerDoc = slot.defaultWhitener || ['signature', 'thumb', 'declaration'].includes(slot.docType);
+    if (whitenerAdjustmentBox) whitenerAdjustmentBox.classList.toggle('hidden', !isWhitenerDoc && !isGeneric);
+    if (isWhitenerDoc && whitenerSlider) {
+      whitenerSlider.value = '220';
+      if (whitenerValText) whitenerValText.textContent = '220';
+    }
+
+    // 2. Declaration Box Card auto-activation on declaration slots
+    if (declarationBoxCard) {
+      if (slot.docType === 'declaration') {
+        declarationBoxCard.classList.remove('hidden');
+        let declKey: 'ibps' | 'sbi' | 'rbi' | 'rrb' = 'ibps';
+        if (activeSlug.includes('sbi')) declKey = 'sbi';
+        else if (activeSlug.includes('rbi')) declKey = 'rbi';
+        else if (activeSlug.includes('rrb')) declKey = 'rrb';
+        const decl = (declarationsData as any)[declKey] || (declarationsData as any)['ibps'];
+        if (declCardTitle) declCardTitle.textContent = decl.title;
+        if (declCardText) declCardText.textContent = `"${decl.text}"`;
+      } else {
+        declarationBoxCard.classList.add('hidden');
+      }
+    }
+
+    // 3. Name & Date Placard auto-activation on UPSC / NEET / TNPSC / UPPSC
+    if (slotNamedateToggleRow && slotNamedateCheckbox && slotNamedateBadge && slotNamedateInputsRow) {
+      if (slot.docType === 'photo') {
+        slotNamedateToggleRow.classList.remove('hidden');
+        if (slot.defaultNameDate) {
+          slotNamedateCheckbox.checked = true;
+          slotNamedateInputsRow.classList.remove('hidden');
+          slotNamedateBadge.textContent = 'Required';
+          slotNamedateBadge.className = 'px-2 py-0.5 rounded-full text-[10px] font-mono bg-[#dceeb1] text-black font-bold border border-black/10';
+        } else {
+          slotNamedateCheckbox.checked = false;
+          slotNamedateInputsRow.classList.add('hidden');
+          slotNamedateBadge.textContent = 'Optional';
+          slotNamedateBadge.className = 'px-2 py-0.5 rounded-full text-[10px] font-mono bg-[#f7f7f5] text-neutral-500 border border-[#e6e6e6]';
+        }
+        if (slotCandidateDateInput && !slotCandidateDateInput.value) {
+          const d = new Date();
+          const dd = String(d.getDate()).padStart(2, '0');
+          const mm = String(d.getMonth() + 1).padStart(2, '0');
+          const yyyy = d.getFullYear();
+          slotCandidateDateInput.value = `${dd}-${mm}-${yyyy}`;
+        }
+      } else {
+        slotNamedateToggleRow.classList.add('hidden');
+        slotNamedateInputsRow.classList.add('hidden');
+      }
+    }
 
     if (cropper) {
       cropper.setAspectRatio(slot.widthPx / slot.heightPx);
@@ -1371,17 +1490,23 @@ const allPresetsJson = JSON.stringify(presets);
     }
 
     // Sliders
-    brightnessSlider.addEventListener('input', () => {
-      brightnessValText.textContent = brightnessSlider.value;
-    });
+    if (brightnessSlider && brightnessValText) {
+      brightnessSlider.addEventListener('input', () => {
+        brightnessValText.textContent = brightnessSlider.value;
+      });
+    }
 
-    contrastSlider.addEventListener('input', () => {
-      contrastValText.textContent = contrastSlider.value;
-    });
+    if (contrastSlider && contrastValText) {
+      contrastSlider.addEventListener('input', () => {
+        contrastValText.textContent = contrastSlider.value;
+      });
+    }
 
-    whitenerSlider.addEventListener('input', () => {
-      whitenerValText.textContent = whitenerSlider.value;
-    });
+    if (whitenerSlider && whitenerValText) {
+      whitenerSlider.addEventListener('input', () => {
+        whitenerValText.textContent = whitenerSlider.value;
+      });
+    }
 
     // Units
     unitBtns.forEach(btn => {
@@ -1403,23 +1528,25 @@ const allPresetsJson = JSON.stringify(presets);
       });
     });
 
-    // Exam Search
-    examSearchInput.addEventListener('input', () => {
-      const q = examSearchInput.value.trim().toLowerCase();
-      examCardBtns.forEach(btn => {
-        const searchMeta = (btn as HTMLElement).dataset.search || '';
-        const match = q === '' ? true : searchMeta.includes(q);
-        const idx = parseInt((btn as HTMLElement).dataset.index || '0', 10);
-        if (q === '') {
-          btn.classList.toggle('hidden', idx >= 8 && !isAllExamsExpanded);
-        } else {
-          btn.classList.toggle('hidden', !match);
+    // Exam Search (only on preset mode)
+    if (examSearchInput) {
+      examSearchInput.addEventListener('input', () => {
+        const q = examSearchInput.value.trim().toLowerCase();
+        examCardBtns.forEach(btn => {
+          const searchMeta = (btn as HTMLElement).dataset.search || '';
+          const match = q === '' ? true : searchMeta.includes(q);
+          const idx = parseInt((btn as HTMLElement).dataset.index || '0', 10);
+          if (q === '') {
+            btn.classList.toggle('hidden', idx >= 8 && !isAllExamsExpanded);
+          } else {
+            btn.classList.toggle('hidden', !match);
+          }
+        });
+        if (btnToggleAllExams) {
+          btnToggleAllExams.classList.toggle('hidden', q !== '');
         }
       });
-      if (btnToggleAllExams) {
-        btnToggleAllExams.classList.toggle('hidden', q !== '');
-      }
-    });
+    }
 
     // Category Filter Chips
     catFilterBtns.forEach(btn => {
@@ -1447,44 +1574,78 @@ const allPresetsJson = JSON.stringify(presets);
       });
     });
 
-    // Exam Card selection - natural link redirection to each exam's dedicated page
+    // Declaration 1-Click Copy
+    if (btnCopyDeclaration && declCardText) {
+      btnCopyDeclaration.addEventListener('click', async () => {
+        const textToCopy = declCardText.textContent?.replace(/^"|"$/g, '') || '';
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+          if (copyDeclText) copyDeclText.textContent = '✓ Copied to Clipboard!';
+          setTimeout(() => {
+            if (copyDeclText) copyDeclText.textContent = '1-Click Copy Declaration Text';
+          }, 2000);
+        } catch {
+          alert('Could not copy text. Please select and copy manually.');
+        }
+      });
+    }
 
-    // Dropzone
-    dropZone.addEventListener('click', () => fileInput.click());
-    dropZone.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
+    // Slot Name & Date Checkbox Toggle
+    if (slotNamedateCheckbox && slotNamedateInputsRow) {
+      slotNamedateCheckbox.addEventListener('change', () => {
+        slotNamedateInputsRow.classList.toggle('hidden', !slotNamedateCheckbox.checked);
+      });
+    }
+
+    // Dropzone & File Input
+    if (browseBtn && fileInput) {
+      browseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         fileInput.click();
-      }
-    });
+      });
+    }
 
-    fileInput.addEventListener('change', () => {
-      if (fileInput.files?.length) {
-        loadFile(fileInput.files[0]);
-      }
-    });
+    if (dropZone && fileInput) {
+      dropZone.addEventListener('click', (e) => {
+        if (e.target !== fileInput && e.target !== browseBtn) {
+          fileInput.click();
+        }
+      });
+      dropZone.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          fileInput.click();
+        }
+      });
 
-    dropZone.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      dropZone.classList.add('border-black', 'bg-[#f7f7f5]');
-    });
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files?.length) {
+          loadFile(fileInput.files[0]);
+        }
+      });
 
-    dropZone.addEventListener('dragleave', () => {
-      dropZone.classList.remove('border-black', 'bg-[#f7f7f5]');
-    });
+      dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('border-black', 'bg-[#f7f7f5]');
+      });
 
-    dropZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      dropZone.classList.remove('border-black', 'bg-[#f7f7f5]');
-      if (e.dataTransfer?.files.length) {
-        loadFile(e.dataTransfer.files[0]);
-      }
-    });
+      dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('border-black', 'bg-[#f7f7f5]');
+      });
 
-    btnCancelCrop.addEventListener('click', resetUploader);
-    cancelOpeningImage.addEventListener('click', resetUploader);
-    cropperFileCloseBtn.addEventListener('click', resetUploader);
-    processAnotherBtn.addEventListener('click', resetUploader);
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('border-black', 'bg-[#f7f7f5]');
+        if (e.dataTransfer?.files.length) {
+          loadFile(e.dataTransfer.files[0]);
+        }
+      });
+    }
+
+    if (btnCancelCrop) btnCancelCrop.addEventListener('click', resetUploader);
+    if (cancelOpeningImage) cancelOpeningImage.addEventListener('click', resetUploader);
+    if (cropperFileCloseBtn) cropperFileCloseBtn.addEventListener('click', resetUploader);
+    if (processAnotherBtn) processAnotherBtn.addEventListener('click', resetUploader);
 
     // 75% Biometric Face Guide Toggle
     const btnToggleFaceGuide = document.getElementById('btn-toggle-face-guide');
@@ -1508,15 +1669,21 @@ const allPresetsJson = JSON.stringify(presets);
     }
 
     // Rotation & Reset
-    btnRotateLeft.addEventListener('click', () => {
-      if (cropper) cropper.rotate(-90);
-    });
-    btnRotateRight.addEventListener('click', () => {
-      if (cropper) cropper.rotate(90);
-    });
-    btnResetCrop.addEventListener('click', () => {
-      if (cropper) cropper.reset();
-    });
+    if (btnRotateLeft) {
+      btnRotateLeft.addEventListener('click', () => {
+        if (cropper) cropper.rotate(-90);
+      });
+    }
+    if (btnRotateRight) {
+      btnRotateRight.addEventListener('click', () => {
+        if (cropper) cropper.rotate(90);
+      });
+    }
+    if (btnResetCrop) {
+      btnResetCrop.addEventListener('click', () => {
+        if (cropper) cropper.reset();
+      });
+    }
 
     // Apply & Optimize
     document.querySelectorAll('.btn-apply-crop-action').forEach(btn => {
@@ -1526,27 +1693,30 @@ const allPresetsJson = JSON.stringify(presets);
     });
 
     // Download Button
-    downloadBtn.addEventListener('click', () => {
-      if (lastProcessedResult) {
-        downloadBlob(lastProcessedResult.blob, lastProcessedResult.filename);
-      }
-    });
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', () => {
+        if (lastProcessedResult) {
+          downloadBlob(lastProcessedResult.blob, lastProcessedResult.filename);
+        }
+      });
+    }
 
-    btnZipKit.addEventListener('click', handleZipKit);
-    btnNextSlot.addEventListener('click', handleNextSlot);
+    if (btnZipKit) btnZipKit.addEventListener('click', handleZipKit);
+    if (btnNextSlot) btnNextSlot.addEventListener('click', handleNextSlot);
 
     // Demo Samples
-    btnSample.addEventListener('click', () => handleSampleDemo(false));
-    btnSampleSig.addEventListener('click', () => handleSampleDemo(true));
+    if (btnSample) btnSample.addEventListener('click', () => handleSampleDemo(false));
+    if (btnSampleSig) btnSampleSig.addEventListener('click', () => handleSampleDemo(true));
 
     // Camera
-    btnCamera.addEventListener('click', openCamera);
-    btnCameraCapture.addEventListener('click', captureCamera);
-    btnCameraClose.addEventListener('click', closeCamera);
-    btnCameraFlip.addEventListener('click', flipCamera);
+    if (btnCamera) btnCamera.addEventListener('click', openCamera);
+    if (btnCameraCapture) btnCameraCapture.addEventListener('click', captureCamera);
+    if (btnCameraClose) btnCameraClose.addEventListener('click', closeCamera);
+    if (btnCameraFlip) btnCameraFlip.addEventListener('click', flipCamera);
   }
 
   function convertCustomUnits(fromUnit: string, toUnit: string) {
+    if (!customDpiSelect || !customWidthInput || !customHeightInput) return;
     const dpi = parseInt(customDpiSelect.value, 10) || 200;
     let w = parseFloat(customWidthInput.value) || 350;
     let h = parseFloat(customHeightInput.value) || 450;
@@ -1588,14 +1758,14 @@ const allPresetsJson = JSON.stringify(presets);
     activeSlotIndex = 0;
     isCustomSizeActive = false;
 
-    selectedExamTitleText.textContent = found.shortTitle || found.exam;
+    if (selectedExamTitleText) selectedExamTitleText.textContent = found.shortTitle || found.exam;
     if (examFullGuideLink) examFullGuideLink.href = `/${found.slug}`;
 
-    panelCustomConfig.classList.add('hidden');
-    imageRequirementsCard.classList.remove('hidden');
-    docTypeSection.classList.remove('hidden');
-    examPickerCollapsible.classList.add('hidden');
-    btnChangeText.textContent = 'Change';
+    if (panelCustomConfig) panelCustomConfig.classList.add('hidden');
+    if (imageRequirementsCard) imageRequirementsCard.classList.remove('hidden');
+    if (docTypeSection) docTypeSection.classList.remove('hidden');
+    if (examPickerCollapsible) examPickerCollapsible.classList.add('hidden');
+    if (btnChangeText) btnChangeText.textContent = 'Change';
 
     examCardBtns.forEach(btn => {
       const bSlug = (btn as HTMLElement).dataset.slug;
@@ -1616,6 +1786,7 @@ const allPresetsJson = JSON.stringify(presets);
   }
 
   function renderSlotPills() {
+    if (!docTypeGrid || !activeSlotCounter) return;
     docTypeGrid.innerHTML = '';
     activeSlotCounter.textContent = `${activeSlotIndex + 1} of ${slots.length}`;
 
@@ -1661,12 +1832,12 @@ const allPresetsJson = JSON.stringify(presets);
       if (originalImage) originalImage.src = img.src;
       if (originalInfo) originalInfo.textContent = `${img.naturalWidth}×${img.naturalHeight} px · ${(file.size / 1024).toFixed(1)} KB`;
 
-      cropperFilenameDisplay.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+      if (cropperFilenameDisplay) cropperFilenameDisplay.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
 
-      uploadContainer.classList.add('hidden');
-      imageEditorContainer.classList.remove('hidden');
-      cancelOpeningImage.classList.remove('hidden');
-      previewContainer.classList.add('hidden');
+      if (uploadContainer) uploadContainer.classList.add('hidden');
+      if (imageEditorContainer) imageEditorContainer.classList.remove('hidden');
+      if (cancelOpeningImage) cancelOpeningImage.classList.remove('hidden');
+      if (previewContainer) previewContainer.classList.add('hidden');
 
       if (cropper) {
         cropper.destroy();
@@ -1700,29 +1871,31 @@ const allPresetsJson = JSON.stringify(presets);
         targetRatio = slot ? (slot.widthPx / slot.heightPx) : NaN;
       }
 
-      cropperImage.src = img.src;
-      const initCropper = () => {
-        if (cropper) cropper.destroy();
-        cropper = new Cropper(cropperImage, {
-          aspectRatio: targetRatio,
-          viewMode: 1,
-          dragMode: 'move',
-          autoCropArea: 0.92,
-          responsive: true,
-          restore: false,
-          guides: true,
-          center: true,
-          highlight: false,
-          cropBoxMovable: true,
-          cropBoxResizable: true,
-          toggleDragModeOnDblclick: false,
-        });
-      };
+      if (cropperImage) {
+        cropperImage.src = img.src;
+        const initCropper = () => {
+          if (cropper) cropper.destroy();
+          cropper = new Cropper(cropperImage, {
+            aspectRatio: targetRatio,
+            viewMode: 1,
+            dragMode: 'move',
+            autoCropArea: 0.92,
+            responsive: true,
+            restore: false,
+            guides: true,
+            center: true,
+            highlight: false,
+            cropBoxMovable: true,
+            cropBoxResizable: true,
+            toggleDragModeOnDblclick: false,
+          });
+        };
 
-      if (cropperImage.complete) {
-        initCropper();
-      } else {
-        cropperImage.onload = () => initCropper();
+        if (cropperImage.complete) {
+          initCropper();
+        } else {
+          cropperImage.onload = () => initCropper();
+        }
       }
 
     } catch (err: any) {
@@ -1731,16 +1904,16 @@ const allPresetsJson = JSON.stringify(presets);
   }
 
   function resetUploader() {
-    uploadContainer.classList.remove('hidden');
-    imageEditorContainer.classList.add('hidden');
-    cancelOpeningImage.classList.add('hidden');
-    processingLoader.classList.add('hidden');
-    previewContainer.classList.add('hidden');
+    if (uploadContainer) uploadContainer.classList.remove('hidden');
+    if (imageEditorContainer) imageEditorContainer.classList.add('hidden');
+    if (cancelOpeningImage) cancelOpeningImage.classList.add('hidden');
+    if (processingLoader) processingLoader.classList.add('hidden');
+    if (previewContainer) previewContainer.classList.add('hidden');
     if (cropper) {
       cropper.destroy();
       cropper = null;
     }
-    fileInput.value = '';
+    if (fileInput) fileInput.value = '';
     currentLoadedFile = null;
   }
 
@@ -1766,9 +1939,9 @@ const allPresetsJson = JSON.stringify(presets);
       let placardName: string | undefined = undefined;
       let placardDate: string | undefined = undefined;
 
-      const brightnessVal = parseInt(brightnessSlider.value, 10) || 0;
-      const contrastVal = parseInt(contrastSlider.value, 10) || 0;
-      const whitenerThresholdVal = parseInt(whitenerSlider.value, 10) || 220;
+      const brightnessVal = parseInt(brightnessSlider?.value || '0', 10) || 0;
+      const contrastVal = parseInt(contrastSlider?.value || '0', 10) || 0;
+      const whitenerThresholdVal = parseInt(whitenerSlider?.value || '220', 10) || 220;
 
       if (topMode === 'namedate') {
         const nameVal = namedateNameInput?.value.trim() || '';
@@ -1830,9 +2003,17 @@ const allPresetsJson = JSON.stringify(presets);
         padWhite = false;
         slotId = slot.id;
         docType = slot.docType;
+
+        if (slotNamedateCheckbox && slotNamedateCheckbox.checked && slot.docType === 'photo') {
+          const nameVal = slotCandidateNameInput?.value.trim() || '';
+          const dateVal = slotCandidateDateInput?.value.trim() || '';
+          placardName = nameVal || undefined;
+          placardDate = dateVal || undefined;
+        }
       }
 
-      const isSignature = ['signature', 'thumb', 'declaration'].includes(docType) ||
+      const activeSlotObj = slots[activeSlotIndex] || slots[0];
+      const isSignature = (activeSlotObj && activeSlotObj.defaultWhitener) || ['signature', 'thumb', 'declaration'].includes(docType) ||
         (initialModeProp === 'signature-compressor' && (sigcompressEnableWhitener ? sigcompressEnableWhitener.checked : true)) ||
         initialModeProp === 'signature-resizer' ||
         initialModeProp === 'whitener';
@@ -1856,16 +2037,16 @@ const allPresetsJson = JSON.stringify(presets);
       if (requestId !== currentRequestId) return;
 
       const outputUrl = URL.createObjectURL(result.blob);
-      processedImage.src = outputUrl;
+      if (processedImage) processedImage.src = outputUrl;
 
       const actualKB = result.sizeKB.toFixed(1);
-      processedInfo.textContent = `${result.width}×${result.height} px · ${actualKB} KB (${result.dpi} DPI)`;
+      if (processedInfo) processedInfo.textContent = `${result.width}×${result.height} px · ${actualKB} KB (${result.dpi} DPI)`;
 
       // Audit Checklist update
-      resQualityTag.textContent = `Q: ${Math.round(result.qualityUsed * 100)}%`;
-      resAuditDims.textContent = `${result.width}×${result.height} px`;
-      resAuditKb.textContent = `${actualKB} KB`;
-      resAuditDpi.textContent = `${result.dpi} DPI`;
+      if (resQualityTag) resQualityTag.textContent = `Q: ${Math.round(result.qualityUsed * 100)}%`;
+      if (resAuditDims) resAuditDims.textContent = `${result.width}×${result.height} px`;
+      if (resAuditKb) resAuditKb.textContent = `${actualKB} KB`;
+      if (resAuditDpi) resAuditDpi.textContent = `${result.dpi} DPI`;
 
       let prefix = activePreset.slug;
       if (topMode === 'namedate') prefix = 'photo-namedate';
@@ -1883,7 +2064,7 @@ const allPresetsJson = JSON.stringify(presets);
         result.blob.size
       );
       lastProcessedResult = { blob: result.blob, filename: safeFilename };
-      downloadBtnText.textContent = `Download ${safeFilename} (${actualKB} KB)`;
+      if (downloadBtnText) downloadBtnText.textContent = `Download ${safeFilename} (${actualKB} KB)`;
       if (resultFilenameDisplay) {
         resultFilenameDisplay.textContent = `${safeFilename} (${actualKB} KB)`;
       }
@@ -1894,15 +2075,15 @@ const allPresetsJson = JSON.stringify(presets);
 
         if (activeSlotIndex < slots.length - 1) {
           const nextSlot = slots[activeSlotIndex + 1];
-          nextSlotName.textContent = nextSlot.label;
-          btnNextSlot.classList.remove('hidden');
+          if (nextSlotName) nextSlotName.textContent = nextSlot.label;
+          if (btnNextSlot) btnNextSlot.classList.remove('hidden');
         } else {
-          btnNextSlot.classList.add('hidden');
+          if (btnNextSlot) btnNextSlot.classList.add('hidden');
         }
       }
 
-      processingLoader.classList.add('hidden');
-      previewContainer.classList.remove('hidden');
+      if (processingLoader) processingLoader.classList.add('hidden');
+      if (previewContainer) previewContainer.classList.remove('hidden');
 
     } catch (err: any) {
       processingLoader.classList.add('hidden');

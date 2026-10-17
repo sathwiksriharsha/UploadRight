@@ -34,10 +34,17 @@ if (preset.hasDeclaration) {
 const relatedPresets = presets.filter((p) => p.slug !== preset.slug).slice(0, 3);
 
 // JSON-LD Schemas
+const faqsList = preset.faqs || [
+  {
+    question: `What is the official photo and signature size for ${preset.shortTitle || preset.exam}?`,
+    answer: `For ${preset.shortTitle || preset.exam}, candidate photograph must be ${preset.slots[0].widthPx}×${preset.slots[0].heightPx} px (${preset.slots[0].minKB}–${preset.slots[0].maxKB} KB) and signature must be ${preset.slots[1] ? `${preset.slots[1].widthPx}×${preset.slots[1].heightPx} px (${preset.slots[1].minKB}–${preset.slots[1].maxKB} KB)` : 'as per official guidelines'}.`
+  }
+];
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": preset.faqs.map((f) => ({
+  "mainEntity": faqsList.map((f) => ({
     "@type": "Question",
     "name": f.question,
     "acceptedAnswer": {

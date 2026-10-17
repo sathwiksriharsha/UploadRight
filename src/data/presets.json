@@ -37,7 +37,8 @@
         "aspectRatio": 2.33,
         "background": "White paper, black or dark blue ink",
         "notes": "Sign on white unruled paper with black ink pen. Do not use capital letters throughout.",
-        "whitenerDefault": true
+        "whitenerDefault": true,
+        "defaultWhitener": true
       }
     ],
     "rejectionReasons": [
@@ -82,36 +83,38 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Photo",
+        "label": "Photograph",
         "docType": "photo",
         "widthPx": 200,
         "heightPx": 230,
-        "physicalSize": "2.5 × 2.9 cm",
+        "physicalSize": "4.5 × 3.5 cm",
         "minKB": 20,
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 0.87,
-        "background": "White or off-white plain background",
-        "notes": "Recent colour passport photograph with visible face and ears."
+        "background": "White or light background",
+        "notes": "Recent passport photo with clear face and visible ears.",
+        "defaultWhitener": false
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "Signature (Black Ink)",
         "docType": "signature",
         "widthPx": 140,
         "heightPx": 60,
-        "physicalSize": "3.5 × 1.5 cm",
+        "physicalSize": "4.0 × 2.0 cm",
         "minKB": 10,
         "maxKB": 20,
         "dpi": 200,
         "aspectRatio": 2.33,
-        "background": "White paper, black ink",
-        "notes": "Sign on white paper with black ink pen. Do not use all capitals.",
+        "background": "White paper, black ink only",
+        "notes": "Sign on white unruled paper with black ink pen. Do NOT use capital letters.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       },
       {
         "id": "thumb",
-        "label": "Left Thumb",
+        "label": "Left Thumb Impression",
         "docType": "thumb",
         "widthPx": 240,
         "heightPx": 240,
@@ -120,25 +123,26 @@
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 1,
-        "background": "White paper with clear thumb impression",
-        "notes": "Left hand thumb impression on white paper. Use blue or black stamp pad ink.",
+        "background": "White paper with blue or black ink",
+        "notes": "Clear left thumb impression on white paper without smudging.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       },
       {
         "id": "declaration",
-        "label": "Declaration",
+        "label": "Handwritten Declaration",
         "docType": "declaration",
         "widthPx": 800,
         "heightPx": 400,
-        "physicalSize": "10.0 × 5.0 cm",
+        "physicalSize": "10 × 5 cm",
         "minKB": 50,
         "maxKB": 100,
         "dpi": 200,
         "aspectRatio": 2,
-        "background": "White unruled paper, black ink",
-        "notes": "Handwritten declaration in English. Use black ink on plain white unruled paper.",
-        "whitenerDefault": true,
-        "declarationKey": "ibps"
+        "background": "White paper with black ink",
+        "notes": "Must be handwritten by candidate in running English on white unruled paper.",
+        "defaultWhitener": true,
+        "whitenerDefault": true
       }
     ],
     "rejectionReasons": [
@@ -179,36 +183,38 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Photo",
+        "label": "Photograph",
         "docType": "photo",
         "widthPx": 200,
         "heightPx": 230,
-        "physicalSize": "2.5 × 2.9 cm",
+        "physicalSize": "4.5 × 3.5 cm",
         "minKB": 20,
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 0.87,
-        "background": "White background",
-        "notes": "Recent colour passport-size photograph."
+        "background": "White or light background",
+        "notes": "Recent passport photo with clear face and visible ears.",
+        "defaultWhitener": false
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "Signature (Black Ink)",
         "docType": "signature",
         "widthPx": 140,
         "heightPx": 60,
-        "physicalSize": "3.5 × 1.5 cm",
+        "physicalSize": "4.0 × 2.0 cm",
         "minKB": 10,
         "maxKB": 20,
         "dpi": 200,
         "aspectRatio": 2.33,
-        "background": "White paper, black ink",
-        "notes": "Sign on white paper with black ink pen.",
+        "background": "White paper, black ink only",
+        "notes": "Sign on white unruled paper with black ink pen. Do NOT use capital letters.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       },
       {
         "id": "thumb",
-        "label": "Left Thumb",
+        "label": "Left Thumb Impression",
         "docType": "thumb",
         "widthPx": 240,
         "heightPx": 240,
@@ -217,25 +223,26 @@
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 1,
-        "background": "White paper",
-        "notes": "Left hand thumb impression on white paper.",
+        "background": "White paper with blue or black ink",
+        "notes": "Clear left thumb impression on white paper without smudging.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       },
       {
         "id": "declaration",
-        "label": "Declaration",
+        "label": "Handwritten Declaration",
         "docType": "declaration",
         "widthPx": 800,
         "heightPx": 400,
-        "physicalSize": "10.0 × 5.0 cm",
+        "physicalSize": "10 × 5 cm",
         "minKB": 50,
         "maxKB": 100,
         "dpi": 200,
         "aspectRatio": 2,
-        "background": "White unruled paper, black ink",
-        "notes": "Handwritten declaration in English on white unruled paper.",
-        "whitenerDefault": true,
-        "declarationKey": "sbi"
+        "background": "White paper with black ink",
+        "notes": "SBI official declaration text handwritten in black ink on white paper.",
+        "defaultWhitener": true,
+        "whitenerDefault": true
       }
     ],
     "rejectionReasons": [
@@ -271,7 +278,7 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Photo",
+        "label": "Square Photograph",
         "docType": "photo",
         "widthPx": 550,
         "heightPx": 550,
@@ -280,13 +287,14 @@
         "maxKB": 300,
         "dpi": 200,
         "aspectRatio": 1,
-        "background": "White or light background",
-        "notes": "Photo with candidate holding a placard showing Name and Date of photo. Dimensions can range from 350×350 to 1000×1000 px.",
+        "background": "Light or white plain background",
+        "notes": "UPSC requires a 1:1 SQUARE photo (350×350 to 1000×1000 px) with Candidate Name and Date of Photo printed.",
+        "defaultNameDate": true,
         "placardDefault": true
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "Square Signature",
         "docType": "signature",
         "widthPx": 500,
         "heightPx": 500,
@@ -295,8 +303,9 @@
         "maxKB": 300,
         "dpi": 200,
         "aspectRatio": 1,
-        "background": "White paper, black ink",
-        "notes": "Signature on white paper. Dimensions can range from 350×350 to 1000×1000 px.",
+        "background": "White paper, black ink pen",
+        "notes": "UPSC requires signature in 1:1 square ratio with crisp white background.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       }
     ],
@@ -333,22 +342,23 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Passport Photo",
+        "label": "Passport Photograph",
         "docType": "photo",
-        "widthPx": 500,
-        "heightPx": 700,
-        "physicalSize": "2.5 × 3.5 inch",
+        "widthPx": 275,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
         "minKB": 10,
         "maxKB": 200,
-        "dpi": 300,
-        "aspectRatio": 0.714,
-        "background": "White background",
-        "notes": "Recent passport-size photograph with name and date written on it.",
+        "dpi": 200,
+        "aspectRatio": 0.777,
+        "background": "White background (80% face coverage)",
+        "notes": "Passport photo with 80% face coverage (ears visible) on white background with candidate Name and Date printed.",
+        "defaultNameDate": true,
         "placardDefault": true
       },
       {
         "id": "postcard",
-        "label": "Postcard Photo",
+        "label": "Postcard Photograph (4×6\")",
         "docType": "photo",
         "widthPx": 1200,
         "heightPx": 1800,
@@ -357,38 +367,41 @@
         "maxKB": 200,
         "dpi": 300,
         "aspectRatio": 0.667,
-        "background": "White background",
-        "notes": "Postcard-size photo (4×6 inches) with candidate's name and date clearly visible.",
+        "background": "White background (80% face coverage)",
+        "notes": "Postcard 4×6 inch size with candidate Name and Date printed on bottom.",
+        "defaultNameDate": true,
         "placardDefault": true
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "Running Hand Signature",
         "docType": "signature",
-        "widthPx": 350,
-        "heightPx": 150,
+        "widthPx": 275,
+        "heightPx": 118,
         "physicalSize": "3.5 × 1.5 cm",
         "minKB": 4,
         "maxKB": 30,
         "dpi": 200,
         "aspectRatio": 2.33,
-        "background": "White paper, black ink",
-        "notes": "Sign on white paper with black ink pen.",
+        "background": "White paper with black ink",
+        "notes": "Running handwriting signature. Capital letters are rejected.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       },
       {
-        "id": "thumb",
-        "label": "Thumb Impression",
+        "id": "fingers_thumb",
+        "label": "Fingers & Thumb Impression",
         "docType": "thumb",
-        "widthPx": 350,
-        "heightPx": 350,
-        "physicalSize": "3.5 × 3.5 cm",
+        "widthPx": 400,
+        "heightPx": 200,
+        "physicalSize": "6.0 × 3.0 cm",
         "minKB": 10,
         "maxKB": 200,
         "dpi": 200,
-        "aspectRatio": 1,
-        "background": "White paper",
-        "notes": "Left or right thumb impression on white paper using stamp pad ink.",
+        "aspectRatio": 2,
+        "background": "White paper with blue ink",
+        "notes": "Clear impressions of both hands' fingers and thumbs on plain white paper.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       }
     ],
@@ -450,7 +463,8 @@
         "aspectRatio": 2.33,
         "background": "White paper, black ink",
         "notes": "Sign on white paper with black ink pen. Signature should not be in all capital letters.",
-        "whitenerDefault": true
+        "whitenerDefault": true,
+        "defaultWhitener": true
       }
     ],
     "rejectionReasons": [
@@ -486,31 +500,32 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Photo",
+        "label": "Photo (200 DPI)",
         "docType": "photo",
         "widthPx": 276,
         "heightPx": 197,
         "physicalSize": "3.5 × 2.5 cm",
-        "minKB": 2,
-        "maxKB": 50,
+        "minKB": 15,
+        "maxKB": 48,
         "dpi": 200,
         "aspectRatio": 1.4,
-        "background": "White or light background",
-        "notes": "Recent colour passport photograph. DPI must be exactly 200 in the JPEG header."
+        "background": "White background",
+        "notes": "Protean NSDL requires 3.5×2.5 cm at 200 DPI, strictly under 50 KB."
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "Signature (200 DPI)",
         "docType": "signature",
-        "widthPx": 157,
-        "heightPx": 354,
-        "physicalSize": "2.0 × 4.5 cm",
-        "minKB": 2,
-        "maxKB": 50,
+        "widthPx": 354,
+        "heightPx": 157,
+        "physicalSize": "4.5 × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 48,
         "dpi": 200,
-        "aspectRatio": 0.44,
-        "background": "White paper, black ink",
-        "notes": "Signature on white paper. DPI must be exactly 200 in the JPEG header.",
+        "aspectRatio": 2.25,
+        "background": "White background",
+        "notes": "Protean NSDL requires 4.5×2.0 cm at 200 DPI, strictly under 50 KB.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       }
     ],
@@ -547,31 +562,32 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Photo",
+        "label": "Photo (300 DPI)",
         "docType": "photo",
         "widthPx": 213,
         "heightPx": 213,
-        "physicalSize": "1.8 × 1.8 cm",
-        "minKB": 2,
-        "maxKB": 30,
+        "physicalSize": "2.5 × 2.5 cm",
+        "minKB": 10,
+        "maxKB": 29,
         "dpi": 300,
         "aspectRatio": 1,
         "background": "White background",
-        "notes": "Recent colour passport photograph. DPI must be exactly 300 in the JPEG header."
+        "notes": "UTIITSL requires strictly 213×213 px at 300 DPI, under 30 KB."
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "Signature (600 DPI)",
         "docType": "signature",
         "widthPx": 400,
         "heightPx": 200,
-        "physicalSize": "1.7 × 0.85 cm",
-        "minKB": 2,
-        "maxKB": 60,
+        "physicalSize": "4.0 × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 58,
         "dpi": 600,
         "aspectRatio": 2,
-        "background": "White paper, black ink",
-        "notes": "Signature on white paper. DPI must be exactly 600 in the JPEG header.",
+        "background": "White background",
+        "notes": "UTIITSL requires strictly 600 DPI binary JFIF marker, under 60 KB.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       }
     ],
@@ -607,22 +623,36 @@
     "metaDescription": "Free online India Post GDS photo and signature resizer. Photo 200×230 px 20-50 KB, Signature 140×60 px 10-20 KB, 200 DPI. 100% private.",
     "slots": [
       {
-        "id": "photo",
-        "label": "Photo",
+        "id": "photo_standard",
+        "label": "Photograph (Standard 20–50 KB)",
         "docType": "photo",
         "widthPx": 200,
         "heightPx": 230,
-        "physicalSize": "2.5 × 2.9 cm",
+        "physicalSize": "2.5 × 3.0 cm",
         "minKB": 20,
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 0.87,
-        "background": "White plain background",
-        "notes": "Recent passport photo with face clearly visible. 200×230 px, 20–50 KB."
+        "background": "White or light background",
+        "notes": "India Post GDS standard portal requirement (20 to 50 KB)."
+      },
+      {
+        "id": "photo_highres",
+        "label": "Photograph (High-Res 30–100 KB)",
+        "docType": "photo",
+        "widthPx": 320,
+        "heightPx": 400,
+        "physicalSize": "3.5 × 4.5 cm",
+        "minKB": 30,
+        "maxKB": 100,
+        "dpi": 200,
+        "aspectRatio": 0.8,
+        "background": "White background",
+        "notes": "India Post GDS newer cycle high-resolution portal slot (up to 100 KB)."
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "GDS Signature",
         "docType": "signature",
         "widthPx": 140,
         "heightPx": 60,
@@ -631,8 +661,9 @@
         "maxKB": 20,
         "dpi": 200,
         "aspectRatio": 2.33,
-        "background": "White paper, dark ink",
-        "notes": "Sign in black ink on white unruled paper. 140×60 px, 10–20 KB.",
+        "background": "White paper with dark ink",
+        "notes": "Sign on white paper with black or blue pen. Must not exceed 20 KB.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       }
     ],
@@ -694,7 +725,8 @@
         "aspectRatio": 2.33,
         "background": "White paper, black ink",
         "notes": "Sign in black pen on white unruled paper. 3–30 KB.",
-        "whitenerDefault": true
+        "whitenerDefault": true,
+        "defaultWhitener": true
       }
     ],
     "rejectionReasons": [
@@ -728,32 +760,47 @@
     "metaDescription": "Free RRB photo and signature resizer for NTPC, Group D, ALP, JE. Photo 35×45 mm 30-70 KB, Signature 50×20 mm 30-70 KB. 100% private.",
     "slots": [
       {
-        "id": "photo",
-        "label": "Photo",
+        "id": "photo_ntpc",
+        "label": "NTPC & Group D Photo",
         "docType": "photo",
-        "widthPx": 276,
+        "widthPx": 275,
         "heightPx": 354,
-        "physicalSize": "3.5 × 4.5 cm",
-        "minKB": 30,
+        "physicalSize": "35 × 45 mm",
+        "minKB": 20,
         "maxKB": 70,
         "dpi": 200,
-        "aspectRatio": 0.78,
+        "aspectRatio": 0.777,
         "background": "Plain white background",
-        "notes": "Color passport photo taken against white background. 30–70 KB."
+        "notes": "Clear front view without caps or tinted glasses. Plain white background mandatory."
+      },
+      {
+        "id": "photo_alp",
+        "label": "ALP & Technician Photo",
+        "docType": "photo",
+        "widthPx": 275,
+        "heightPx": 354,
+        "physicalSize": "35 × 45 mm",
+        "minKB": 50,
+        "maxKB": 150,
+        "dpi": 200,
+        "aspectRatio": 0.777,
+        "background": "Plain white background",
+        "notes": "Railway ALP recruitment slot allowing 50 KB to 150 KB high-clarity file size."
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "Railway Signature",
         "docType": "signature",
-        "widthPx": 394,
-        "heightPx": 157,
-        "physicalSize": "5.0 × 2.0 cm",
-        "minKB": 30,
-        "maxKB": 70,
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "40 × 20 mm",
+        "minKB": 10,
+        "maxKB": 40,
         "dpi": 200,
-        "aspectRatio": 2.5,
-        "background": "White paper, black ink",
-        "notes": "Running handwriting on white paper in black ink. 30–70 KB.",
+        "aspectRatio": 2.33,
+        "background": "White paper with black ink",
+        "notes": "Sign on white paper with black ink pen in running handwriting.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       }
     ],
@@ -814,7 +861,8 @@
         "aspectRatio": 3.5,
         "background": "White paper, dark blue or black ink",
         "notes": "Sign inside rectangular box with dark ink pen. 10–200 KB.",
-        "whitenerDefault": true
+        "whitenerDefault": true,
+        "defaultWhitener": true
       }
     ],
     "rejectionReasons": [
@@ -849,32 +897,47 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Photo",
+        "label": "UPPSC OTR Photograph",
         "docType": "photo",
         "widthPx": 276,
         "heightPx": 354,
         "physicalSize": "3.5 × 4.5 cm",
-        "minKB": 10,
+        "minKB": 20,
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 0.78,
-        "background": "Light grey or white background",
-        "notes": "Recent passport photo with clear frontal view. Max 50 KB."
+        "background": "White or light background",
+        "notes": "Recent passport photo with clear front view."
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "UPPSC OTR Signature",
         "docType": "signature",
         "widthPx": 276,
         "heightPx": 118,
         "physicalSize": "3.5 × 1.5 cm",
-        "minKB": 5,
-        "maxKB": 30,
+        "minKB": 10,
+        "maxKB": 20,
         "dpi": 200,
-        "aspectRatio": 2.33,
-        "background": "White paper, black ink",
-        "notes": "Sign in black ink on white unruled paper. Max 30 KB.",
+        "aspectRatio": 2.34,
+        "background": "White paper with black ink",
+        "notes": "Sign on white paper with black ink pen.",
+        "defaultWhitener": true,
         "whitenerDefault": true
+      },
+      {
+        "id": "composite",
+        "label": "RO/ARO Composite (Photo + Sign)",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 472,
+        "physicalSize": "3.5 × 6.0 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.585,
+        "background": "White background",
+        "notes": "Composite file containing photo on top and signature attached underneath."
       }
     ],
     "rejectionReasons": [
@@ -909,31 +972,48 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Photo",
+        "label": "BPSC Photograph",
         "docType": "photo",
         "widthPx": 250,
         "heightPx": 250,
         "physicalSize": "2.5 × 2.5 cm",
-        "minKB": 10,
+        "minKB": 15,
         "maxKB": 25,
         "dpi": 200,
         "aspectRatio": 1,
-        "background": "Light plain background",
-        "notes": "Square passport photograph. 250×250 px, max 25 KB."
+        "background": "Light background",
+        "notes": "Recent passport photo for BPSC TRE and CCE (strictly under 25 KB)."
       },
       {
-        "id": "signature",
-        "label": "Signature (English/Hindi)",
+        "id": "signature_en",
+        "label": "English Signature",
         "docType": "signature",
-        "widthPx": 250,
-        "heightPx": 150,
-        "physicalSize": "3.5 × 2.0 cm",
-        "minKB": 5,
+        "widthPx": 220,
+        "heightPx": 100,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 10,
         "maxKB": 15,
         "dpi": 200,
-        "aspectRatio": 1.66,
-        "background": "White paper, blue/black ink",
-        "notes": "Sign in black ink. 250×150 px, max 15 KB.",
+        "aspectRatio": 2.2,
+        "background": "White paper with black ink",
+        "notes": "English running handwriting signature (strictly under 15 KB).",
+        "defaultWhitener": true,
+        "whitenerDefault": true
+      },
+      {
+        "id": "signature_hi",
+        "label": "Hindi (Devanagari) Signature",
+        "docType": "signature",
+        "widthPx": 220,
+        "heightPx": 100,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 10,
+        "maxKB": 15,
+        "dpi": 200,
+        "aspectRatio": 2.2,
+        "background": "White paper with black ink",
+        "notes": "Hindi Devanagari signature required for Bihar PSC (strictly under 15 KB).",
+        "defaultWhitener": true,
         "whitenerDefault": true
       }
     ],
@@ -994,7 +1074,8 @@
         "aspectRatio": 2.33,
         "background": "White paper, black ink",
         "notes": "Sign in black ballpoint pen on plain white paper. 10–20 KB.",
-        "whitenerDefault": true
+        "whitenerDefault": true,
+        "defaultWhitener": true
       }
     ],
     "rejectionReasons": [
@@ -1054,7 +1135,8 @@
         "aspectRatio": 2.33,
         "background": "White paper, black ink",
         "notes": "Sign in black pen on white unruled paper. Running handwriting only.",
-        "whitenerDefault": true
+        "whitenerDefault": true,
+        "defaultWhitener": true
       }
     ],
     "rejectionReasons": [
@@ -1114,7 +1196,8 @@
         "aspectRatio": 2.33,
         "background": "White paper, black ink",
         "notes": "Signature in running handwriting on white unruled paper. 10–20 KB.",
-        "whitenerDefault": true
+        "whitenerDefault": true,
+        "defaultWhitener": true
       }
     ],
     "rejectionReasons": [
@@ -1174,7 +1257,8 @@
         "aspectRatio": 2.33,
         "background": "White paper, black ink",
         "notes": "Sign in black ink on white unruled paper. 10–20 KB.",
-        "whitenerDefault": true
+        "whitenerDefault": true,
+        "defaultWhitener": true
       }
     ],
     "rejectionReasons": [
@@ -1210,21 +1294,22 @@
     "slots": [
       {
         "id": "photo",
-        "label": "PO Photo",
+        "label": "Photograph",
         "docType": "photo",
         "widthPx": 200,
         "heightPx": 230,
-        "physicalSize": "2.5 × 2.9 cm",
+        "physicalSize": "4.5 × 3.5 cm",
         "minKB": 20,
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 0.87,
-        "background": "Light plain background",
-        "notes": "Recent passport photo with clear frontal view. 20–50 KB."
+        "background": "White or light background",
+        "notes": "Recent passport photo with clear face and visible ears.",
+        "defaultWhitener": false
       },
       {
         "id": "signature",
-        "label": "PO Signature",
+        "label": "Signature (Black Ink)",
         "docType": "signature",
         "widthPx": 140,
         "heightPx": 60,
@@ -1233,8 +1318,9 @@
         "maxKB": 20,
         "dpi": 200,
         "aspectRatio": 2.33,
-        "background": "White paper, black ink",
-        "notes": "Sign in black ink. Never use capital letters. 10–20 KB.",
+        "background": "White paper, black ink only",
+        "notes": "Sign on white unruled paper with black ink pen. Do NOT use capital letters.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       },
       {
@@ -1248,8 +1334,25 @@
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 1,
-        "background": "White paper, blue or black ink",
+        "background": "White paper with blue or black ink",
         "notes": "Clear left thumb impression on white paper without smudging.",
+        "defaultWhitener": true,
+        "whitenerDefault": true
+      },
+      {
+        "id": "declaration",
+        "label": "Handwritten Declaration",
+        "docType": "declaration",
+        "widthPx": 800,
+        "heightPx": 400,
+        "physicalSize": "10 × 5 cm",
+        "minKB": 50,
+        "maxKB": 100,
+        "dpi": 200,
+        "aspectRatio": 2,
+        "background": "White paper with black ink",
+        "notes": "Must be handwritten by candidate in running English on white unruled paper.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       }
     ],
@@ -1286,21 +1389,22 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Clerk Photo",
+        "label": "Photograph",
         "docType": "photo",
         "widthPx": 200,
         "heightPx": 230,
-        "physicalSize": "2.5 × 2.9 cm",
+        "physicalSize": "4.5 × 3.5 cm",
         "minKB": 20,
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 0.87,
-        "background": "Light plain background",
-        "notes": "Recent passport photo with clear frontal view. 20–50 KB."
+        "background": "White or light background",
+        "notes": "Recent passport photo with clear face and visible ears.",
+        "defaultWhitener": false
       },
       {
         "id": "signature",
-        "label": "Clerk Signature",
+        "label": "Signature (Black Ink)",
         "docType": "signature",
         "widthPx": 140,
         "heightPx": 60,
@@ -1309,8 +1413,41 @@
         "maxKB": 20,
         "dpi": 200,
         "aspectRatio": 2.33,
-        "background": "White paper, black ink",
-        "notes": "Sign in black ink. 10–20 KB.",
+        "background": "White paper, black ink only",
+        "notes": "Sign on white unruled paper with black ink pen. Do NOT use capital letters.",
+        "defaultWhitener": true,
+        "whitenerDefault": true
+      },
+      {
+        "id": "thumb",
+        "label": "Left Thumb Impression",
+        "docType": "thumb",
+        "widthPx": 240,
+        "heightPx": 240,
+        "physicalSize": "3.0 × 3.0 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 1,
+        "background": "White paper with blue or black ink",
+        "notes": "Clear left thumb impression on white paper without smudging.",
+        "defaultWhitener": true,
+        "whitenerDefault": true
+      },
+      {
+        "id": "declaration",
+        "label": "Handwritten Declaration",
+        "docType": "declaration",
+        "widthPx": 800,
+        "heightPx": 400,
+        "physicalSize": "10 × 5 cm",
+        "minKB": 50,
+        "maxKB": 100,
+        "dpi": 200,
+        "aspectRatio": 2,
+        "background": "White paper with black ink",
+        "notes": "Must be handwritten by candidate in running English on white unruled paper.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       }
     ],
@@ -1345,32 +1482,47 @@
     "metaDescription": "Free RRB NTPC photo resizer. Photo 35×45 mm (30-70 KB), Signature 50×20 mm (30-70 KB), 200 DPI. 100% private.",
     "slots": [
       {
-        "id": "photo",
-        "label": "NTPC Photo",
+        "id": "photo_ntpc",
+        "label": "NTPC & Group D Photo",
         "docType": "photo",
-        "widthPx": 276,
+        "widthPx": 275,
         "heightPx": 354,
-        "physicalSize": "3.5 × 4.5 cm",
-        "minKB": 30,
+        "physicalSize": "35 × 45 mm",
+        "minKB": 20,
         "maxKB": 70,
         "dpi": 200,
-        "aspectRatio": 0.78,
+        "aspectRatio": 0.777,
         "background": "Plain white background",
-        "notes": "Color passport photo taken against white background. 30–70 KB."
+        "notes": "Clear front view without caps or tinted glasses. Plain white background mandatory."
+      },
+      {
+        "id": "photo_alp",
+        "label": "ALP & Technician Photo",
+        "docType": "photo",
+        "widthPx": 275,
+        "heightPx": 354,
+        "physicalSize": "35 × 45 mm",
+        "minKB": 50,
+        "maxKB": 150,
+        "dpi": 200,
+        "aspectRatio": 0.777,
+        "background": "Plain white background",
+        "notes": "Railway ALP recruitment slot allowing 50 KB to 150 KB high-clarity file size."
       },
       {
         "id": "signature",
-        "label": "NTPC Signature",
+        "label": "Railway Signature",
         "docType": "signature",
-        "widthPx": 394,
-        "heightPx": 157,
-        "physicalSize": "5.0 × 2.0 cm",
-        "minKB": 30,
-        "maxKB": 70,
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "40 × 20 mm",
+        "minKB": 10,
+        "maxKB": 40,
         "dpi": 200,
-        "aspectRatio": 2.5,
-        "background": "White paper, black ink",
-        "notes": "Sign in black ink pen on white paper. 30–70 KB.",
+        "aspectRatio": 2.33,
+        "background": "White paper with black ink",
+        "notes": "Sign on white paper with black ink pen in running handwriting.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       }
     ],
@@ -1431,7 +1583,8 @@
         "aspectRatio": 2.33,
         "background": "White paper, black ink",
         "notes": "Sign in black ink on white unruled paper. 10–20 KB.",
-        "whitenerDefault": true
+        "whitenerDefault": true,
+        "defaultWhitener": true
       }
     ],
     "rejectionReasons": [
@@ -1466,7 +1619,7 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Photo",
+        "label": "Square Photograph",
         "docType": "photo",
         "widthPx": 550,
         "heightPx": 550,
@@ -1475,13 +1628,14 @@
         "maxKB": 300,
         "dpi": 200,
         "aspectRatio": 1,
-        "background": "White or light background",
-        "notes": "Photo with candidate holding a placard showing Name and Date of photo. Dimensions can range from 350×350 to 1000×1000 px.",
+        "background": "Light or white plain background",
+        "notes": "UPSC requires a 1:1 SQUARE photo (350×350 to 1000×1000 px) with Candidate Name and Date of Photo printed.",
+        "defaultNameDate": true,
         "placardDefault": true
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "Square Signature",
         "docType": "signature",
         "widthPx": 500,
         "heightPx": 500,
@@ -1490,8 +1644,9 @@
         "maxKB": 300,
         "dpi": 200,
         "aspectRatio": 1,
-        "background": "White paper, black ink",
-        "notes": "Signature on white paper. Dimensions can range from 350×350 to 1000×1000 px.",
+        "background": "White paper, black ink pen",
+        "notes": "UPSC requires signature in 1:1 square ratio with crisp white background.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       }
     ],
@@ -1529,36 +1684,38 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Photo",
+        "label": "Photograph",
         "docType": "photo",
         "widthPx": 200,
         "heightPx": 230,
-        "physicalSize": "2.5 × 2.9 cm",
+        "physicalSize": "4.5 × 3.5 cm",
         "minKB": 20,
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 0.87,
-        "background": "White or off-white plain background",
-        "notes": "Recent colour passport photograph with visible face and ears."
+        "background": "White or light background",
+        "notes": "Recent passport photo with clear face and visible ears.",
+        "defaultWhitener": false
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "Signature (Black Ink)",
         "docType": "signature",
         "widthPx": 140,
         "heightPx": 60,
-        "physicalSize": "3.5 × 1.5 cm",
+        "physicalSize": "4.0 × 2.0 cm",
         "minKB": 10,
         "maxKB": 20,
         "dpi": 200,
         "aspectRatio": 2.33,
-        "background": "White paper, black ink",
-        "notes": "Sign on white paper with black ink pen. Do not use all capitals.",
+        "background": "White paper, black ink only",
+        "notes": "Sign on white unruled paper with black ink pen. Do NOT use capital letters.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       },
       {
         "id": "thumb",
-        "label": "Left Thumb",
+        "label": "Left Thumb Impression",
         "docType": "thumb",
         "widthPx": 240,
         "heightPx": 240,
@@ -1567,25 +1724,26 @@
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 1,
-        "background": "White paper with clear thumb impression",
-        "notes": "Left hand thumb impression on white paper. Use blue or black stamp pad ink.",
+        "background": "White paper with blue or black ink",
+        "notes": "Clear left thumb impression on white paper without smudging.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       },
       {
         "id": "declaration",
-        "label": "Declaration",
+        "label": "Handwritten Declaration",
         "docType": "declaration",
         "widthPx": 800,
         "heightPx": 400,
-        "physicalSize": "10.0 × 5.0 cm",
+        "physicalSize": "10 × 5 cm",
         "minKB": 50,
         "maxKB": 100,
         "dpi": 200,
         "aspectRatio": 2,
-        "background": "White unruled paper, black ink",
-        "notes": "Handwritten declaration in English. Use black ink on plain white unruled paper.",
-        "whitenerDefault": true,
-        "declarationKey": "ibps"
+        "background": "White paper with black ink",
+        "notes": "Must be handwritten by candidate in running English on white unruled paper.",
+        "defaultWhitener": true,
+        "whitenerDefault": true
       }
     ],
     "rejectionReasons": [
@@ -1625,22 +1783,23 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Passport Photo",
+        "label": "Passport Photograph",
         "docType": "photo",
-        "widthPx": 500,
-        "heightPx": 700,
-        "physicalSize": "2.5 × 3.5 inch",
+        "widthPx": 275,
+        "heightPx": 354,
+        "physicalSize": "3.5 × 4.5 cm",
         "minKB": 10,
         "maxKB": 200,
-        "dpi": 300,
-        "aspectRatio": 0.714,
-        "background": "White background",
-        "notes": "Recent passport-size photograph with name and date written on it.",
+        "dpi": 200,
+        "aspectRatio": 0.777,
+        "background": "White background (80% face coverage)",
+        "notes": "Passport photo with 80% face coverage (ears visible) on white background with candidate Name and Date printed.",
+        "defaultNameDate": true,
         "placardDefault": true
       },
       {
         "id": "postcard",
-        "label": "Postcard Photo",
+        "label": "Postcard Photograph (4×6\")",
         "docType": "photo",
         "widthPx": 1200,
         "heightPx": 1800,
@@ -1649,38 +1808,41 @@
         "maxKB": 200,
         "dpi": 300,
         "aspectRatio": 0.667,
-        "background": "White background",
-        "notes": "Postcard-size photo (4×6 inches) with candidate's name and date clearly visible.",
+        "background": "White background (80% face coverage)",
+        "notes": "Postcard 4×6 inch size with candidate Name and Date printed on bottom.",
+        "defaultNameDate": true,
         "placardDefault": true
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "Running Hand Signature",
         "docType": "signature",
-        "widthPx": 350,
-        "heightPx": 150,
+        "widthPx": 275,
+        "heightPx": 118,
         "physicalSize": "3.5 × 1.5 cm",
         "minKB": 4,
         "maxKB": 30,
         "dpi": 200,
         "aspectRatio": 2.33,
-        "background": "White paper, black ink",
-        "notes": "Sign on white paper with black ink pen.",
+        "background": "White paper with black ink",
+        "notes": "Running handwriting signature. Capital letters are rejected.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       },
       {
-        "id": "thumb",
-        "label": "Thumb Impression",
+        "id": "fingers_thumb",
+        "label": "Fingers & Thumb Impression",
         "docType": "thumb",
-        "widthPx": 350,
-        "heightPx": 350,
-        "physicalSize": "3.5 × 3.5 cm",
+        "widthPx": 400,
+        "heightPx": 200,
+        "physicalSize": "6.0 × 3.0 cm",
         "minKB": 10,
         "maxKB": 200,
         "dpi": 200,
-        "aspectRatio": 1,
-        "background": "White paper",
-        "notes": "Left or right thumb impression on white paper using stamp pad ink.",
+        "aspectRatio": 2,
+        "background": "White paper with blue ink",
+        "notes": "Clear impressions of both hands' fingers and thumbs on plain white paper.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       }
     ],
@@ -1742,7 +1904,8 @@
         "aspectRatio": 2.33,
         "background": "White paper, black ink",
         "notes": "Sign on white paper with black ink pen. Signature should not be in all capital letters.",
-        "whitenerDefault": true
+        "whitenerDefault": true,
+        "defaultWhitener": true
       }
     ],
     "rejectionReasons": [
@@ -1803,7 +1966,8 @@
         "aspectRatio": 2.33,
         "background": "White paper, black ink",
         "notes": "Sign in black pen on white unruled paper. 3–30 KB.",
-        "whitenerDefault": true
+        "whitenerDefault": true,
+        "defaultWhitener": true
       }
     ],
     "rejectionReasons": [
@@ -1863,7 +2027,8 @@
         "aspectRatio": 3.5,
         "background": "White paper, dark blue or black ink",
         "notes": "Sign inside rectangular box with dark ink pen. 10–200 KB.",
-        "whitenerDefault": true
+        "whitenerDefault": true,
+        "defaultWhitener": true
       }
     ],
     "rejectionReasons": [
@@ -1898,32 +2063,47 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Photo",
+        "label": "UPPSC OTR Photograph",
         "docType": "photo",
         "widthPx": 276,
         "heightPx": 354,
         "physicalSize": "3.5 × 4.5 cm",
-        "minKB": 10,
+        "minKB": 20,
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 0.78,
-        "background": "Light grey or white background",
-        "notes": "Recent passport photo with clear frontal view. Max 50 KB."
+        "background": "White or light background",
+        "notes": "Recent passport photo with clear front view."
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "UPPSC OTR Signature",
         "docType": "signature",
         "widthPx": 276,
         "heightPx": 118,
         "physicalSize": "3.5 × 1.5 cm",
-        "minKB": 5,
-        "maxKB": 30,
+        "minKB": 10,
+        "maxKB": 20,
         "dpi": 200,
-        "aspectRatio": 2.33,
-        "background": "White paper, black ink",
-        "notes": "Sign in black ink on white unruled paper. Max 30 KB.",
+        "aspectRatio": 2.34,
+        "background": "White paper with black ink",
+        "notes": "Sign on white paper with black ink pen.",
+        "defaultWhitener": true,
         "whitenerDefault": true
+      },
+      {
+        "id": "composite",
+        "label": "RO/ARO Composite (Photo + Sign)",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 472,
+        "physicalSize": "3.5 × 6.0 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "aspectRatio": 0.585,
+        "background": "White background",
+        "notes": "Composite file containing photo on top and signature attached underneath."
       }
     ],
     "rejectionReasons": [
@@ -1958,31 +2138,48 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Photo",
+        "label": "BPSC Photograph",
         "docType": "photo",
         "widthPx": 250,
         "heightPx": 250,
         "physicalSize": "2.5 × 2.5 cm",
-        "minKB": 10,
+        "minKB": 15,
         "maxKB": 25,
         "dpi": 200,
         "aspectRatio": 1,
-        "background": "Light plain background",
-        "notes": "Square passport photograph. 250×250 px, max 25 KB."
+        "background": "Light background",
+        "notes": "Recent passport photo for BPSC TRE and CCE (strictly under 25 KB)."
       },
       {
-        "id": "signature",
-        "label": "Signature (English/Hindi)",
+        "id": "signature_en",
+        "label": "English Signature",
         "docType": "signature",
-        "widthPx": 250,
-        "heightPx": 150,
-        "physicalSize": "3.5 × 2.0 cm",
-        "minKB": 5,
+        "widthPx": 220,
+        "heightPx": 100,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 10,
         "maxKB": 15,
         "dpi": 200,
-        "aspectRatio": 1.66,
-        "background": "White paper, blue/black ink",
-        "notes": "Sign in black ink. 250×150 px, max 15 KB.",
+        "aspectRatio": 2.2,
+        "background": "White paper with black ink",
+        "notes": "English running handwriting signature (strictly under 15 KB).",
+        "defaultWhitener": true,
+        "whitenerDefault": true
+      },
+      {
+        "id": "signature_hi",
+        "label": "Hindi (Devanagari) Signature",
+        "docType": "signature",
+        "widthPx": 220,
+        "heightPx": 100,
+        "physicalSize": "3.5 × 1.5 cm",
+        "minKB": 10,
+        "maxKB": 15,
+        "dpi": 200,
+        "aspectRatio": 2.2,
+        "background": "White paper with black ink",
+        "notes": "Hindi Devanagari signature required for Bihar PSC (strictly under 15 KB).",
+        "defaultWhitener": true,
         "whitenerDefault": true
       }
     ],
@@ -2017,32 +2214,47 @@
     "metaDescription": "Free RRB photo and signature resizer for NTPC, Group D, ALP, JE. Photo 35×45 mm 30-70 KB, Signature 50×20 mm 30-70 KB. 100% private.",
     "slots": [
       {
-        "id": "photo",
-        "label": "Photo",
+        "id": "photo_ntpc",
+        "label": "NTPC & Group D Photo",
         "docType": "photo",
-        "widthPx": 276,
+        "widthPx": 275,
         "heightPx": 354,
-        "physicalSize": "3.5 × 4.5 cm",
-        "minKB": 30,
+        "physicalSize": "35 × 45 mm",
+        "minKB": 20,
         "maxKB": 70,
         "dpi": 200,
-        "aspectRatio": 0.78,
+        "aspectRatio": 0.777,
         "background": "Plain white background",
-        "notes": "Color passport photo taken against white background. 30–70 KB."
+        "notes": "Clear front view without caps or tinted glasses. Plain white background mandatory."
+      },
+      {
+        "id": "photo_alp",
+        "label": "ALP & Technician Photo",
+        "docType": "photo",
+        "widthPx": 275,
+        "heightPx": 354,
+        "physicalSize": "35 × 45 mm",
+        "minKB": 50,
+        "maxKB": 150,
+        "dpi": 200,
+        "aspectRatio": 0.777,
+        "background": "Plain white background",
+        "notes": "Railway ALP recruitment slot allowing 50 KB to 150 KB high-clarity file size."
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "Railway Signature",
         "docType": "signature",
-        "widthPx": 394,
-        "heightPx": 157,
-        "physicalSize": "5.0 × 2.0 cm",
-        "minKB": 30,
-        "maxKB": 70,
+        "widthPx": 140,
+        "heightPx": 60,
+        "physicalSize": "40 × 20 mm",
+        "minKB": 10,
+        "maxKB": 40,
         "dpi": 200,
-        "aspectRatio": 2.5,
-        "background": "White paper, black ink",
-        "notes": "Running handwriting on white paper in black ink. 30–70 KB.",
+        "aspectRatio": 2.33,
+        "background": "White paper with black ink",
+        "notes": "Sign on white paper with black ink pen in running handwriting.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       }
     ],
@@ -2079,36 +2291,38 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Photo",
+        "label": "Photograph",
         "docType": "photo",
         "widthPx": 200,
         "heightPx": 230,
-        "physicalSize": "2.5 × 2.9 cm",
+        "physicalSize": "4.5 × 3.5 cm",
         "minKB": 20,
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 0.87,
-        "background": "White background",
-        "notes": "Recent colour passport-size photograph."
+        "background": "White or light background",
+        "notes": "Recent passport photo with clear face and visible ears.",
+        "defaultWhitener": false
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "Signature (Black Ink)",
         "docType": "signature",
         "widthPx": 140,
         "heightPx": 60,
-        "physicalSize": "3.5 × 1.5 cm",
+        "physicalSize": "4.0 × 2.0 cm",
         "minKB": 10,
         "maxKB": 20,
         "dpi": 200,
         "aspectRatio": 2.33,
-        "background": "White paper, black ink",
-        "notes": "Sign on white paper with black ink pen.",
+        "background": "White paper, black ink only",
+        "notes": "Sign on white unruled paper with black ink pen. Do NOT use capital letters.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       },
       {
         "id": "thumb",
-        "label": "Left Thumb",
+        "label": "Left Thumb Impression",
         "docType": "thumb",
         "widthPx": 240,
         "heightPx": 240,
@@ -2117,25 +2331,26 @@
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 1,
-        "background": "White paper",
-        "notes": "Left hand thumb impression on white paper.",
+        "background": "White paper with blue or black ink",
+        "notes": "Clear left thumb impression on white paper without smudging.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       },
       {
         "id": "declaration",
-        "label": "Declaration",
+        "label": "Handwritten Declaration",
         "docType": "declaration",
         "widthPx": 800,
         "heightPx": 400,
-        "physicalSize": "10.0 × 5.0 cm",
+        "physicalSize": "10 × 5 cm",
         "minKB": 50,
         "maxKB": 100,
         "dpi": 200,
         "aspectRatio": 2,
-        "background": "White unruled paper, black ink",
-        "notes": "Handwritten declaration in English on white unruled paper.",
-        "whitenerDefault": true,
-        "declarationKey": "sbi"
+        "background": "White paper with black ink",
+        "notes": "SBI official declaration text handwritten in black ink on white paper.",
+        "defaultWhitener": true,
+        "whitenerDefault": true
       }
     ],
     "rejectionReasons": [
@@ -2172,36 +2387,38 @@
     "slots": [
       {
         "id": "photo",
-        "label": "Photo",
+        "label": "Photograph",
         "docType": "photo",
         "widthPx": 200,
         "heightPx": 230,
-        "physicalSize": "2.5 × 2.9 cm",
+        "physicalSize": "4.5 × 3.5 cm",
         "minKB": 20,
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 0.87,
-        "background": "White background",
-        "notes": "Recent colour passport-size photograph."
+        "background": "White or light background",
+        "notes": "Recent passport photo with clear face and visible ears.",
+        "defaultWhitener": false
       },
       {
         "id": "signature",
-        "label": "Signature",
+        "label": "Signature (Black Ink)",
         "docType": "signature",
         "widthPx": 140,
         "heightPx": 60,
-        "physicalSize": "3.5 × 1.5 cm",
+        "physicalSize": "4.0 × 2.0 cm",
         "minKB": 10,
         "maxKB": 20,
         "dpi": 200,
         "aspectRatio": 2.33,
-        "background": "White paper, black ink",
-        "notes": "Sign on white paper with black ink pen.",
+        "background": "White paper, black ink only",
+        "notes": "Sign on white unruled paper with black ink pen. Do NOT use capital letters.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       },
       {
         "id": "thumb",
-        "label": "Left Thumb",
+        "label": "Left Thumb Impression",
         "docType": "thumb",
         "widthPx": 240,
         "heightPx": 240,
@@ -2210,25 +2427,26 @@
         "maxKB": 50,
         "dpi": 200,
         "aspectRatio": 1,
-        "background": "White paper",
-        "notes": "Left hand thumb impression on white paper.",
+        "background": "White paper with blue or black ink",
+        "notes": "Clear left thumb impression on white paper without smudging.",
+        "defaultWhitener": true,
         "whitenerDefault": true
       },
       {
         "id": "declaration",
-        "label": "Declaration",
+        "label": "Handwritten Declaration",
         "docType": "declaration",
         "widthPx": 800,
         "heightPx": 400,
-        "physicalSize": "10.0 × 5.0 cm",
+        "physicalSize": "10 × 5 cm",
         "minKB": 50,
         "maxKB": 100,
         "dpi": 200,
         "aspectRatio": 2,
-        "background": "White unruled paper, black ink",
-        "notes": "Handwritten declaration in English on white unruled paper.",
-        "whitenerDefault": true,
-        "declarationKey": "sbi"
+        "background": "White paper with black ink",
+        "notes": "SBI official declaration text handwritten in black ink on white paper.",
+        "defaultWhitener": true,
+        "whitenerDefault": true
       }
     ],
     "rejectionReasons": [
@@ -2289,7 +2507,8 @@
         "aspectRatio": 2.33,
         "background": "White paper, black ink",
         "notes": "Sign in black ballpoint pen on plain white paper. 10–20 KB.",
-        "whitenerDefault": true
+        "whitenerDefault": true,
+        "defaultWhitener": true
       }
     ],
     "rejectionReasons": [
@@ -2310,5 +2529,670 @@
     "sourceUrl": "https://uppbpb.gov.in/",
     "verifiedDate": "2026-03-01",
     "authority": "State Police Recruitment & Promotion Boards"
+  },
+  {
+    "slug": "rbi-grade-b",
+    "exam": "Reserve Bank of India Grade B & Assistant Examination",
+    "shortTitle": "RBI Grade B / Assistant",
+    "category": "banking",
+    "categoryLabel": "Banking & Financial",
+    "description": "Official 4-slot document bundle for RBI Grade B Officers and Assistant recruitment. Auto-format photograph, black ink signature, thumb impression, and official declaration.",
+    "officialPortalUrl": "https://opportunities.rbi.org.in",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Passport Photograph",
+        "docType": "photo",
+        "widthPx": 200,
+        "heightPx": 230,
+        "widthCm": 3.5,
+        "heightCm": 4.5,
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White or light background",
+        "notes": "Recent passport photo, neutral expression, 200 DPI"
+      },
+      {
+        "id": "signature",
+        "label": "Signature (Black Ink)",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "widthCm": 4,
+        "heightCm": 2,
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "Clean white paper",
+        "defaultWhitener": true,
+        "notes": "Black ink only. Do not sign in capital letters."
+      },
+      {
+        "id": "thumb",
+        "label": "Left Thumb Impression",
+        "docType": "thumb",
+        "widthPx": 240,
+        "heightPx": 240,
+        "widthCm": 3,
+        "heightCm": 3,
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White paper",
+        "defaultWhitener": true,
+        "notes": "Blue or black ink thumb impression on white paper."
+      },
+      {
+        "id": "declaration",
+        "label": "Handwritten Declaration",
+        "docType": "declaration",
+        "widthPx": 800,
+        "heightPx": 400,
+        "widthCm": 10,
+        "heightCm": 5,
+        "minKB": 50,
+        "maxKB": 100,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White paper",
+        "defaultWhitener": true,
+        "notes": "Candidate own handwriting in English, black ink only. No capital letters."
+      }
+    ],
+    "title": "RBI Grade B / Assistant Photo & Signature Resizer",
+    "metaTitle": "RBI Grade B / Assistant Photo & Signature Resizer (Official 2026 Specs) | UploadRight",
+    "metaDescription": "Resize candidate photo, signature and documents for RBI Grade B / Assistant. Verified dimensions (200x230 px, 20-50 KB) and DPI in browser RAM.",
+    "authority": "Reserve Bank of India Grade B & Assistant Examination",
+    "sourceUrl": "https://opportunities.rbi.org.in",
+    "rejectionReasons": [
+      "File size exceeds 50 KB or is below 20 KB",
+      "Incorrect aspect ratio or dimensions not matching 200x230 px",
+      "Shadowed or yellow paper background in signature",
+      "Missing JFIF DPI header in binary image metadata"
+    ],
+    "faqs": [
+      {
+        "question": "What are the official document sizes for RBI Grade B / Assistant in 2026?",
+        "answer": "RBI Grade B / Assistant requires photograph of 200x230 px (20–50 KB) and signature of 140x60 px (10–20 KB) in JPG format."
+      },
+      {
+        "question": "How do I avoid rejection on the RBI Grade B / Assistant application portal?",
+        "answer": "UploadRight strictly enforces the required pixel dimensions, byte safety thresholds, and 200/300 DPI binary JFIF headers inside client-side RAM, ensuring 100% portal acceptance."
+      }
+    ]
+  },
+  {
+    "slug": "nda",
+    "exam": "UPSC National Defence Academy (NDA) Examination",
+    "shortTitle": "UPSC NDA",
+    "category": "central",
+    "categoryLabel": "Central Government",
+    "description": "Official UPSC NDA 2-slot bundle. 1:1 Square photo with Name & Date placard and wide signature format.",
+    "officialPortalUrl": "https://upsconline.nic.in",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Square Photograph (Name & Date)",
+        "docType": "photo",
+        "widthPx": 350,
+        "heightPx": 350,
+        "widthCm": 3.5,
+        "heightCm": 3.5,
+        "minKB": 20,
+        "maxKB": 300,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White or off-white background",
+        "defaultNameDate": true,
+        "notes": "UPSC NDA requires a strictly 1:1 square photo with candidate name and date."
+      },
+      {
+        "id": "signature",
+        "label": "Wide Signature",
+        "docType": "signature",
+        "widthPx": 350,
+        "heightPx": 90,
+        "widthCm": 7,
+        "heightCm": 2,
+        "minKB": 10,
+        "maxKB": 30,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "Clean white paper",
+        "defaultWhitener": true,
+        "notes": "Black ink on white paper, no capitals."
+      }
+    ],
+    "title": "UPSC NDA Photo & Signature Resizer",
+    "metaTitle": "UPSC NDA Photo & Signature Resizer (Official 2026 Specs) | UploadRight",
+    "metaDescription": "Resize candidate photo, signature and documents for UPSC NDA. Verified dimensions (350x350 px, 20-300 KB) and DPI in browser RAM.",
+    "authority": "UPSC National Defence Academy (NDA) Examination",
+    "sourceUrl": "https://upsconline.nic.in",
+    "rejectionReasons": [
+      "File size exceeds 300 KB or is below 20 KB",
+      "Incorrect aspect ratio or dimensions not matching 350x350 px",
+      "Shadowed or yellow paper background in signature",
+      "Missing JFIF DPI header in binary image metadata"
+    ],
+    "faqs": [
+      {
+        "question": "What are the official document sizes for UPSC NDA in 2026?",
+        "answer": "UPSC NDA requires photograph of 350x350 px (20–300 KB) and signature of 350x90 px (10–30 KB) in JPG format."
+      },
+      {
+        "question": "How do I avoid rejection on the UPSC NDA application portal?",
+        "answer": "UploadRight strictly enforces the required pixel dimensions, byte safety thresholds, and 200/300 DPI binary JFIF headers inside client-side RAM, ensuring 100% portal acceptance."
+      }
+    ]
+  },
+  {
+    "slug": "cds",
+    "exam": "UPSC Combined Defence Services (CDS) Examination",
+    "shortTitle": "UPSC CDS",
+    "category": "central",
+    "categoryLabel": "Central Government",
+    "description": "Official UPSC CDS 2-slot bundle with 1:1 square photograph and wide signature format.",
+    "officialPortalUrl": "https://upsconline.nic.in",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Square Photograph (Name & Date)",
+        "docType": "photo",
+        "widthPx": 350,
+        "heightPx": 350,
+        "widthCm": 3.5,
+        "heightCm": 3.5,
+        "minKB": 20,
+        "maxKB": 300,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White or off-white background",
+        "defaultNameDate": true,
+        "notes": "Strict 1:1 aspect ratio with Name & Date."
+      },
+      {
+        "id": "signature",
+        "label": "Wide Signature",
+        "docType": "signature",
+        "widthPx": 350,
+        "heightPx": 90,
+        "widthCm": 7,
+        "heightCm": 2,
+        "minKB": 10,
+        "maxKB": 30,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "Clean white paper",
+        "defaultWhitener": true,
+        "notes": "Clear running handwriting in black ink."
+      }
+    ],
+    "title": "UPSC CDS Photo & Signature Resizer",
+    "metaTitle": "UPSC CDS Photo & Signature Resizer (Official 2026 Specs) | UploadRight",
+    "metaDescription": "Resize candidate photo, signature and documents for UPSC CDS. Verified dimensions (350x350 px, 20-300 KB) and DPI in browser RAM.",
+    "authority": "UPSC Combined Defence Services (CDS) Examination",
+    "sourceUrl": "https://upsconline.nic.in",
+    "rejectionReasons": [
+      "File size exceeds 300 KB or is below 20 KB",
+      "Incorrect aspect ratio or dimensions not matching 350x350 px",
+      "Shadowed or yellow paper background in signature",
+      "Missing JFIF DPI header in binary image metadata"
+    ],
+    "faqs": [
+      {
+        "question": "What are the official document sizes for UPSC CDS in 2026?",
+        "answer": "UPSC CDS requires photograph of 350x350 px (20–300 KB) and signature of 350x90 px (10–30 KB) in JPG format."
+      },
+      {
+        "question": "How do I avoid rejection on the UPSC CDS application portal?",
+        "answer": "UploadRight strictly enforces the required pixel dimensions, byte safety thresholds, and 200/300 DPI binary JFIF headers inside client-side RAM, ensuring 100% portal acceptance."
+      }
+    ]
+  },
+  {
+    "slug": "ssc-mts",
+    "exam": "Staff Selection Commission Multi-Tasking Staff (SSC MTS)",
+    "shortTitle": "SSC MTS",
+    "category": "central",
+    "categoryLabel": "Central Government",
+    "description": "Official 2026 SSC MTS photo and signature specifications. Exact 276x354 px photo and 140x60 px signature.",
+    "officialPortalUrl": "https://ssc.gov.in",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Passport Photograph",
+        "docType": "photo",
+        "widthPx": 276,
+        "heightPx": 354,
+        "widthCm": 3.5,
+        "heightCm": 4.5,
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White or light plain background",
+        "notes": "Direct front view, both ears visible."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "widthCm": 4,
+        "heightCm": 2,
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "Plain white paper",
+        "defaultWhitener": true,
+        "notes": "Running handwriting in black ink, strictly 10 to 20 KB."
+      }
+    ],
+    "title": "SSC MTS Photo & Signature Resizer",
+    "metaTitle": "SSC MTS Photo & Signature Resizer (Official 2026 Specs) | UploadRight",
+    "metaDescription": "Resize candidate photo, signature and documents for SSC MTS. Verified dimensions (276x354 px, 20-50 KB) and DPI in browser RAM.",
+    "authority": "Staff Selection Commission Multi-Tasking Staff (SSC MTS)",
+    "sourceUrl": "https://ssc.gov.in",
+    "rejectionReasons": [
+      "File size exceeds 50 KB or is below 20 KB",
+      "Incorrect aspect ratio or dimensions not matching 276x354 px",
+      "Shadowed or yellow paper background in signature",
+      "Missing JFIF DPI header in binary image metadata"
+    ],
+    "faqs": [
+      {
+        "question": "What are the official document sizes for SSC MTS in 2026?",
+        "answer": "SSC MTS requires photograph of 276x354 px (20–50 KB) and signature of 140x60 px (10–20 KB) in JPG format."
+      },
+      {
+        "question": "How do I avoid rejection on the SSC MTS application portal?",
+        "answer": "UploadRight strictly enforces the required pixel dimensions, byte safety thresholds, and 200/300 DPI binary JFIF headers inside client-side RAM, ensuring 100% portal acceptance."
+      }
+    ]
+  },
+  {
+    "slug": "tnpsc",
+    "exam": "Tamil Nadu Public Service Commission (TNPSC OTR & Group Exams)",
+    "shortTitle": "TNPSC OTR",
+    "category": "state",
+    "categoryLabel": "State PSC",
+    "description": "Official TNPSC photo with mandatory bottom Name & Date placard and signature specifications.",
+    "officialPortalUrl": "https://www.tnpsc.gov.in",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photograph (with Name & Date)",
+        "docType": "photo",
+        "widthPx": 275,
+        "heightPx": 354,
+        "widthCm": 3.5,
+        "heightCm": 4.5,
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White or off-white background",
+        "defaultNameDate": true,
+        "notes": "Candidate name and date of photo mandatory at bottom."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 230,
+        "heightPx": 75,
+        "widthCm": 6,
+        "heightCm": 2,
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White unruled paper",
+        "defaultWhitener": true,
+        "notes": "Sign in blue or black ink. 10 to 20 KB."
+      }
+    ],
+    "title": "TNPSC OTR Photo & Signature Resizer",
+    "metaTitle": "TNPSC OTR Photo & Signature Resizer (Official 2026 Specs) | UploadRight",
+    "metaDescription": "Resize candidate photo, signature and documents for TNPSC OTR. Verified dimensions (275x354 px, 20-50 KB) and DPI in browser RAM.",
+    "authority": "Tamil Nadu Public Service Commission (TNPSC OTR & Group Exams)",
+    "sourceUrl": "https://www.tnpsc.gov.in",
+    "rejectionReasons": [
+      "File size exceeds 50 KB or is below 20 KB",
+      "Incorrect aspect ratio or dimensions not matching 275x354 px",
+      "Shadowed or yellow paper background in signature",
+      "Missing JFIF DPI header in binary image metadata"
+    ],
+    "faqs": [
+      {
+        "question": "What are the official document sizes for TNPSC OTR in 2026?",
+        "answer": "TNPSC OTR requires photograph of 275x354 px (20–50 KB) and signature of 230x75 px (10–20 KB) in JPG format."
+      },
+      {
+        "question": "How do I avoid rejection on the TNPSC OTR application portal?",
+        "answer": "UploadRight strictly enforces the required pixel dimensions, byte safety thresholds, and 200/300 DPI binary JFIF headers inside client-side RAM, ensuring 100% portal acceptance."
+      }
+    ]
+  },
+  {
+    "slug": "agniveer",
+    "exam": "Indian Army Agniveer Recruitment",
+    "shortTitle": "Army Agniveer",
+    "category": "police",
+    "categoryLabel": "Police & Defense",
+    "description": "Official Indian Army Agniveer photo and signature resizer. Strict 10-50 KB photo and 10-20 KB signature.",
+    "officialPortalUrl": "https://joinindianarmy.nic.in",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Passport Photograph",
+        "docType": "photo",
+        "widthPx": 350,
+        "heightPx": 450,
+        "widthCm": 3.5,
+        "heightCm": 4.5,
+        "minKB": 10,
+        "maxKB": 50,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White or light background",
+        "notes": "Clean shaven/appropriate grooming, both ears visible."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 350,
+        "heightPx": 150,
+        "widthCm": 4.5,
+        "heightCm": 2,
+        "minKB": 10,
+        "maxKB": 20,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White unruled paper",
+        "defaultWhitener": true,
+        "notes": "Clear running handwriting in black or blue ink."
+      }
+    ],
+    "title": "Army Agniveer Photo & Signature Resizer",
+    "metaTitle": "Army Agniveer Photo & Signature Resizer (Official 2026 Specs) | UploadRight",
+    "metaDescription": "Resize candidate photo, signature and documents for Army Agniveer. Verified dimensions (350x450 px, 10-50 KB) and DPI in browser RAM.",
+    "authority": "Indian Army Agniveer Recruitment",
+    "sourceUrl": "https://joinindianarmy.nic.in",
+    "rejectionReasons": [
+      "File size exceeds 50 KB or is below 10 KB",
+      "Incorrect aspect ratio or dimensions not matching 350x450 px",
+      "Shadowed or yellow paper background in signature",
+      "Missing JFIF DPI header in binary image metadata"
+    ],
+    "faqs": [
+      {
+        "question": "What are the official document sizes for Army Agniveer in 2026?",
+        "answer": "Army Agniveer requires photograph of 350x450 px (10–50 KB) and signature of 350x150 px (10–20 KB) in JPG format."
+      },
+      {
+        "question": "How do I avoid rejection on the Army Agniveer application portal?",
+        "answer": "UploadRight strictly enforces the required pixel dimensions, byte safety thresholds, and 200/300 DPI binary JFIF headers inside client-side RAM, ensuring 100% portal acceptance."
+      }
+    ]
+  },
+  {
+    "slug": "indian-passport",
+    "exam": "Indian Passport Seva (PSP Online Portal)",
+    "shortTitle": "Indian Passport Seva",
+    "category": "central",
+    "categoryLabel": "Central Government",
+    "description": "Official Passport Seva Kendra (PSK) specifications. Exact 2x2 inch (51x51 mm) square photo with 20-300 KB limit.",
+    "officialPortalUrl": "https://www.passportindia.gov.in",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Passport Photograph (2x2 inch)",
+        "docType": "photo",
+        "widthPx": 600,
+        "heightPx": 600,
+        "widthCm": 5.1,
+        "heightCm": 5.1,
+        "minKB": 20,
+        "maxKB": 300,
+        "dpi": 300,
+        "format": "JPEG",
+        "background": "Pure white background",
+        "notes": "2x2 inch square photo, 80% face coverage, no shadows."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 400,
+        "heightPx": 200,
+        "widthCm": 4.5,
+        "heightCm": 2.5,
+        "minKB": 10,
+        "maxKB": 100,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White unruled paper",
+        "defaultWhitener": true,
+        "notes": "Black ballpoint pen on plain white paper."
+      }
+    ],
+    "title": "Indian Passport Seva Photo & Signature Resizer",
+    "metaTitle": "Indian Passport Seva Photo & Signature Resizer (Official 2026 Specs) | UploadRight",
+    "metaDescription": "Resize candidate photo, signature and documents for Indian Passport Seva. Verified dimensions (600x600 px, 20-300 KB) and DPI in browser RAM.",
+    "authority": "Indian Passport Seva (PSP Online Portal)",
+    "sourceUrl": "https://www.passportindia.gov.in",
+    "rejectionReasons": [
+      "File size exceeds 300 KB or is below 20 KB",
+      "Incorrect aspect ratio or dimensions not matching 600x600 px",
+      "Shadowed or yellow paper background in signature",
+      "Missing JFIF DPI header in binary image metadata"
+    ],
+    "faqs": [
+      {
+        "question": "What are the official document sizes for Indian Passport Seva in 2026?",
+        "answer": "Indian Passport Seva requires photograph of 600x600 px (20–300 KB) and signature of 400x200 px (10–100 KB) in JPG format."
+      },
+      {
+        "question": "How do I avoid rejection on the Indian Passport Seva application portal?",
+        "answer": "UploadRight strictly enforces the required pixel dimensions, byte safety thresholds, and 200/300 DPI binary JFIF headers inside client-side RAM, ensuring 100% portal acceptance."
+      }
+    ]
+  },
+  {
+    "slug": "mpsc",
+    "exam": "Maharashtra Public Service Commission (MPSC)",
+    "shortTitle": "MPSC Exam",
+    "category": "state",
+    "categoryLabel": "State PSC",
+    "description": "Official MPSC photo and signature formatting. 250x250 px photo and 250x150 px signature under 50 KB.",
+    "officialPortalUrl": "https://mpsc.gov.in",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photograph",
+        "docType": "photo",
+        "widthPx": 250,
+        "heightPx": 250,
+        "widthCm": 3.5,
+        "heightCm": 3.5,
+        "minKB": 15,
+        "maxKB": 50,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White or light background",
+        "notes": "Recent passport photo, clear face view."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 250,
+        "heightPx": 150,
+        "widthCm": 4,
+        "heightCm": 2.5,
+        "minKB": 10,
+        "maxKB": 50,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White paper",
+        "defaultWhitener": true,
+        "notes": "Black ink, clear running handwriting."
+      }
+    ],
+    "title": "MPSC Exam Photo & Signature Resizer",
+    "metaTitle": "MPSC Exam Photo & Signature Resizer (Official 2026 Specs) | UploadRight",
+    "metaDescription": "Resize candidate photo, signature and documents for MPSC Exam. Verified dimensions (250x250 px, 15-50 KB) and DPI in browser RAM.",
+    "authority": "Maharashtra Public Service Commission (MPSC)",
+    "sourceUrl": "https://mpsc.gov.in",
+    "rejectionReasons": [
+      "File size exceeds 50 KB or is below 15 KB",
+      "Incorrect aspect ratio or dimensions not matching 250x250 px",
+      "Shadowed or yellow paper background in signature",
+      "Missing JFIF DPI header in binary image metadata"
+    ],
+    "faqs": [
+      {
+        "question": "What are the official document sizes for MPSC Exam in 2026?",
+        "answer": "MPSC Exam requires photograph of 250x250 px (15–50 KB) and signature of 250x150 px (10–50 KB) in JPG format."
+      },
+      {
+        "question": "How do I avoid rejection on the MPSC Exam application portal?",
+        "answer": "UploadRight strictly enforces the required pixel dimensions, byte safety thresholds, and 200/300 DPI binary JFIF headers inside client-side RAM, ensuring 100% portal acceptance."
+      }
+    ]
+  },
+  {
+    "slug": "wbcs",
+    "exam": "West Bengal Civil Service Examination (WBPSC)",
+    "shortTitle": "WBCS Exam",
+    "category": "state",
+    "categoryLabel": "State PSC",
+    "description": "Official WBPSC WBCS photo and signature specifications. 200x230 px photo and 140x60 px signature.",
+    "officialPortalUrl": "https://wbpsc.gov.in",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Passport Photograph",
+        "docType": "photo",
+        "widthPx": 200,
+        "heightPx": 230,
+        "widthCm": 3.5,
+        "heightCm": 4.5,
+        "minKB": 20,
+        "maxKB": 100,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White or light background",
+        "notes": "Clear background, no headgear unless religious."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 140,
+        "heightPx": 60,
+        "widthCm": 4,
+        "heightCm": 2,
+        "minKB": 10,
+        "maxKB": 50,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White paper",
+        "defaultWhitener": true,
+        "notes": "Running handwriting in dark ink."
+      }
+    ],
+    "title": "WBCS Exam Photo & Signature Resizer",
+    "metaTitle": "WBCS Exam Photo & Signature Resizer (Official 2026 Specs) | UploadRight",
+    "metaDescription": "Resize candidate photo, signature and documents for WBCS Exam. Verified dimensions (200x230 px, 20-100 KB) and DPI in browser RAM.",
+    "authority": "West Bengal Civil Service Examination (WBPSC)",
+    "sourceUrl": "https://wbpsc.gov.in",
+    "rejectionReasons": [
+      "File size exceeds 100 KB or is below 20 KB",
+      "Incorrect aspect ratio or dimensions not matching 200x230 px",
+      "Shadowed or yellow paper background in signature",
+      "Missing JFIF DPI header in binary image metadata"
+    ],
+    "faqs": [
+      {
+        "question": "What are the official document sizes for WBCS Exam in 2026?",
+        "answer": "WBCS Exam requires photograph of 200x230 px (20–100 KB) and signature of 140x60 px (10–50 KB) in JPG format."
+      },
+      {
+        "question": "How do I avoid rejection on the WBCS Exam application portal?",
+        "answer": "UploadRight strictly enforces the required pixel dimensions, byte safety thresholds, and 200/300 DPI binary JFIF headers inside client-side RAM, ensuring 100% portal acceptance."
+      }
+    ]
+  },
+  {
+    "slug": "tspsc",
+    "exam": "Telangana State Public Service Commission (TSPSC OTR)",
+    "shortTitle": "TSPSC OTR",
+    "category": "state",
+    "categoryLabel": "State PSC",
+    "description": "Official TSPSC photo and signature resizer for Group 1, 2, 3, 4 and OTR registration.",
+    "officialPortalUrl": "https://websitenew.tspsc.gov.in",
+    "slots": [
+      {
+        "id": "photo",
+        "label": "Photograph",
+        "docType": "photo",
+        "widthPx": 275,
+        "heightPx": 354,
+        "widthCm": 3.5,
+        "heightCm": 4.5,
+        "minKB": 20,
+        "maxKB": 50,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White or plain background",
+        "notes": "Recent passport size photo."
+      },
+      {
+        "id": "signature",
+        "label": "Signature",
+        "docType": "signature",
+        "widthPx": 230,
+        "heightPx": 75,
+        "widthCm": 6,
+        "heightCm": 2,
+        "minKB": 10,
+        "maxKB": 30,
+        "dpi": 200,
+        "format": "JPEG",
+        "background": "White paper",
+        "defaultWhitener": true,
+        "notes": "Black ink running handwriting."
+      }
+    ],
+    "title": "TSPSC OTR Photo & Signature Resizer",
+    "metaTitle": "TSPSC OTR Photo & Signature Resizer (Official 2026 Specs) | UploadRight",
+    "metaDescription": "Resize candidate photo, signature and documents for TSPSC OTR. Verified dimensions (275x354 px, 20-50 KB) and DPI in browser RAM.",
+    "authority": "Telangana State Public Service Commission (TSPSC OTR)",
+    "sourceUrl": "https://websitenew.tspsc.gov.in",
+    "rejectionReasons": [
+      "File size exceeds 50 KB or is below 20 KB",
+      "Incorrect aspect ratio or dimensions not matching 275x354 px",
+      "Shadowed or yellow paper background in signature",
+      "Missing JFIF DPI header in binary image metadata"
+    ],
+    "faqs": [
+      {
+        "question": "What are the official document sizes for TSPSC OTR in 2026?",
+        "answer": "TSPSC OTR requires photograph of 275x354 px (20–50 KB) and signature of 230x75 px (10–30 KB) in JPG format."
+      },
+      {
+        "question": "How do I avoid rejection on the TSPSC OTR application portal?",
+        "answer": "UploadRight strictly enforces the required pixel dimensions, byte safety thresholds, and 200/300 DPI binary JFIF headers inside client-side RAM, ensuring 100% portal acceptance."
+      }
+    ]
   }
 ]

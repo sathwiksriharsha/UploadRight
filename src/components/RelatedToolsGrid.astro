@@ -1,24 +1,26 @@
 ---
-// RelatedToolsGrid.astro — Matches ExamMint Image 5 exactly
-// Provides rich internal linking and instant exam switches for maximum organic SEO ranking
+// RelatedToolsGrid.astro — Matches ExamMint Image 5 & All Supported Exams Grid
+// Provides rich internal linking, category tabs, real-time search, and instant exam switches
 import presets from '../data/presets.json';
 
 interface Props {
   currentCategory?: string;
   currentSlug?: string;
+  showAll?: boolean;
 }
 
-const { currentCategory = 'central', currentSlug = '' } = Astro.props;
+const { currentCategory = 'central', currentSlug = '', showAll = false } = Astro.props;
 
 // Filter related presets by category, excluding current slug
 let related = presets.filter(p => p.category === currentCategory && p.slug !== currentSlug);
 if (related.length < 8) {
-  // supplement with top featured presets
   const others = presets.filter(p => p.slug !== currentSlug && !related.some(r => r.slug === p.slug));
   related = [...related, ...others].slice(0, 8);
 } else {
   related = related.slice(0, 8);
 }
+
+const displayedPresets = showAll ? presets : related;
 
 const categoryNames: Record<string, string> = {
   central: 'Central Government',
@@ -26,50 +28,109 @@ const categoryNames: Record<string, string> = {
   police: 'Police & Defense',
   state: 'State PSC',
   judiciary: 'Judiciary & High Court',
-  others: 'National Entrance'
+  others: 'Entrance & PAN Cards'
 };
 
 const categoryLabel = categoryNames[currentCategory] || 'Government';
 
 function getInitials(title: string): string {
-  const parts = title.replace(/Photo|Signature|Resizer|Kit|Exam/gi, '').trim().split(/\s+/);
-  if (parts.length >= 2) {
-    return (parts[0][0] + parts[1][0]).toUpperCase();
+  if (title.includes('4-in-1')) return 'I4';
+  const clean = title.replace(/Photo|Signature|Resizer|Kit|Exam|OTR|Examination/gi, '').trim();
+  const words = clean.split(/[\s/&-]+/).filter(Boolean);
+  if (words.length >= 2) {
+    return (words[0][0] + words[1][0]).toUpperCase();
+  }
+  if (words.length === 1 && words[0].length >= 2) {
+    return words[0].slice(0, 2).toUpperCase();
   }
   return title.slice(0, 2).toUpperCase();
 }
 ---
 
-<section class="max-w-6xl mx-auto px-4 sm:px-6 my-16 space-y-8">
-  <div class="text-center space-y-3 max-w-2xl mx-auto">
+<section id="all-exams-grid-section" class="max-w-6xl mx-auto px-4 sm:px-6 my-16 space-y-8">
+  <div class="text-center space-y-3 max-w-3xl mx-auto">
     <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#f0f0ee] border border-[#e6e6e6] text-xs font-mono font-bold text-neutral-800 shadow-xs">
       <span>✨</span>
-      <span>RELATED TOOLS</span>
+      <span>{showAll ? 'ALL SUPPORTED EXAMS' : 'RELATED TOOLS'}</span>
     </div>
-    <h2 class="text-2xl sm:text-3xl font-extrabold text-black tracking-tight">
-      Also resize for <span class="text-[#0062FF]">{categoryLabel} Exams</span>
+    <h2 class="text-2xl sm:text-4xl font-extrabold text-black tracking-tight">
+      {showAll ? (
+        <>Supported Exam <span class="text-[#0062FF]">Photo &amp; Signature Portals</span></>
+      ) : (
+        <>Also resize for <span class="text-[#0062FF]">{categoryLabel} Exams</span></>
+      )}
     </h2>
     <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed font-mono">
-      Preparing for multiple exams? Resize your photo and signature for other {categoryLabel.toLowerCase()} exams instantly.
+      {showAll
+        ? 'Browse all supported competitive examinations. Each box launches an official multi-slot requirement bundle with verified pixel dimensions, byte safety limits, and 200/300/600 DPI headers.'
+        : `Preparing for multiple exams? Resize your photo and signature for other ${categoryLabel.toLowerCase()} exams instantly.`}
     </p>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-    {related.map((p) => {
+  {showAll && (
+    <div class="space-y-4 max-w-4xl mx-auto">
+      <!-- Category Filter Chips -->
+      <div class="flex items-center justify-center gap-2 flex-wrap text-xs font-mono">
+        <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-black text-white font-bold border-2 border-black transition cursor-pointer" data-cat="all">
+          All Exams ({presets.length})
+        </button>
+        <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border-2 border-[#e6e6e6] text-black font-medium transition cursor-pointer" data-cat="central">
+          Central Govt
+        </button>
+        <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border-2 border-[#e6e6e6] text-black font-medium transition cursor-pointer" data-cat="banking">
+          Banking &amp; Financial
+        </button>
+        <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border-2 border-[#e6e6e6] text-black font-medium transition cursor-pointer" data-cat="police">
+          Police &amp; Defense
+        </button>
+        <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border-2 border-[#e6e6e6] text-black font-medium transition cursor-pointer" data-cat="state">
+          State PSCs
+        </button>
+        <button type="button" class="exam-grid-cat-btn px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border-2 border-[#e6e6e6] text-black font-medium transition cursor-pointer" data-cat="others">
+          Entrance &amp; PAN
+        </button>
+      </div>
+
+      <!-- Instant Live Search Bar -->
+      <div class="relative max-w-md mx-auto">
+        <span class="absolute left-3.5 top-2.5 text-neutral-400 text-xs">🔍</span>
+        <input
+          type="text"
+          id="exam-grid-search-input"
+          placeholder="Search exams (e.g. IBPS, SSC, UPSC, Railway, Police, NEET)..."
+          class="w-full pl-9 pr-4 py-2.5 bg-white border-2 border-[#e6e6e6] focus:border-black rounded-2xl text-xs font-mono placeholder:text-neutral-400 focus:outline-none transition shadow-xs"
+        />
+      </div>
+    </div>
+  )}
+
+  <div id="exam-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    {displayedPresets.map((p) => {
       const primarySlot = p.slots[0];
       const initials = getInitials(p.shortTitle || p.exam);
+      const slotCount = p.slots.length;
       return (
         <a
           href={`/${p.slug}`}
-          class="p-4 rounded-2xl border-2 border-[#e6e6e6] hover:border-black bg-white hover:bg-[#fafafa] transition-all shadow-xs group flex items-start gap-3.5 cursor-pointer"
+          class="exam-box-card p-4 rounded-2xl border-2 border-[#e6e6e6] hover:border-black bg-white hover:bg-[#fafafa] transition-all shadow-xs group flex items-start gap-3.5 cursor-pointer"
+          data-category={p.category}
+          data-title={(p.shortTitle || p.exam).toLowerCase()}
+          data-search={`${p.shortTitle || ''} ${p.exam} ${p.category} ${p.categoryLabel} ${p.slug}`.toLowerCase()}
         >
           <div class="w-10 h-10 rounded-xl bg-[#0062FF]/10 text-[#0062FF] font-black text-xs flex items-center justify-center shrink-0 border border-[#0062FF]/20 group-hover:bg-black group-hover:text-white group-hover:border-black transition-colors font-mono">
             {initials}
           </div>
           <div class="space-y-1 min-w-0 flex-1">
-            <h3 class="text-xs sm:text-sm font-bold text-black truncate group-hover:text-[#0062FF] transition-colors">
-              {p.shortTitle || p.exam}
-            </h3>
+            <div class="flex items-center justify-between gap-1">
+              <h3 class="text-xs sm:text-sm font-bold text-black truncate group-hover:text-[#0062FF] transition-colors">
+                {p.shortTitle || p.exam}
+              </h3>
+              {slotCount > 2 && (
+                <span class="px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200 text-[9px] font-mono shrink-0 font-bold">
+                  {slotCount} Docs
+                </span>
+              )}
+            </div>
             <p class="text-[11px] font-mono text-neutral-500">
               {primarySlot.widthPx}×{primarySlot.heightPx}px
             </p>
@@ -86,4 +147,56 @@ function getInitials(title: string): string {
       );
     })}
   </div>
+
+  {!showAll && (
+    <div class="text-center pt-2">
+      <a
+        href="/#all-exams-grid-section"
+        class="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-neutral-700 hover:text-black hover:underline"
+      >
+        <span>View all {presets.length} official exam bundles</span>
+        <span>→</span>
+      </a>
+    </div>
+  )}
 </section>
+
+{showAll && (
+  <script>
+    const searchInput = document.getElementById('exam-grid-search-input') as HTMLInputElement | null;
+    const catBtns = document.querySelectorAll('.exam-grid-cat-btn');
+    const cards = document.querySelectorAll('.exam-box-card');
+
+    let currentCat = 'all';
+    let searchQuery = '';
+
+    function filterGrid() {
+      cards.forEach(card => {
+        const c = card as HTMLElement;
+        const cat = c.dataset.category || '';
+        const search = c.dataset.search || '';
+        const catMatch = currentCat === 'all' || cat === currentCat;
+        const searchMatch = !searchQuery || search.includes(searchQuery);
+        c.classList.toggle('hidden', !(catMatch && searchMatch));
+      });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        searchQuery = searchInput.value.trim().toLowerCase();
+        filterGrid();
+      });
+    }
+
+    catBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        catBtns.forEach(b => {
+          b.className = 'exam-grid-cat-btn px-4 py-1.5 rounded-full bg-[#f7f7f5] hover:bg-black hover:text-white border-2 border-[#e6e6e6] text-black font-medium transition cursor-pointer';
+        });
+        btn.className = 'exam-grid-cat-btn px-4 py-1.5 rounded-full bg-black text-white font-bold border-2 border-black transition cursor-pointer';
+        currentCat = (btn as HTMLElement).dataset.cat || 'all';
+        filterGrid();
+      });
+    });
+  </script>
+)}

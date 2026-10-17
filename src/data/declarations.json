@@ -1,34 +1,44 @@
 {
   "ibps": {
-    "title": "IBPS Official Handwritten Declaration Text",
-    "text": "I, __________ (Name of the candidate), hereby declare that all the particulars furnished by me in the online application form are correct and true to the best of my knowledge and belief. I understand that in the event of any information being found false or incorrect at any stage, my candidature/appointment is liable to be cancelled/terminated without any notice.",
+    "title": "IBPS Official Handwritten Declaration Text (2026)",
+    "text": "I, _______ (Name of the candidate), hereby declare that all the information submitted by me in the application form is correct, true and valid. I will present the supporting documents as and when required.",
     "instructions": [
-      "Write in your own handwriting using black ink pen",
-      "Use white unruled plain paper",
-      "Do not write in ALL CAPITAL letters",
-      "Write your full name clearly where indicated",
-      "The declaration should be legible and neat"
+      "Write in your own running handwriting in English using black ink pen",
+      "Write on clean white unruled (plain) paper",
+      "Do NOT write in ALL CAPITAL LETTERS (leads to instant rejection)",
+      "Substitute your full name in place of '_______ (Name of the candidate)'",
+      "Crop to 800×400 px (10×5 cm) and compress between 50 KB and 100 KB"
     ]
   },
   "sbi": {
-    "title": "SBI Official Handwritten Declaration Text",
-    "text": "I, __________ (Name of the candidate), hereby declare that all the particulars and information provided in this application are true, complete, and correct to the best of my knowledge and belief. I understand that in the event of any information being found false or incorrect or ineligibility being detected at any stage, my candidature/appointment is liable to be cancelled/terminated without any notice or compensation.",
+    "title": "SBI Official Handwritten Declaration Text (2026)",
+    "text": "I, _______ (Name of the candidate), Date of Birth _______, hereby declare that all the information submitted by me in the application form is correct, true and valid. I will present the supporting documents as and when required. The signature, photograph and left-hand thumb impression is of mine.",
     "instructions": [
-      "Write in your own handwriting using black ink pen",
-      "Use white unruled plain paper",
-      "Do not write in ALL CAPITAL letters",
-      "Write clearly and legibly",
-      "Include your full name where indicated"
+      "Write in your own running handwriting in English using black ink pen",
+      "Write on clean white unruled (plain) paper",
+      "Do NOT write in ALL CAPITAL LETTERS",
+      "Include your Full Name and Date of Birth as entered in the application",
+      "Crop to 800×400 px and keep file size between 50 KB and 100 KB"
+    ]
+  },
+  "rbi": {
+    "title": "RBI Grade B & Assistant Declaration Text (2026)",
+    "text": "I, _______ (Name of the candidate), hereby declare that all the information submitted by me in the application form is correct, true and valid. I will present the supporting documents as and when required.",
+    "instructions": [
+      "Must be handwritten by the candidate in black ink",
+      "Do not write in capital letters",
+      "White paper only with 200 DPI resolution",
+      "Allowed size: 50 KB to 100 KB (800×400 px)"
     ]
   },
   "rrb": {
-    "title": "RRB Official Handwritten Declaration Text",
-    "text": "I, __________ (Name of the candidate), hereby declare that all the statements made in this application are true, complete, and correct to the best of my knowledge and belief. In the event of any information being found false or incorrect or ineligibility being detected before or after the examination, action can be taken against me by the RRB.",
+    "title": "RRB Official Declaration Text (2026)",
+    "text": "I, _______ (Name of the candidate), hereby declare that all the statements made in this application are true, complete, and correct to the best of my knowledge and belief. In the event of any information being found false or incorrect or ineligibility being detected before or after the examination, action can be taken against me by the RRB.",
     "instructions": [
-      "Write in your own handwriting",
-      "Use black or blue ink pen on white paper",
-      "Do not use printed text",
-      "Keep the handwriting clear and readable"
+      "Write in your own handwriting on white paper",
+      "Use black or blue ink pen",
+      "Keep the handwriting clear and readable",
+      "Do not use printed or typed text"
     ]
   }
 }
